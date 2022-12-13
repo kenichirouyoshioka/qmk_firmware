@@ -36,3 +36,4 @@ include keyboards/keychron/bluetooth/bluetooth.mk
 
 #add tapdance and leaderkeys 2022/12/13
 TAP_DANCE_ENABLE = yes
+LEADER_ENABLE = yes
