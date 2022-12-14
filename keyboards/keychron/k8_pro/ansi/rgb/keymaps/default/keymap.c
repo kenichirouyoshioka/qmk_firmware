@@ -259,7 +259,7 @@ MT(MOD_LSFT,KC_Y),           KC_Z,     KC_X,     KC_C,      KC_V,     KC_B,     
     XXXXXXX,  KC_7,      KC_8,      KC_9,      KC_0,      KC_F5,     KC_F6,   KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F12,   KC_DEL,    XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,
     XXXXXXX,  KC_F12,    G(C(KC_F)),SGUI(KC_I),XXXXXXX,   KC_F2,     KC_F3,   KC_F4,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,
     XXXXXXX,  XXXXXXX,   G(KC_N),   KC_WH_D,   G(KC_Z),   G(KC_0),   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
-    XXXXXXX,             XXXXXXX,   XXXXXXX,   SGUI(KC_Z),SGUI(KC_Z),G(KC_K), XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,           KC_UP,
+    XXXXXXX,             XXXXXXX,   XXXXXXX,   SGUI(KC_Z),KC_F8,     G(KC_K), XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,           KC_UP,
     XXXXXXX,  XXXXXXX,   G(KC_T),                                    KC_R,                                  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX, KC_LEFT,  KC_DOWN,   KC_RGHT),
     
 [_FN3] = LAYOUT_ansi_87(
