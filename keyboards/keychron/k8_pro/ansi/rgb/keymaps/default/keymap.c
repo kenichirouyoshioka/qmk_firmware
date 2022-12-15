@@ -29,26 +29,6 @@ enum layers{
 /* LEADER KEY setting */
 LEADER_EXTERNS();
 void matrix_scan_user(void) {
-
-    LEADER_DICTIONARY() {
-      leading = false;
-      leader_end();
-        SEQ_ONE_KEY(KC_SLSH){
-            register_code(KC_LGUI);
-            register_code(KC_D);
-            unregister_code(KC_D);
-            unregister_code(KC_LGUI);
-            
-    }
-        SEQ_TWO_KEYS(KC_SLSH, KC_SLSH) {
-            register_code(KC_LGUI);
-             register_code(KC_T);
-             unregister_code(KC_T);
-           unregister_code(KC_LGUI);
-
-        }
-
-        
         SEQ_ONE_KEY(KC_ESC){
             register_code(KC_V);
             unregister_code(KC_V);
@@ -61,13 +41,6 @@ void matrix_scan_user(void) {
             register_code(KC_1);
           unregister_code(KC_1);
         }
-        
-        SEQ_ONE_KEY(KC_SPC){
-            register_code(KC_LGUI);
-            register_code(KC_S);
-            unregister_code(KC_S);
-            unregister_code(KC_LGUI);
-    }
     };
 
     //set layer indicator
@@ -98,7 +71,7 @@ void matrix_scan_user(void) {
 //tap dance
 enum{
     TD_LV  = 1,
-    TD_ZX  = 2,
+    TD_XZ  = 2,
     TD_KO  = 3,
     CT_GUM = 4,
     TD_LNG = 5,
@@ -212,7 +185,7 @@ void dance_cln_reset(qk_tap_dance_state_t *state, void *user_data) {
 qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_LNG] = ACTION_TAP_DANCE_DOUBLE(KC_LNG2, KC_LNG1),
     [TD_LV] = ACTION_TAP_DANCE_DOUBLE(KC_L, KC_V),
-    [TD_ZX] = ACTION_TAP_DANCE_DOUBLE(KC_X, KC_Z),
+    [TD_XZ] = ACTION_TAP_DANCE_DOUBLE(KC_X, KC_Z),
     [TD_KO] = ACTION_TAP_DANCE_DOUBLE(KC_K, KC_O),
     [TD_BEA] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, x_finished, dance_cln_reset),
     [CT_F679] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, triple_function, dance_cln_reset),
@@ -233,10 +206,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [LAYER_2] = LAYOUT_ansi_87(
      KC_GRV,   KC_F1,     KC_F2,      KC_F3,      KC_F4,     KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,              TD(TD_LNG),C(G(KC_Q)),XXXXXXX,
      KC_ESC,   KC_1,      KC_2,       KC_3,       KC_4,      KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,     KC_BSPC, C(KC_UP),  XXXXXXX,   XXXXXXX,
-     KC_TAB,   TD(CT_GUM),TD(CT_F679),ALT_T(KC_R),KC_F1,     TD(TD_KO),KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,    KC_BSLS, XXXXXXX,   XXXXXXX,   XXXXXXX,
-     MO(_FN1), KC_LEAD,   TD(TD_ZX),  KC_WH_U,    TD(TD_BEA),KC_ESC,   KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,              KC_PENT,
+     KC_LCTL,  TD(CT_GUM),TD(CT_F679),ALT_T(KC_R),KC_F1,     TD(TD_KO),KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,    KC_BSLS, XXXXXXX,   XXXXXXX,   XXXXXXX,
+     MO(_FN1), KC_LEAD,   TD(TD_XZ),  KC_WH_U,    TD(TD_BEA),KC_ESC,   KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,              KC_PENT,
      KC_LSFT,             KC_LBRC,    KC_RBRC,    KC_SLSH,   KC_V,     G(KC_J),  KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,              KC_RSFT,            XXXXXXX,
-     MO(_FN2), MT(MOD_LALT,KC_F), MT(MOD_LGUI,KC_L),                   KC_SPC,                                 KC_LGUI,  MO(_FN1), TG(LAYER_3),KC_RCTL,  XXXXXXX,  XXXXXXX,   XXXXXXX),
+     MO(_FN2), MT(MOD_LALT,KC_Q), MT(MOD_LGUI,KC_L),                   KC_SPC,                                 KC_LGUI,  MO(_FN1), TG(LAYER_3),KC_RCTL,  XXXXXXX,  XXXXXXX,   XXXXXXX),
 
 [LAYER_3] = LAYOUT_ansi_87(
      KC_SPC,       KC_F1,    KC_F2,    KC_F3,    KC_F4,     KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,              TD(TD_LNG),C(G(KC_Q)),SGUI(KC_3),

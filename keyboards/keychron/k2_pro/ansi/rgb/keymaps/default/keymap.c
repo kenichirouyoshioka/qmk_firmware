@@ -49,13 +49,13 @@ void matrix_scan_user(void) {
 
     //set layer indicator
     uint8_t layer = biton32(layer_state);
-//fireblick, white, dodger_blue, purple, yellow, spring_green,
+//red, tomato, dodger_blue, purple, orange, spring_green,
     switch (layer){
         case LAYER_1:
-            rgb_matrix_set_color_all(0xB2, 0x22, 0x22);
+            rgb_matrix_set_color_all(0xFF, 0x00, 0x00);
             break;
         case LAYER_2:
-            rgb_matrix_set_color_all(0xFF, 0xFF, 0xFF);
+            rgb_matrix_set_color_all(0xFF, 0x63, 0x47);
             break;
         case LAYER_3:
             rgb_matrix_set_color_all(0x00, 0x90, 0xFF);
@@ -64,7 +64,7 @@ void matrix_scan_user(void) {
             rgb_matrix_set_color_all(0x80, 0x00, 0x80);
             break;
         case _FN2:
-            rgb_matrix_set_color_all(0xFF, 0xFF, 0x00);
+            rgb_matrix_set_color_all(0xFF, 0xA5, 0x00);
             break;
         case _FN3:
             rgb_matrix_set_color_all(0x00, 0xFF, 0x7F);
@@ -210,7 +210,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [LAYER_2] = LAYOUT_ansi_84(
      KC_GRV,   KC_F1,     KC_F2,      KC_F3,      KC_F4,     KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,    TD(TD_LNG),C(G(KC_Q)),XXXXXXX,
      KC_ESC,   KC_1,      KC_2,       KC_3,       KC_4,      KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,    KC_BSPC,              XXXXXXX,
-     KC_TAB,   TD(CT_GUM),TD(CT_F679),ALT_T(KC_R),KC_F1,     TD(TD_KO),KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,   KC_BSLS,              XXXXXXX,
+     KC_LCTL,  TD(CT_GUM),TD(CT_F679),ALT_T(KC_R),KC_F1,     TD(TD_KO),KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,   KC_BSLS,              XXXXXXX,
      MO(_FN1), KC_LEAD,   TD(TD_XZ),  KC_WH_U,    TD(TD_BEA),KC_ESC,   KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,             KC_ENT,               XXXXXXX,
      KC_LSFT,             KC_LBRC,    KC_RBRC,    KC_SLSH,   KC_V,     G(KC_J),  KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,             KC_RSFT,   KC_UP,     XXXXXXX,
      MO(_FN2), MT(MOD_LALT,KC_Q), MT(MOD_LGUI,KC_L),                   KC_SPC,                                 KC_LGUI,  MO(_FN1),TG(LAYER_3),KC_LEFT,   KC_DOWN,   KC_RGHT),
