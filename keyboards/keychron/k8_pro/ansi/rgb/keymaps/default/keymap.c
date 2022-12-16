@@ -29,6 +29,10 @@ enum layers{
 /* LEADER KEY setting */
 LEADER_EXTERNS();
 void matrix_scan_user(void) {
+    
+    LEADER_DICTIONARY() {
+      leading = false;
+      leader_end();
         SEQ_ONE_KEY(KC_ESC){
             register_code(KC_V);
             unregister_code(KC_V);
