@@ -212,7 +212,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_ESC,   KC_1,      KC_2,       KC_3,       KC_4,      KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,    KC_BSPC,              XXXXXXX,
      KC_TAB,   TD(CT_GUM),TD(CT_F679),ALT_T(KC_R),KC_F1,     TD(TD_KO),KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,   KC_BSLS,              XXXXXXX,
      MO(_FN1), KC_LEAD,   TD(TD_XZ),  KC_WH_U,    TD(TD_BEA),KC_ESC,   KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,             KC_ENT,               XXXXXXX,
-     KC_LSFT,             KC_LBRC,    KC_RBRC,    KC_SLSH,   KC_V,     G(KC_J),  KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,             KC_RSFT,   KC_UP,     XXXXXXX,
+     KC_LSFT,             KC_LBRC,    KC_RBRC,    KC_SLSH,   KC_V,     G(KC_J),  KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,             KC_RSFT,   KC_UP,     KC_F,
      MO(_FN2), KC_LCTL,   MT(MOD_LGUI,KC_L),                           KC_SPC,                                 KC_LGUI,  MO(_FN1),TG(LAYER_3),KC_LEFT,   KC_DOWN,   KC_RGHT),
      MO(_FN2), KC_LCTL,   MT(MOD_LGUI,KC_L),                           KC_SPC,                                 KC_LGUI,  MO(_FN1),TG(LAYER_3),KC_LEFT,   KC_DOWN,   KC_RGHT),
 
