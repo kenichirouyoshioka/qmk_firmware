@@ -206,10 +206,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [LAYER_2] = LAYOUT_ansi_87(
      KC_GRV,   KC_F1,     KC_F2,      KC_F3,      KC_F4,     KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,              TD(TD_LNG),C(G(KC_Q)),XXXXXXX,
      KC_ESC,   KC_1,      KC_2,       KC_3,       KC_4,      KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,     KC_BSPC, C(KC_UP),  XXXXXXX,   XXXXXXX,
-     KC_LCTL,  TD(CT_GUM),TD(CT_F679),ALT_T(KC_R),KC_F1,     TD(TD_KO),KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,    KC_BSLS, XXXXXXX,   XXXXXXX,   XXXXXXX,
+     KC_TAB,   TD(CT_GUM),TD(CT_F679),ALT_T(KC_R),KC_F1,     TD(TD_KO),KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,    KC_BSLS, KC_F,      XXXXXXX,   XXXXXXX,
      MO(_FN1), KC_LEAD,   TD(TD_XZ),  KC_WH_U,    TD(TD_BEA),KC_ESC,   KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,              KC_PENT,
      KC_LSFT,             KC_LBRC,    KC_RBRC,    KC_SLSH,   KC_V,     G(KC_J),  KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,              KC_RSFT,            XXXXXXX,
-     MO(_FN2), MT(MOD_LALT,KC_Q), MT(MOD_LGUI,KC_L),                   KC_SPC,                                 KC_LGUI,  MO(_FN1), TG(LAYER_3),KC_RCTL,  XXXXXXX,  XXXXXXX,   XXXXXXX),
+     MO(_FN2), KC_LCTL,   MT(MOD_LGUI,KC_L),                           KC_SPC,                                 KC_LGUI,  MO(_FN1), TG(LAYER_3),KC_RCTL,  XXXXXXX,  XXXXXXX,   XXXXXXX),
 
 [LAYER_3] = LAYOUT_ansi_87(
      KC_SPC,       KC_F1,    KC_F2,    KC_F3,    KC_F4,     KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,              TD(TD_LNG),C(G(KC_Q)),SGUI(KC_3),
@@ -230,7 +230,7 @@ MT(MOD_LSFT,KC_Y),           KC_Z,     KC_X,     KC_C,      KC_V,     KC_B,     
 [_FN2] = LAYOUT_ansi_87(
     XXXXXXX,  XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX,
     XXXXXXX,  KC_7,      KC_8,      KC_9,      KC_0,      KC_F5,     KC_F6,   KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F12,   KC_DEL,    XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,
-    XXXXXXX,  KC_F12,    G(C(KC_F)),SGUI(KC_I),XXXXXXX,   KC_F2,     KC_F3,   KC_F4,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,
+    XXXXXXX,  KC_F12,    G(C(KC_F)),SGUI(KC_I),G(KC_COMM),KC_F2,     KC_F3,   KC_F4,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,
     XXXXXXX,  XXXXXXX,   G(KC_N),   KC_WH_D,   G(KC_Z),   G(KC_0),   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
     XXXXXXX,             XXXXXXX,   XXXXXXX,   SGUI(KC_Z),KC_F8,     G(KC_K), XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,           KC_UP,
     XXXXXXX,  XXXXXXX,   G(KC_T),                                    KC_R,                                  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX, KC_LEFT,  KC_DOWN,   KC_RGHT),
