@@ -225,7 +225,7 @@ MT(MOD_LSFT,KC_Y),KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC
      KC_TILD,  XXXXXXX,  G(KC_W),  G(KC_E),  G(KC_R),  G(KC_T),  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  BT_HST2,
      XXXXXXX,  G(KC_A),  G(KC_S),  G(KC_D),  G(KC_F),  G(KC_G),  KC_LEFT,  KC_DOWN,  KC_UP,     KC_RGHT,  XXXXXXX,   XXXXXXX,            KC_PENT,  BT_HST3,
     SGUI(KC_4),G(KC_Z),  G(KC_X),  G(KC_C),  G(KC_V),  XXXXXXX,  XXXXXXX,  XXXXXXX,  G(KC_COMM),G(KC_DOT),G(KC_SLSH),KC_MPLY,            KC_VOLU,  KC_MUTE,
-     XXXXXXX, G(KC_MINS),G(KC_EQL),                              KC_BSLS,                       XXXXXXX,  XXXXXXX,   KC_MUTE,  KC_MPRV,  KC_VOLD,  KC_MNXT),
+     XXXXXXX, G(KC_MINS),G(KC_EQL),                              KC_BSPC,                       XXXXXXX,  XXXXXXX,   KC_MUTE,  KC_MPRV,  KC_VOLD,  KC_MNXT),
 
 [_FN2] = LAYOUT_ansi_68(
      KC_F11,   KC_7,     KC_8,      KC_9,      KC_0,      KC_F5,   KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_DEL,   XXXXXXX,
