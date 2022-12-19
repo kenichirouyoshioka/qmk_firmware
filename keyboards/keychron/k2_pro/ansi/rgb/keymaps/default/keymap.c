@@ -77,31 +77,13 @@ enum{
     TD_LV  = 1,
     TD_XZ  = 2,
     TD_KO  = 3,
-    CT_GUM = 4,
+    TD_MG = 4,
     TD_LNG = 5,
     TD_GF = 6,
     CT_F679 = 7,
     TD_BEA = 8, SOME_OTHER_DANCE
 };
-void g_u_m (qk_tap_dance_state_t *state, void *user_data);
-void g_u_m (qk_tap_dance_state_t *state, void *user_data){
-    if (state->count == 1) {
-        register_code16(KC_G);
-    } else if(state->count == 2){
-        register_code16(KC_U);
-    } else {
-        register_code16(KC_M);
-    }
-    
-    if (state->count == 2) {
-        unregister_code16(KC_G);
-    } else if(state->count == 3) {
-        unregister_code16(KC_U);
-    } else {
-        unregister_code16(KC_M);
 
-    }
-};
 void triple_function (qk_tap_dance_state_t *state, void *user_data);
 void triple_function (qk_tap_dance_state_t *state, void *user_data){
     if (state->count == 1) {
@@ -179,7 +161,6 @@ void dance_cln_reset(qk_tap_dance_state_t *state, void *user_data) {
     unregister_code16(KC_F7);
     unregister_code16(KC_F9);
     unregister_code16(KC_G);
-    unregister_code16(KC_U);
     unregister_code16(KC_M);
     unregister_code16(KC_T);
     unregister_code16(KC_D);
@@ -193,7 +174,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_KO] = ACTION_TAP_DANCE_DOUBLE(KC_K, KC_O),
     [TD_BEA] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, x_finished, dance_cln_reset),
     [CT_F679] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, triple_function, dance_cln_reset),
-    [CT_GUM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, g_u_m, dance_cln_reset),
+    [TD_MG] = ACTION_TAP_DANCE_DOUBLE(KC_M, KC_G),
     [TD_GF] = ACTION_TAP_DANCE_DOUBLE(KC_G, KC_F)
 };
 
@@ -210,7 +191,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [LAYER_2] = LAYOUT_ansi_84(
      KC_GRV,   KC_F1,     KC_F2,      KC_F3,      KC_F4,     KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,    TD(TD_LNG),C(G(KC_Q)),XXXXXXX,
      KC_ESC,   KC_1,      KC_2,       KC_3,       KC_4,      KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,    KC_BSPC,              XXXXXXX,
-     KC_TAB,   TD(CT_GUM),TD(CT_F679),ALT_T(KC_R),KC_F1,     TD(TD_KO),KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,   KC_BSLS,              G(KC_EQL),
+     KC_TAB,   TD(TD_MG), TD(CT_F679),ALT_T(KC_R),KC_F1,     TD(TD_KO),KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,   KC_BSLS,              G(KC_EQL),
      MO(_FN1), KC_LEAD,   TD(TD_XZ),  KC_WH_U,    TD(TD_BEA),KC_ESC,   KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,             KC_ENT,               G(KC_MINS),
      KC_LSFT,             KC_LBRC,    KC_RBRC,    KC_SLSH,   KC_V,     G(KC_J),  KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,             KC_RSFT,   KC_UP,     KC_F,
      MO(_FN2), KC_LCTL,   MT(MOD_LGUI,KC_L),                           KC_SPC,                                 KC_LGUI,  MO(_FN1),TG(LAYER_3),KC_LEFT,   KC_DOWN,   KC_RGHT),
@@ -227,17 +208,17 @@ MT(MOD_LSFT,KC_Y),          KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC
 [_FN1] = LAYOUT_ansi_84(
      KC_TILD,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  BT_HST1,
      KC_GRV,   KC_F1,     KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,     KC_F10,   KC_F11,   KC_F12,   KC_DEL,             BT_HST2,
-     XXXXXXX,  XXXXXXX,   G(KC_W),  G(KC_E),  G(KC_R),  G(KC_T),  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            BT_HST3,
+     XXXXXXX,  XXXXXXX,   G(KC_W),  G(KC_E),  G(KC_R),  G(KC_T),  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   G(KC_P),  XXXXXXX,  XXXXXXX,  XXXXXXX,            BT_HST3,
      XXXXXXX,  G(KC_A),   G(KC_S),  G(KC_D),  G(KC_F),  G(KC_G),  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,   XXXXXXX,  XXXXXXX,            KC_PENT,            XXXXXXX,
     SGUI(KC_4),           G(KC_Z),  G(KC_X),  G(KC_C),  G(KC_V),  XXXXXXX,  XXXXXXX,  XXXXXXX,  G(KC_COMM),G(KC_DOT),G(KC_SLSH),         KC_MPLY,  KC_VOLU,  KC_MUTE,
      XXXXXXX,  G(KC_MINS),G(KC_EQL),                              KC_BSPC,                                 XXXXXXX,  XXXXXXX,  KC_MUTE,  KC_MPRV,  KC_VOLD,  KC_MNXT),
 
 [_FN2] = LAYOUT_ansi_84(
      XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-     KC_F11,   KC_7,     KC_8,      KC_9,      KC_0,      KC_F5,     KC_F6,   KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_DEL,             XXXXXXX,
-     XXXXXXX,  KC_F12,   G(C(KC_F)),SGUI(KC_I),G(KC_COMM),KC_F2,     KC_F3,   KC_F4,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,
+     KC_ENT,   KC_7,     KC_8,      KC_9,      KC_0,      KC_F15,    KC_F16,  KC_F17,   KC_F18,   KC_F19,   XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_DEL,             XXXXXXX,
+     KC_F11,   KC_F12,   G(C(KC_F)),SGUI(KC_I),G(KC_COMM),KC_F13,    KC_F14,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,
      XXXXXXX,  XXXXXXX,  G(KC_N),   KC_WH_D,   G(KC_Z),   G(KC_0),   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,            XXXXXXX,
-     XXXXXXX,            XXXXXXX,   XXXXXXX,   SGUI(KC_Z),KC_F8,     G(KC_K), XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX,
+     XXXXXXX,            XXXXXXX,   KC_U,      SGUI(KC_Z),KC_F8,     G(KC_K), XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX,
      XXXXXXX,  XXXXXXX,  G(KC_T),                                    KC_R,                                  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
 
 [_FN3] = LAYOUT_ansi_84(
