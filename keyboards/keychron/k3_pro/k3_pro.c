@@ -1,4 +1,4 @@
-/* Copyright 2022 @ Keychron (https://www.keychron.com)
+/* Copyright 2023 @ Keychron (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "k2_pro.h"
+#include "k3_pro.h"
 #ifdef KC_BLUETOOTH_ENABLE
 #    include "ckbt51.h"
 #    include "bluetooth.h"
@@ -48,7 +48,7 @@ key_combination_t key_comb_list[4] = {
 };
 
 #ifdef KC_BLUETOOTH_ENABLE
-bool firstDisconnect = true;
+bool                   firstDisconnect  = true;
 bool                   bt_factory_reset = false;
 static virtual_timer_t pairing_key_timer;
 extern uint8_t         g_pwm_buffer[DRIVER_COUNT][192];
@@ -60,7 +60,7 @@ static void pairing_key_timer_cb(void *arg) {
 
 bool dip_switch_update_kb(uint8_t index, bool active) {
     if (index == 0) {
-        default_layer_set(1UL << (active ? 2 : 0));
+        default_layer_set(1UL << (active ? 0 : 2));
     }
     dip_switch_update_user(index, active);
 
@@ -154,11 +154,14 @@ void keyboard_post_init_kb(void) {
 
     ckbt51_init(false);
     bluetooth_init();
-#    endif
+#endif
 
     power_on_indicator_timer_buffer = sync_timer_read32() | 1;
     writePin(BAT_LOW_LED_PIN, BAT_LOW_LED_PIN_ON_STATE);
     writePin(LED_CAPS_LOCK_PIN, LED_PIN_ON_STATE);
+#ifdef KC_BLUETOOTH_ENABLE
+    writePin(H3, HOST_LED_PIN_ON_STATE);
+#endif
 
     keyboard_post_init_user();
 }
@@ -169,8 +172,10 @@ void matrix_scan_kb(void) {
             power_on_indicator_timer_buffer = 0;
 
             writePin(BAT_LOW_LED_PIN, !BAT_LOW_LED_PIN_ON_STATE);
+            if (!host_keyboard_led_state().caps_lock) writePin(LED_CAPS_LOCK_PIN, !LED_PIN_ON_STATE);
         } else {
             writePin(BAT_LOW_LED_PIN, BAT_LOW_LED_PIN_ON_STATE);
+            writePin(LED_CAPS_LOCK_PIN, LED_PIN_ON_STATE);
         }
     }
 
@@ -182,7 +187,7 @@ void matrix_scan_kb(void) {
 
 #ifdef FACTORY_RESET_TASK
     FACTORY_RESET_TASK();
-#    endif
+#endif
     matrix_scan_user();
 }
 
