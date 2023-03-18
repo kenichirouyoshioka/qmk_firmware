@@ -44,6 +44,13 @@
 #define LED_CAPS_LOCK_PIN A7
 #define LED_PIN_ON_STATE 1
 
+/* Increase I2C speed to 1000 KHz */
+#define I2C1_TIMINGR_PRESC 0U
+#define I2C1_TIMINGR_SCLDEL 3U
+#define I2C1_TIMINGR_SDADEL 0U
+#define I2C1_TIMINGR_SCLH 15U
+#define I2C1_TIMINGR_SCLL 51U
+
 #ifdef KC_BLUETOOTH_ENABLE
 /* Hardware configuration */
 #    define USB_BT_MODE_SELECT_PIN A10
@@ -59,7 +66,6 @@
 #    define BAT_LOW_LED_PIN_ON_STATE 1
 
 #    define HOST_DEVICES_COUNT 3
-
 
 #    if defined(RGB_MATRIX_ENABLE) || defined(LED_MATRIX_ENABLE)
 
@@ -95,5 +101,6 @@
 #define FEE_DENSITY_BYTES FEE_PAGE_SIZE
 #define DYNAMIC_KEYMAP_EEPROM_MAX_ADDR  2047
 
-
-//#define NO_PRINT
+/* Factory test keys */
+#define FN_KEY1 MO(2)
+#define FN_KEY2 MO(3)

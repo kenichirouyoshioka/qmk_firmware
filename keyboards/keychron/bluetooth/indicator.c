@@ -21,6 +21,8 @@
 #include "eeconfig.h"
 #include "bluetooth_config.h"
 #include "config.h"
+#include "rtc_timer.h"
+
 #if defined(LED_MATRIX_ENABLE) || defined(RGB_MATRIX_ENABLE)
 #    ifdef LED_MATRIX_ENABLE
 #        include "led_matrix.h"
@@ -58,7 +60,20 @@ static bluetooth_state_t indicator_state;
 static uint16_t          next_period;
 static indicator_type_t  type;
 static uint32_t          indicator_timer_buffer = 0;
-static uint32_t          battery_low_indicator = 0;
+
+#if defined(BAT_LOW_LED_PIN) || defined(BAT_LOW_LED_PIN_STATE)
+static uint32_t bat_low_pin_indicator  = 0;
+static uint32_t bat_low_blink_duration = 0;
+#    ifdef BAT_LOW_LED_PIN_STATE
+bool bat_low_led_pin_state = false;
+#    endif
+#endif
+
+#if defined(LOW_BAT_IND_INDEX)
+static uint32_t bat_low_backlit_indicator = 0;
+static uint8_t  bat_low_ind_state         = 0;
+static uint32_t rtc_time                  = 0;
+#endif
 
 #if defined(LED_MATRIX_ENABLE) || defined(RGB_MATRIX_ENABLE)
 backlight_state_t original_backlight_state;
@@ -73,11 +88,13 @@ static pin_t host_led_pin_list[HOST_DEVICES_COUNT] = HOST_LED_PIN_LIST;
 #ifdef LED_MATRIX_ENABLE
 #    define LED_DRIVER led_matrix_driver
 #    define LED_INDICATORS_KB led_matrix_indicators_kb
+#    define LED_INDICATORS_USER led_matrix_indicators_user
 #    define LED_NONE_INDICATORS_KB led_matrix_none_indicators_kb
 #    define SET_ALL_LED_OFF() led_matrix_set_value_all(0)
 #    define SET_LED_OFF(idx) led_matrix_set_value(idx, 0)
 #    define SET_LED_ON(idx) led_matrix_set_value(idx, 255)
 #    define SET_LED_BT(idx) led_matrix_set_value(idx, 255)
+#    define SET_LED_LOW_BAT(idx) led_matrix_set_value(idx, 255)
 #    define LED_DRIVER_IS_ENABLED led_matrix_is_enabled
 #    define LED_DRIVER_EECONFIG_RELOAD() \
         eeprom_read_block(&led_matrix_eeconfig, EECONFIG_LED_MATRIX, sizeof(led_matrix_eeconfig)); \
@@ -94,11 +111,13 @@ static pin_t host_led_pin_list[HOST_DEVICES_COUNT] = HOST_LED_PIN_LIST;
 #ifdef RGB_MATRIX_ENABLE
 #    define LED_DRIVER rgb_matrix_driver
 #    define LED_INDICATORS_KB rgb_matrix_indicators_kb
+#    define LED_INDICATORS_USER rgb_matrix_indicators_user
 #    define LED_NONE_INDICATORS_KB rgb_matrix_none_indicators_kb
 #    define SET_ALL_LED_OFF() rgb_matrix_set_color_all(0, 0, 0)
 #    define SET_LED_OFF(idx) rgb_matrix_set_color(idx, 0, 0, 0)
 #    define SET_LED_ON(idx) rgb_matrix_set_color(idx, 255, 255, 255)
 #    define SET_LED_BT(idx) rgb_matrix_set_color(idx, 0, 0, 255)
+#    define SET_LED_LOW_BAT(idx) rgb_matrix_set_color(idx, 255, 0, 0)
 #    define LED_DRIVER_IS_ENABLED rgb_matrix_is_enabled
 #    define LED_DRIVER_EECONFIG_RELOAD() \
         eeprom_read_block(&rgb_matrix_config, EECONFIG_RGB_MATRIX, sizeof(rgb_matrix_config)); \
@@ -113,7 +132,7 @@ static pin_t host_led_pin_list[HOST_DEVICES_COUNT] = HOST_LED_PIN_LIST;
 #endif
 void indicator_init(void) {
     memset(&indicator_config, 0, sizeof(indicator_config));
-    
+
 #ifdef HOST_LED_PIN_LIST
     for (uint8_t i = 0; i < HOST_DEVICES_COUNT; i++) {
         setPinOutput(host_led_pin_list[i]);
@@ -157,7 +176,14 @@ void indicator_eeconfig_reload(void) {
 #endif
 
 bool indicator_is_running(void) {
-    return !!indicator_config.value;
+    return
+#if defined(BAT_LOW_LED_PIN) || defined(BAT_LOW_LED_PIN_STATE)
+        bat_low_blink_duration ||
+#endif
+#if defined(LOW_BAT_IND_INDEX)
+        bat_low_ind_state ||
+#endif
+        !!indicator_config.value;
 }
 
 static void indicator_timer_cb(void *arg) {
@@ -283,6 +309,9 @@ void indicator_set(bluetooth_state_t state, uint8_t host_index) {
 
     switch (state) {
         case BLUETOOTH_DISCONNECTED:
+#ifdef HOST_LED_PIN_LIST
+            writePin(host_led_pin_list[host_index - 1], !HOST_LED_PIN_ON_STATE);
+#endif
             INDICATOR_SET(disconnected);
             indicator_config.value = (indicator_config.type == INDICATOR_NONE) ? 0 : host_index;
             indicator_timer_cb((void *)&indicator_config.type);
@@ -343,10 +372,95 @@ void indicator_stop(void) {
     }
 }
 
+#if defined(BAT_LOW_LED_PIN) || defined(BAT_LOW_LED_PIN_STATE)
 void indicator_battery_low_enable(bool enable) {
-    battery_low_indicator = enable ? (sync_timer_read32() | 1) : 0;
-#ifdef BAT_LOW_LED_PIN
-    if (!enable) writePin(BAT_LOW_LED_PIN, !BAT_LOW_LED_PIN_ON_STATE);
+    if (enable) {
+        if (bat_low_blink_duration == 0) {
+            bat_low_blink_duration = bat_low_pin_indicator = sync_timer_read32() | 1;
+        } else
+            bat_low_blink_duration = sync_timer_read32() | 1;
+    } else {
+#    if defined(BAT_LOW_LED_PIN)
+        writePin(BAT_LOW_LED_PIN, !BAT_LOW_LED_PIN_ON_STATE);
+#    else
+        bat_low_led_pin_state = false;
+#    endif
+    }
+}
+#endif
+
+#if defined(LOW_BAT_IND_INDEX)
+void indicator_battery_low_backlit_enable(bool enable) {
+    if (enable) {
+        uint32_t t = rtc_timer_read_ms();
+        /* Check overflow */
+        if (rtc_time > t) {
+            if (bat_low_ind_state == 0)
+                rtc_time = t; // Update rtc_time if indicating is not running
+            else {
+                rtc_time += t;
+            }
+        }
+        /* Indicating at first time or after the interval */
+        if ((rtc_time == 0 || t - rtc_time > LOW_BAT_LED_TRIG_INTERVAL) && bat_low_ind_state == 0) {
+            bat_low_backlit_indicator = enable ? (timer_read32() == 0 ? 1 : timer_read32()) : 0;
+            rtc_time                  = rtc_timer_read_ms();
+            bat_low_ind_state         = 1;
+
+            indicator_enable();
+        }
+    } else {
+        rtc_time          = 0;
+        bat_low_ind_state = 0;
+
+        indicator_eeconfig_reload();
+        if (!LED_DRIVER_IS_ENABLED()) indicator_disable();
+    }
+}
+#endif
+
+void indicator_battery_low(void) {
+#if defined(BAT_LOW_LED_PIN) || defined(BAT_LOW_LED_PIN_STATE)
+    if (bat_low_pin_indicator && sync_timer_elapsed32(bat_low_pin_indicator) > (LOW_BAT_LED_BLINK_PERIOD)) {
+#    if defined(BAT_LOW_LED_PIN)
+        togglePin(BAT_LOW_LED_PIN);
+#    else
+        bat_low_led_pin_state = !bat_low_led_pin_state;
+#    endif
+        bat_low_pin_indicator = sync_timer_read32() | 1;
+        // Turn off low battery indication if we reach the duration
+#    if defined(BAT_LOW_LED_PIN)
+        if (sync_timer_elapsed32(bat_low_blink_duration) > LOW_BAT_LED_BLINK_DURATION && palReadLine(BAT_LOW_LED_PIN) != BAT_LOW_LED_PIN_ON_STATE) {
+#    elif defined(BAT_LOW_LED_PIN_STATE)
+        if (sync_timer_elapsed32(bat_low_blink_duration) > LOW_BAT_LED_BLINK_DURATION) {
+#    endif
+            bat_low_blink_duration = bat_low_pin_indicator = 0;
+        }
+    }
+#endif
+#if defined(LOW_BAT_IND_INDEX)
+    if (bat_low_ind_state) {
+        if ((bat_low_ind_state & 0x0F) <= (LOW_BAT_LED_BLINK_TIMES) && sync_timer_elapsed32(bat_low_backlit_indicator) > (LOW_BAT_LED_BLINK_PERIOD)) {
+            if (bat_low_ind_state & 0x80) {
+                bat_low_ind_state &= 0x7F;
+                bat_low_ind_state++;
+            } else {
+                bat_low_ind_state |= 0x80;
+            }
+
+            bat_low_backlit_indicator = sync_timer_read32() == 0 ? 1 : sync_timer_read32();
+
+            /*  Restore backligth state */
+            if ((bat_low_ind_state & 0x0F) > (LOW_BAT_LED_BLINK_TIMES)) {
+#    if defined(NUM_LOCK_INDEX) || defined(CAPS_LOCK_INDEX) || defined(SCROLL_LOCK_INDEX) || defined(COMPOSE_LOCK_INDEX) || defined(KANA_LOCK_INDEX)
+                if (LED_DRIVER_ALLOW_SHUTDOWN())
+#    endif
+                    indicator_disable();
+            }
+        } else if ((bat_low_ind_state & 0x0F) > (LOW_BAT_LED_BLINK_TIMES)) {
+            bat_low_ind_state = 0;
+        }
+    }
 #endif
 }
 
@@ -358,12 +472,7 @@ void indicator_task(void) {
         indicator_timer_buffer = sync_timer_read32();
     }
 
-    if (battery_low_indicator && sync_timer_elapsed32(battery_low_indicator) > LOW_BAT_ON_OFF_DURATION) {
-#ifdef BAT_LOW_LED_PIN
-        togglePin(BAT_LOW_LED_PIN);
-#endif
-        battery_low_indicator = sync_timer_read32() | 1;
-    }
+    indicator_battery_low();
 }
 
 #if defined(LED_MATRIX_ENABLE) || defined(RGB_MATRIX_ENABLE)
@@ -400,6 +509,10 @@ static void os_state_indicate(void) {
 }
 
 bool LED_INDICATORS_KB(void) {
+    if (!LED_INDICATORS_USER()) {
+        return false;
+    }
+
     if (get_transport() == TRANSPORT_BLUETOOTH) {
         /* Prevent backlight flash caused by key activities */
         if (battery_is_critical_low()) {
@@ -407,6 +520,15 @@ bool LED_INDICATORS_KB(void) {
              return false;
         }
 
+#    if (defined(LED_MATRIX_ENABLE) || defined(RGB_MATRIX_ENABLE)) && defined(LOW_BAT_IND_INDEX)
+        if (battery_is_empty()) SET_ALL_LED_OFF();
+        if (bat_low_ind_state && (bat_low_ind_state & 0x0F) <= LOW_BAT_LED_BLINK_TIMES) {
+            if (bat_low_ind_state & 0x80)
+                SET_LED_LOW_BAT(LOW_BAT_IND_INDEX);
+            else
+                SET_LED_OFF(LOW_BAT_IND_INDEX);
+        }
+#    endif
         if (bat_level_animiation_actived()) {
             bat_level_animiation_indicate();
         }
@@ -432,19 +554,19 @@ bool LED_INDICATORS_KB(void) {
 
     } else
         os_state_indicate();
-    
+
    return false;
 }
 
 bool led_update_user(led_t led_state) {
     if (!LED_DRIVER_IS_ENABLED()) {
-#    ifdef RGB_MATRIX_DRIVER_SHUTDOWN_ENABLE
+#    if defined(LED_MATRIX_DRIVER_SHUTDOWN_ENABLE) || defined(RGB_MATRIX_DRIVER_SHUTDOWN_ENABLE)
         LED_DRIVER.exit_shutdown();
 #    endif
         SET_ALL_LED_OFF();
         os_state_indicate();
         LED_DRIVER.flush();
-#    ifdef RGB_MATRIX_DRIVER_SHUTDOWN_ENABLE
+#    if defined(LED_MATRIX_DRIVER_SHUTDOWN_ENABLE) || defined(RGB_MATRIX_DRIVER_SHUTDOWN_ENABLE)
         if (LED_DRIVER_ALLOW_SHUTDOWN()) LED_DRIVER.shutdown();
 #    endif
     }
@@ -455,7 +577,7 @@ void LED_NONE_INDICATORS_KB(void) {
     os_state_indicate();
 }
 
-#    ifdef RGB_MATRIX_DRIVER_SHUTDOWN_ENABLE
+#    if defined(LED_MATRIX_DRIVER_SHUTDOWN_ENABLE) || defined(RGB_MATRIX_DRIVER_SHUTDOWN_ENABLE)
 bool LED_DRIVER_ALLOW_SHUTDOWN(void) {
 #        if defined(NUM_LOCK_INDEX)
     if (host_keyboard_led_state().num_lock) return false;
