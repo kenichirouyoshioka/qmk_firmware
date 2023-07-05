@@ -16,17 +16,13 @@
 
 #include "quantum.h"
 #include "raw_hid.h"
+#include "via.h"
+#include "indicator.h"
 #ifdef KC_BLUETOOTH_ENABLE
 #include "transport.h"
+#include "battery.h"
+#include "lpm.h"
 #include "ckbt51.h"
-#endif
-
-#ifndef BL_TEST_KEY1
-#    define BL_TEST_KEY1 KC_RIGHT
-#endif
-
-#ifndef BL_TEST_KEY2
-#    define BL_TEST_KEY2 KC_HOME
 #endif
 
 extern bool bt_factory_reset;
@@ -44,10 +40,10 @@ enum {
     KEY_PRESS_FN             = 0x01 << 0,
     KEY_PRESS_J              = 0x01 << 1,
     KEY_PRESS_Z              = 0x01 << 2,
-    KEY_PRESS_BL_KEY1        = 0x01 << 3,
-    KEY_PRESS_BL_KEY2        = 0x01 << 4,
+    KEY_PRESS_RIGHT          = 0x01 << 3,
+    KEY_PRESS_HOME           = 0x01 << 4,
     KEY_PRESS_FACTORY_RESET  = KEY_PRESS_FN | KEY_PRESS_J | KEY_PRESS_Z,
-    KEY_PRESS_BACKLIGTH_TEST = KEY_PRESS_FN | KEY_PRESS_BL_KEY1 | KEY_PRESS_BL_KEY2,
+    KEY_PRESS_BACKLIGTH_TEST = KEY_PRESS_FN | KEY_PRESS_RIGHT | KEY_PRESS_HOME,
 };
 
 enum {
@@ -57,7 +53,6 @@ enum {
     FACTORY_TEST_CMD_INT_PIN,
     FACTORY_TEST_CMD_GET_TRANSPORT,
     FACTORY_TEST_CMD_CHARGING_ADC,
-    FACTORY_TEST_CMD_RADIO_CARRIER,
 };
 
 enum {
@@ -73,7 +68,7 @@ static uint8_t  factory_reset_ind_state = 0;
 static bool     report_os_sw_state      = false;
 
 void factory_timer_start(void) {
-    factory_reset_timer = timer_read32() == 0 ? 1 : timer_read32();
+    factory_reset_timer = sync_timer_read32() | 1;
 }
 
 static inline void factory_timer_check(void) {
@@ -81,7 +76,7 @@ static inline void factory_timer_check(void) {
         factory_reset_timer = 0;
 
         if (factory_reset_state == KEY_PRESS_FACTORY_RESET) {
-            factory_reset_ind_timer = timer_read32() == 0 ? 1 : timer_read32();
+            factory_reset_ind_timer = sync_timer_read32() | 1;
             factory_reset_ind_state++;
 
             layer_state_t default_layer_tmp = default_layer_state;
@@ -114,24 +109,21 @@ static inline void factory_timer_check(void) {
 }
 
 static inline void factory_reset_ind_timer_check(void) {
-    if (factory_reset_ind_timer && timer_elapsed32(factory_reset_ind_timer) > 250) {
+    if (factory_reset_ind_timer && sync_timer_elapsed32(factory_reset_ind_timer) > 250) {
         if (factory_reset_ind_state++ > 6) {
             factory_reset_ind_timer = factory_reset_ind_state = 0;
         } else {
-            factory_reset_ind_timer = timer_read32() == 0 ? 1 : timer_read32();
+            factory_reset_ind_timer = sync_timer_read32() | 1;
         }
     }
 }
 
 void process_record_factory_reset(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-#if defined(FN_KEY1) || defined(FN_KEY2)
-#    ifdef FN_KEY1
-        case FN_KEY1: /* fall through */
-#    endif
-#    ifdef FN_KEY2
-        case FN_KEY2:
-#    endif
+        case MO(1): /* fall through */
+        case MO(2):
+        case MO(3):
+        case MO(4):
             if (record->event.pressed) {
                 factory_reset_state |= KEY_PRESS_FN;
             } else {
@@ -139,7 +131,6 @@ void process_record_factory_reset(uint16_t keycode, keyrecord_t *record) {
                 factory_reset_timer = 0;
             }
             break;
-#endif
         case KC_J:
             if (record->event.pressed) {
                 factory_reset_state |= KEY_PRESS_J;
@@ -158,38 +149,34 @@ void process_record_factory_reset(uint16_t keycode, keyrecord_t *record) {
                 factory_reset_timer = 0;
             }
             break;
-#ifdef BL_TEST_KEY1
-        case BL_TEST_KEY1:
+        case KC_RIGHT:
             if (record->event.pressed) {
                 if (backlight_test_mode) {
                     if (++backlight_test_mode >= BACKLIGHT_TEST_MAX) {
                         backlight_test_mode = BACKLIGHT_TEST_WHITE;
                     }
                 } else {
-                    factory_reset_state |= KEY_PRESS_BL_KEY1;
+                    factory_reset_state |= KEY_PRESS_RIGHT;
                     if (factory_reset_state == 0x19) factory_timer_start();
                 }
             } else {
-                factory_reset_state &= ~KEY_PRESS_BL_KEY1;
+                factory_reset_state &= ~KEY_PRESS_RIGHT;
                 factory_reset_timer = 0;
             }
             break;
-#endif
-#ifdef BL_TEST_KEY2
-        case BL_TEST_KEY2:
+        case KC_HOME:
             if (record->event.pressed) {
                 if (backlight_test_mode) {
                     backlight_test_mode = BACKLIGHT_TEST_OFF;
                 } else {
-                    factory_reset_state |= KEY_PRESS_BL_KEY2;
+                    factory_reset_state |= KEY_PRESS_HOME;
                     if (factory_reset_state == 0x19) factory_timer_start();
                 }
             } else {
-                factory_reset_state &= ~KEY_PRESS_BL_KEY2;
+                factory_reset_state &= ~KEY_PRESS_HOME;
                 factory_reset_timer = 0;
             }
             break;
-#endif
     }
 }
 
@@ -199,14 +186,13 @@ bool led_matrix_indicators_user(void) {
         led_matrix_set_value_all(factory_reset_ind_state % 2 ? 0 : 255);
     }
 
-    return true;
+    return false;
 }
 #endif
 
 #ifdef RGB_MATRIX_ENABLE
 bool rgb_matrix_indicators_user(void) {
     if (factory_reset_ind_state) {
-        backlight_test_mode = BACKLIGHT_TEST_OFF;
         rgb_matrix_set_color_all(factory_reset_ind_state % 2 ? 0 : 255, 0, 0);
     } else if (backlight_test_mode) {
         switch (backlight_test_mode) {
@@ -225,7 +211,7 @@ bool rgb_matrix_indicators_user(void) {
         }
     }
 
-    return true;
+    return false;
 }
 #endif
 
@@ -260,12 +246,10 @@ void factory_test_rx(uint8_t *data, uint8_t length) {
         }
         /* Verify checksum */
         if ((checksum & 0xFF) != data[RAW_EPSIZE - 2] || checksum >> 8 != data[RAW_EPSIZE - 1]) return;
-
 #ifdef KC_BLUETOOTH_ENABLE
         uint8_t payload[32];
         uint8_t len = 0;
 #endif
-
         switch (data[1]) {
             case FACTORY_TEST_CMD_BACKLIGHT:
                 backlight_test_mode = data[2];
@@ -318,18 +302,12 @@ void factory_test_rx(uint8_t *data, uint8_t length) {
                 factory_test_send(payload, len);
                 break;
 #endif
-            case FACTORY_TEST_CMD_RADIO_CARRIER:
-                if (data[2] < 79) ckbt51_radio_test(data[2]);
-                break;
         }
     }
 }
 
 bool dip_switch_update_user(uint8_t index, bool active) {
     if (report_os_sw_state) {
-#ifdef INVERT_OS_SWITCH_STATE
-        active = !active;
-#endif
         uint8_t payload[3] = {FACTORY_TEST_CMD_OS_SWITCH, OS_SWITCH, active};
         factory_test_send(payload, 3);
     }

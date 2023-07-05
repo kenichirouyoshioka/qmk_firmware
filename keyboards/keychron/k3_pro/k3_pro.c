@@ -194,8 +194,7 @@ void matrix_scan_kb(void) {
 #ifdef KC_BLUETOOTH_ENABLE
 static void ckbt51_param_init(void) {
     /* Set bluetooth device name */
-    // ckbt51_set_local_name(STR(PRODUCT));
-    ckbt51_set_local_name(PRODUCT);
+    ckbt51_set_local_name(STR(PRODUCT));
     /* Set bluetooth parameters */
     module_param_t param = {.event_mode             = 0x02,
                             .connected_idle_timeout = 7200,
@@ -223,21 +222,6 @@ void bluetooth_enter_disconnected_kb(uint8_t host_idx) {
     }
 }
 
-void ckbt51_default_ack_handler(uint8_t *data, uint8_t len) {
-    if (data[1] == 0x45) {
-        module_param_t param = {.event_mode             = 0x02,
-                                .connected_idle_timeout = 7200,
-                                .pairing_timeout        = 180,
-                                .pairing_mode           = 0,
-                                .reconnect_timeout      = 5,
-                                .report_rate            = 90,
-                                .vendor_id_source       = 1,
-                                .verndor_id             = 0, // Must be 0x3434
-                                .product_id             = PRODUCT_ID};
-        ckbt51_set_param(&param);
-    }
-}
-
 void bluetooth_pre_task(void) {
     static uint8_t mode = 1;
 
@@ -247,6 +231,21 @@ void bluetooth_pre_task(void) {
             set_transport(mode == 0 ? TRANSPORT_BLUETOOTH : TRANSPORT_USB);
         }
     }
+}
+
+void battery_measure(void) {
+#    ifdef LED_MATRIX_ENABLE
+    if (led_matrix_is_enabled()) {
+        ckbt51_read_state_reg(0x05, 0x02);
+        return;
+    }
+#    endif
+#    ifdef RGB_MATRIX_ENABLE
+    if (rgb_matrix_is_enabled()) {
+        ckbt51_read_state_reg(0x05, 0x02);
+        return;
+    }
+#    endif
 }
 #endif
 

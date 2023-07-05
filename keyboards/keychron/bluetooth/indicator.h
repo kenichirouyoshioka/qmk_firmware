@@ -49,30 +49,8 @@
 #    define CONNECTED_BACKLIGHT_OFF_DELAY_TIME 600
 #endif
 
-#if defined(BAT_LOW_LED_PIN) || defined(BAT_LOW_LED_PIN_STATE)
-/* Uint: ms */
-#    ifndef LOW_BAT_LED_BLINK_PERIOD
-#        define LOW_BAT_LED_BLINK_PERIOD 1000
-#    endif
-
-#    ifndef LOW_BAT_LED_BLINK_DURATION
-#        define LOW_BAT_LED_BLINK_DURATION 10000
-#    endif
-#endif
-
-#ifdef LOW_BAT_IND_INDEX
-/* Uint: ms */
-#    ifndef LOW_BAT_LED_BLINK_PERIOD
-#        define LOW_BAT_LED_BLINK_PERIOD 500
-#    endif
-
-#    ifndef LOW_BAT_LED_BLINK_TIMES
-#        define LOW_BAT_LED_BLINK_TIMES 3
-#    endif
-
-#    ifndef LOW_BAT_LED_TRIG_INTERVAL
-#        define LOW_BAT_LED_TRIG_INTERVAL 30000
-#    endif
+#ifndef LOW_BAT_ON_OFF_DURATION
+#    define LOW_BAT_ON_OFF_DURATION 1000
 #endif
 
 #if BT_HOST_MAX_COUNT > 6
@@ -104,14 +82,8 @@ void indicator_enable(void);
 void indicator_disable(void);
 void indicator_stop(void);
 void indicator_eeconfig_reload(void);
-bool indicator_is_enabled(void);
 bool indicator_is_running(void);
 
-#ifdef BAT_LOW_LED_PIN
 void indicator_battery_low_enable(bool enable);
-#endif
-#if defined(LOW_BAT_IND_INDEX)
-void indicator_battery_low_backlit_enable(bool enable);
-#endif
 
 void indicator_task(void);
