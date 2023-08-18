@@ -17,12 +17,229 @@
 #include QMK_KEYBOARD_H
 
 enum layers{
-    MAC_BASE,
-    WIN_BASE,
-    MAC_FN1,
-    WIN_FN1,
-    FN2,
+    LAYER_1,
+    LAYER_2,
+    LAYER_3,
+    LAYER_4,
+    LAYER_5,
+    
+    _BT,
+    _FN1,
+    _FN2,
+    _FN3,
+    _FN4,
+
+    _FN6,
+    _FN7
+
 };
+
+
+#ifdef RGB_MATRIX_ENABLE
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+        switch (get_highest_layer(layer_state | default_layer_state)) {
+            case LAYER_1:
+                    rgb_matrix_set_color_all(66,0,0);
+                break;
+                
+            case LAYER_2:
+                    rgb_matrix_set_color_all(86,66,66);
+                break;
+                
+            case LAYER_3:
+                     rgb_matrix_set_color_all(0,0,66);
+                break;
+            case LAYER_4:
+                     rgb_matrix_set_color_all(66,66,0);
+                break;
+
+            case _BT:
+                rgb_matrix_set_color_all(88,66,255);
+                break;
+            case _FN1:
+                    rgb_matrix_set_color_all(66,0,55);
+                break;
+                
+            case _FN2:
+                    rgb_matrix_set_color_all(66,66,0);
+                break;
+                
+            case _FN3:
+                    rgb_matrix_set_color_all(0,66,44);
+                break;
+                
+            case _FN4:
+                    rgb_matrix_set_color_all(0,66,0);
+                break;
+        }
+    return false;
+}
+#endif // RGB_MATRIX_ENABLE
+
+/*LEADER KEY setting */
+LEADER_EXTERNS();
+void matrix_scan_user(void) {
+    
+    LEADER_DICTIONARY() {
+        leading = false;
+        leader_end();
+        
+        SEQ_ONE_KEY(KC_ESC){
+            register_code(KC_V);
+            unregister_code(KC_V);
+            register_code(KC_0);
+            unregister_code(KC_0);
+        }
+        SEQ_TWO_KEYS(KC_ESC, KC_ESC) {
+            register_code(KC_V);
+            unregister_code(KC_V);
+            register_code(KC_1);
+            unregister_code(KC_1);
+        }
+        
+        SEQ_ONE_KEY(KC_R){
+            register_code16(G(KC_S));
+            unregister_code16(G(KC_S));
+           register_code16(LAG(KC_W));
+          unregister_code16(LAG(KC_W));
+            register_code(KC_ENT);
+          unregister_code(KC_ENT);
+        }
+        
+    };
+};
+
+
+    //tap dance
+    enum{
+        TD_VU  =  0,
+        TD_XZ  =  1,
+        TD_KO  =  2,
+        TD_F679 = 3,
+        TD_MG =   4,
+        TD_LNG =  5,
+        TD_GF =   6,
+        TD_F15F = 7,
+        TD_F134 = 8,
+        TD_SLH  = 9,
+        TD_F1112 = 10,
+        TD_BEA =  11, SOME_OTHER_DANCE
+    };
+
+
+void triple_function (qk_tap_dance_state_t *state, void *user_data);
+void triple_function (qk_tap_dance_state_t *state, void *user_data){
+    if (state->count == 1) {
+        register_code16(KC_F6);
+    } else if(state->count == 2){
+        register_code16(KC_F7);
+    } else {
+        register_code16(KC_F9);
+    }
+    
+    if (state->count == 2) {
+        unregister_code16(KC_F6);
+    } else if(state->count == 3) {
+        unregister_code16(KC_F7);
+    } else {
+        unregister_code16(KC_F9);
+
+    }
+};
+
+typedef enum{
+    TD_NONE,
+ TD_SINGLE_TAP ,
+ TD_SINGLE_HOLD,
+ TD_DOUBLE_TAP,
+ TD_DOUBLE_HOLD,
+// TD_DOUBLE_SINGLE_TAP
+
+}td_state_t;
+
+typedef struct { bool is_press_action;
+  td_state_t  state; } td_tap_t;
+
+
+
+td_state_t cur_dance (qk_tap_dance_state_t *state){
+ if(state -> count == 1){
+   if (state -> interrupted || !state -> pressed) return TD_SINGLE_TAP;
+     else return TD_SINGLE_HOLD;
+ }else  if (state -> count == 2 ){
+  if(state -> interrupted) return TD_DOUBLE_TAP;
+  else if (state -> pressed) return  TD_DOUBLE_HOLD;
+  else return TD_DOUBLE_TAP;
+     
+ }else if (state->count == 3) {
+           if (state->interrupted || !state->pressed) return TD_DOUBLE_TAP;
+           else return TD_DOUBLE_HOLD;
+       }
+    return 0;
+}
+
+static td_tap_t xtap_state = {
+ .is_press_action = true,
+ .state = TD_NONE
+};
+
+void x_finished (qk_tap_dance_state_t *state, void *user_data){
+ xtap_state.state = cur_dance(state);
+  switch (xtap_state.state){
+   case TD_SINGLE_TAP:  register_code16(KC_B); break;
+   case TD_SINGLE_HOLD: register_code16(A(KC_LCTL)); break;
+   case TD_DOUBLE_TAP:  register_code16(KC_E); break;
+      case TD_DOUBLE_HOLD: register_code16(A(KC_LCTL));
+//   case TD_DOUBLE_SINGLE_TAP: register_code(KC_E); unregister_code(KC_E); register_code(KC_E);
+   case TD_NONE: unregister_code16(KC_LALT);
+  }
+    xtap_state.state = TD_NONE;
+}
+
+
+void dance_cln_reset(qk_tap_dance_state_t *state, void *user_data) {
+    unregister_code16(KC_B);
+    unregister_code16(KC_E);
+    unregister_code16(A(KC_LCTL));
+    unregister_code16(KC_F6);
+    unregister_code16(KC_F7);
+    unregister_code16(KC_F9);
+    unregister_code16(KC_G);
+    unregister_code16(KC_M);
+    unregister_code16(KC_T);
+    unregister_code16(KC_D);
+    unregister_code16(KC_LNG1);
+    unregister_code16(KC_LNG2);
+    unregister_code16(KC_K);
+    unregister_code16(KC_O);
+    unregister_code16(KC_U);
+    unregister_code16(KC_V);
+    unregister_code16(KC_F);
+    unregister_code16(KC_F13);
+    unregister_code16(KC_F14);
+    unregister_code16(KC_F15);
+    unregister_code16(KC_H);
+    unregister_code16(KC_SLSH);
+    unregister_code16(KC_F11);
+    unregister_code16(KC_F12);
+};
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [TD_LNG] = ACTION_TAP_DANCE_DOUBLE(KC_LNG2, KC_LNG1),
+    [TD_VU] = ACTION_TAP_DANCE_DOUBLE(KC_V, KC_U),
+    [TD_XZ] = ACTION_TAP_DANCE_DOUBLE(KC_X, KC_Z),
+    [TD_KO] = ACTION_TAP_DANCE_DOUBLE(KC_K, KC_O),
+    [TD_BEA] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, x_finished, dance_cln_reset),
+    [TD_F679] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, triple_function, dance_cln_reset),
+    [TD_MG] =   ACTION_TAP_DANCE_DOUBLE(KC_M, KC_G),
+    [TD_GF] =   ACTION_TAP_DANCE_DOUBLE(KC_G, KC_F),
+    [TD_F15F] = ACTION_TAP_DANCE_DOUBLE(KC_F15, KC_F),
+    [TD_F134] = ACTION_TAP_DANCE_DOUBLE(KC_F13, KC_F14),
+    [TD_SLH]  = ACTION_TAP_DANCE_DOUBLE(KC_SLSH, KC_H),
+    [TD_F1112] = ACTION_TAP_DANCE_DOUBLE(KC_F11, KC_F12)
+};
+
+
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -64,10 +281,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-    [MAC_BASE] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [WIN_BASE] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [MAC_FN1]  = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
-    [WIN_FN1]  = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
-    [FN2]      = { ENCODER_CCW_CW(_______, _______)},
+    [LAYER_1] = {ENCODER_CCW_CW(TG(LAYER_2), TG(LAYER_2))},
+    [LAYER_2] = {ENCODER_CCW_CW(TG(LAYER_3), TG(LAYER_3))},
+    [LAYER_3] = {ENCODER_CCW_CW(TO(LAYER_1),TO(LAYER_1))},
+    [LAYER_4] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [LAYER_5] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    
+    [_FN1] = {ENCODER_CCW_CW(G(KC_Z), SGUI(KC_Z))},
+    [_FN2] = {ENCODER_CCW_CW(XXXXXXX, XXXXXXX)},
+    [_FN3] = {ENCODER_CCW_CW(XXXXXXX, XXXXXXX)},
+    [_FN4] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+
+    [_FN6]   = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
+    [_FN7]   = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI)}
 };
 #endif // ENCODER_MAP_ENABLE
