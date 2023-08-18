@@ -60,13 +60,22 @@ static void pairing_key_timer_cb(void *arg) {
 #endif
 
 bool dip_switch_update_kb(uint8_t index, bool active) {
+    /*
 #ifdef INVERT_OS_SWITCH_STATE
     default_layer_set(1UL << (!active ? 0 : 1));
 #else
     default_layer_set(1UL << (active ? 0 : 1));
 #endif
     dip_switch_update_user(index, active);
-
+*/
+  
+    // my custom dip switch 2023/08/18
+    if (!dip_switch_update_user(index, active)) {
+        return false;
+    }
+    if (index == 0) {
+          default_layer_set(1UL << (active ? 0 : 3));
+    }
     return true;
 }
 
