@@ -39,37 +39,37 @@ enum layers{
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         switch (get_highest_layer(layer_state | default_layer_state)) {
             case LAYER_1:
-                    rgb_matrix_set_color_all(66,0,0);
+                    rgb_matrix_set_color_all(255,0,0);
                 break;
                 
             case LAYER_2:
-                    rgb_matrix_set_color_all(86,66,66);
+                    rgb_matrix_set_color_all(255,166,166);
                 break;
                 
             case LAYER_3:
-                     rgb_matrix_set_color_all(0,0,66);
+                     rgb_matrix_set_color_all(0,0,255);
                 break;
             case LAYER_5:
-                     rgb_matrix_set_color_all(66,66,0);
+                     rgb_matrix_set_color_all(255,255,0);
                 break;
 
             case _BT:
                 rgb_matrix_set_color_all(88,66,255);
                 break;
             case _FN1:
-                    rgb_matrix_set_color_all(66,0,55);
+                    rgb_matrix_set_color_all(166,0,155);
                 break;
                 
             case _FN2:
-                    rgb_matrix_set_color_all(66,66,0);
+                    rgb_matrix_set_color_all(166,166,0);
                 break;
                 
             case _FN3:
-                    rgb_matrix_set_color_all(0,66,44);
+                    rgb_matrix_set_color_all(0,166,144);
                 break;
                 
             case _FN4:
-                    rgb_matrix_set_color_all(0,66,0);
+                    rgb_matrix_set_color_all(0,255,0);
                 break;
         }
     return false;
