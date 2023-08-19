@@ -284,8 +284,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX,  KC_GRV,     KC_F1,      KC_F2,     KC_F3,    KC_F4,    KC_F5,     KC_F6,      KC_F7,     KC_F8,    KC_F9,    KC_F10,    KC_F11,   KC_F12,    KC_F13,             XXXXXXX,
     XXXXXXX,  TG(LAYER_2),TG(LAYER_3),XXXXXXX,   G(KC_E),  G(KC_R),  G(KC_T),   XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  G(KC_P),   XXXXXXX,  XXXXXXX,   SGUI(KC_4),         XXXXXXX,
     XXXXXXX,  XXXXXXX,    XXXXXXX,    G(KC_S),   G(KC_D),  G(KC_F),  G(KC_G),   KC_LEFT,    KC_DOWN,   KC_UP,    KC_RGHT,  XXXXXXX,   XXXXXXX,             KC_PENT,            XXXXXXX,
-    XXXXXXX,  G(KC_0),                G(KC_Z),   G(KC_X),  G(KC_C),  G(KC_V),   XXXXXXX,    XXXXXXX,   KC_END,   KC_PGDN,  KC_PGUP,   KC_HOME , XXXXXXX,   KC_MPLY,  KC_VOLU,
-    XXXXXXX,  XXXXXXX,    G(KC_MINS),            G(KC_EQL),KC_BSPC,  G(KC_0),                          XXXXXXX,            KC_MUTE,                        KC_MPRV,  KC_VOLD, KC_MNXT),
+    XXXXXXX,  XXXXXXX,                G(KC_Z),   G(KC_X),  G(KC_C),  G(KC_V),   XXXXXXX,    XXXXXXX,   KC_END,   KC_PGDN,  KC_PGUP,   KC_HOME , XXXXXXX,   KC_MPLY,  KC_VOLU,
+    XXXXXXX,  XXXXXXX,    G(KC_MINS),            G(KC_EQL),KC_BSPC,  XXXXXXX,                          XXXXXXX,            KC_MUTE,                        KC_MPRV,  KC_VOLD, KC_MNXT),
 
 [_FN2] = LAYOUT_ansi_89(
     XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
