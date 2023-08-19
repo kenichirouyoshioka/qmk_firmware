@@ -118,3 +118,24 @@
 /* Factory test keys */
 #define FN_KEY1 MO(1)
 #define FN_KEY2 MO(3)
+
+
+/*add synchronize layer color 2023/8/19 */
+#define SPLIT_LAYER_STATE_ENABLE
+#define SPLIT_TRANSPORT_MIRRO
+/* tapping, mouse key and leader key 2023/08/18 */
+#define TAPPING_TERM 200
+#define LEADER_PER_KEY_TIMING
+#define LEADER_TIMEOUT  400
+
+#undef  MOUSEKEY_WHEEL_DELAY
+#define MOUSEKEY_WHEEL_DELAY 100
+
+#undef  MOUSEKEY_WHEEL_INTERVAL
+#define MOUSEKEY_WHEEL_INTERVAL 100
+
+#undef  MOUSEKEY_WHEEL_MAX_SPEED
+#define MOUSEKEY_WHEEL_MAX_SPEED 1
+
+#undef  MOUSEKEY_WHEEL_TIME_TO_MAX
+#define MOUSEKEY_WHEEL_TIME_TO_MAX 100
