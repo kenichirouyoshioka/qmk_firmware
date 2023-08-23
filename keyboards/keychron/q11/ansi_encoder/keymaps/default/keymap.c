@@ -55,33 +55,33 @@ enum layers{
                     
                 case LAYER_2:
                     if (is_keyboard_left()) {
-                        //rgb_matrix_set_color_all(196,166,156);
+                        rgb_matrix_set_color_all(196,166,156);
                         // windowed keycap setting
-                        rgb_matrix_set_color_all(0,0,0);
-                        rgb_matrix_set_color(23, 188,166,166);
-                        rgb_matrix_set_color(0,  188,166,166);
+                        //rgb_matrix_set_color_all(0,0,0);
+                        //rgb_matrix_set_color(23, 188,166,166);
+                        //rgb_matrix_set_color(0,  188,166,166);
                     }else{
                         // right
-                        //rgb_matrix_set_color_all(196,166,156);
+                        rgb_matrix_set_color_all(196,166,156);
                         // windowed keycap setting
-                        rgb_matrix_set_color_all(0,0,0);
-                        rgb_matrix_set_color(49, 188,166,166);
+                        //rgb_matrix_set_color_all(0,0,0);
+                        //rgb_matrix_set_color(49, 188,166,166);
                     }
                     break;
                     
                 case LAYER_3:
                     if (is_keyboard_left()) {
-                        //rgb_matrix_set_color_all(0,0,255);
+                        rgb_matrix_set_color_all(0,0,255);
                         // windowed keycap setting
-                        rgb_matrix_set_color_all(0,0,0);
-                        rgb_matrix_set_color(23, 0,0,188);
-                        rgb_matrix_set_color(0,  0,0,255);
+                        //rgb_matrix_set_color_all(0,0,0);
+                        //rgb_matrix_set_color(23, 0,0,188);
+                        //rgb_matrix_set_color(0,  0,0,255);
                     }else{
                         // right
-                        //rgb_matrix_set_color_all(0,0,255);
+                        rgb_matrix_set_color_all(0,0,255);
                         // windowed keycap setting
-                        rgb_matrix_set_color_all(0,0,0);
-                        rgb_matrix_set_color(49, 0,0,188);
+                        //rgb_matrix_set_color_all(0,0,0);
+                        //rgb_matrix_set_color(49, 0,0,188);
                          
                     }
                     break;
@@ -104,65 +104,65 @@ enum layers{
 
                 case _FN1:
                     if (is_keyboard_left()) {
-                        //rgb_matrix_set_color_all(166,0,155);
+                        rgb_matrix_set_color_all(166,0,155);
                         // windowed keycap setting
-                        rgb_matrix_set_color_all(0,0,0);
-                        rgb_matrix_set_color(23, 177,0,166);
-                        rgb_matrix_set_color(0,  177,0,166);
+                        //rgb_matrix_set_color_all(0,0,0);
+                        //rgb_matrix_set_color(23, 177,0,166);
+                        //rgb_matrix_set_color(0,  177,0,166);
                     }else{
                         // right
-                        //rgb_matrix_set_color_all(166,0,155);
+                        rgb_matrix_set_color_all(166,0,155);
                         // windowed keycap setting
-                        rgb_matrix_set_color_all(0,0,0);
-                        rgb_matrix_set_color(49, 177,0,166);
+                        //rgb_matrix_set_color_all(0,0,0);
+                        //rgb_matrix_set_color(49, 177,0,166);
                     }
                     break;
                     
                 case _FN2:
                     if (is_keyboard_left()) {
-                        //rgb_matrix_set_color_all(166,166,0);
+                        rgb_matrix_set_color_all(166,166,0);
                         // windowed keycap setting
-                        rgb_matrix_set_color_all(0,0,0);
-                        rgb_matrix_set_color(23, 220,200,0);
-                        rgb_matrix_set_color(0,  255,255,0);
+                        //rgb_matrix_set_color_all(0,0,0);
+                        //rgb_matrix_set_color(23, 220,200,0);
+                        //rgb_matrix_set_color(0,  255,255,0);
                     }else{
                         // right
-                        //rgb_matrix_set_color_all(166,166,0);
+                        rgb_matrix_set_color_all(166,166,0);
                         // windowed keycap setting
-                        rgb_matrix_set_color_all(0,0,0);
-                        rgb_matrix_set_color(49, 220,200,0);
+                        //rgb_matrix_set_color_all(0,0,0);
+                        //rgb_matrix_set_color(49, 220,200,0);
                     }
                     break;
                     
                 case _FN3:
                     if (is_keyboard_left()) {
-                        //rgb_matrix_set_color_all(0,166,144);
+                        rgb_matrix_set_color_all(0,166,144);
                         // windowed keycap setting
-                        rgb_matrix_set_color_all(0,0,0);
-                        rgb_matrix_set_color(23, 0,177,155);
-                        rgb_matrix_set_color(0,  0,177,255);
+                        //rgb_matrix_set_color_all(0,0,0);
+                        //rgb_matrix_set_color(23, 0,177,155);
+                        //rgb_matrix_set_color(0,  0,177,255);
                     }else{
                         // right
-                        //rgb_matrix_set_color_all(0,166,144);
+                        rgb_matrix_set_color_all(0,166,144);
                         // windowed keycap setting
-                        rgb_matrix_set_color_all(0,0,0);
-                        rgb_matrix_set_color(49, 0,177,155);
+                        //rgb_matrix_set_color_all(0,0,0);
+                        //rgb_matrix_set_color(49, 0,177,155);
                     }
                     break;
                     
                 case _FN4:
                     if (is_keyboard_left()) {
-                        //rgb_matrix_set_color_all(0,166,0);
+                        rgb_matrix_set_color_all(0,166,0);
                         // windowed keycap setting
-                        rgb_matrix_set_color_all(0,0,0);
-                        rgb_matrix_set_color(23, 0,188,0);
-                        rgb_matrix_set_color(0,  0,255,0);
+                        //rgb_matrix_set_color_all(0,0,0);
+                        //rgb_matrix_set_color(23, 0,188,0);
+                        //rgb_matrix_set_color(0,  0,255,0);
                     }else{
                         // right
-                        //rgb_matrix_set_color_all(0,166,0);
+                        rgb_matrix_set_color_all(0,166,0);
                         // windowed keycap setting
-                        rgb_matrix_set_color_all(0,0,0);
-                        rgb_matrix_set_color(49, 0,188,0);
+                        //rgb_matrix_set_color_all(0,0,0);
+                        //rgb_matrix_set_color(49, 0,188,0);
                     }
                     break;
                     
@@ -352,8 +352,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         G(KC_LBRC), G(KC_K),    KC_LSFT,  KC_LBRC,          KC_RBRC,     G(KC_Q),    G(KC_0),   G(KC_1),    KC_7,    KC_8,     KC_9,     KC_0,     KC_MINS, KC_EQL,   KC_BSPC,              MO(_FN1),
         G(KC_RBRC), KC_TAB,     G(KC_J),  TD(TD_MG),        ALT_T(KC_F1),KC_R,       TD(TD_KO), KC_F13,     KC_F14,  KC_I,     KC_O,     KC_P,     KC_LBRC, KC_RBRC,  KC_BSLS,              MO(_FN2),
         G(KC_N),    MO(_FN1),   QK_LEAD,  TD(TD_XZ),        KC_WH_U,     TD(TD_BEA), KC_ESC,    KC_F,       KC_J,    KC_K,     KC_L,     KC_SCLN,  KC_QUOT,           KC_PENT,              MO(_FN4),
-        KC_F8,      KC_LSFT,              MO(_FN4),         TD(TD_F1112),TD(TD_SLH), TD(TD_VU), KC_LCTL,    KC_F15,  KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,           KC_RSFT,   KC_UP,
-        KC_F9,      MO(_FN2),   KC_LALT,  KC_LCTL, MT(MOD_LGUI,KC_L),                KC_SPC,                         MO(_FN1),           KC_RGUI,  QK_LEAD, KC_RCTL,  KC_LEFT,   KC_DOWN,    KC_RGHT),
+        MO(_FN4),   KC_LSFT,              MO(_FN4),         TD(TD_F1112),TD(TD_SLH), TD(TD_VU), KC_LCTL,    KC_F15,  KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,           KC_RSFT,   KC_UP,
+        MO(_FN1),   MO(_FN2),   KC_LALT,  KC_LCTL, MT(MOD_LGUI,KC_L),                KC_SPC,                         MO(_FN1),           KC_RGUI,  QK_LEAD, KC_RCTL,  KC_LEFT,   KC_DOWN,    KC_RGHT),
 
     [LAYER_3] = LAYOUT_ansi_91(
         MO(_FN1),   KC_P0,            KC_F1,            KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,  KC_F12,   KC_TRNS,   KC_TRNS,  MO(_FN1),
