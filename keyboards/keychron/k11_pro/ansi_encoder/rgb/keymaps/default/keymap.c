@@ -15,7 +15,7 @@
  */
 
 #include QMK_KEYBOARD_H
-
+//k11 pro
 enum layers{
     LAYER_1,
     LAYER_2,
@@ -239,7 +239,7 @@ tap_dance_action_t tap_dance_actions[] = {
 };
 
 
-
+//k11 pro
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_1] = LAYOUT_69_ansi(
@@ -309,7 +309,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX,    KC_F7,    KC_F8,    KC_F9,   KC_F10,  KC_F11, KC_F12,    XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
         XXXXXXX,    KC_F13,   KC_F14,   KC_F15,  KC_F16,  KC_P6,  G(C(KC_Q)),XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_ESC,              XXXXXXX,
         KC_LCTL,    KC_P1,    KC_P2,    KC_P3,   KC_P4,   KC_P5,             XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
-        KC_LSFT,              XXXXXXX,    KC_P7,   KC_P8,   KC_P9,  KC_P0,     LAG(KC_GRV),XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,
+        KC_LSFT,              XXXXXXX,  KC_P7,   KC_P8,   KC_P9,  KC_P0,     LAG(KC_GRV),XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,
         XXXXXXX,  XXXXXXX,    XXXXXXX,           KC_LGUI,         XXXXXXX,   XXXXXXX,             XXXXXXX,           XXXXXXX,            XXXXXXX,    XXXXXXX,  XXXXXXX),
  
     
