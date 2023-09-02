@@ -7,3 +7,5 @@ SRC += matrix.c
 include keyboards/keychron/bluetooth/bluetooth.mk
 
 
+TAP_DANCE_ENABLE = yes
+LEADER_ENABLE = yes
