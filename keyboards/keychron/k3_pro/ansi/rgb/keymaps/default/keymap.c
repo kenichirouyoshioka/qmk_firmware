@@ -21,7 +21,9 @@ enum layers{
     LAYER_1,
     LAYER_2,
     LAYER_3,
-
+    LAYER_4,
+    LAYER_5,
+    LAYER_6,
     
     _BT,
     _FN1,
@@ -29,7 +31,7 @@ enum layers{
     _FN3,
     _FN4,
 
-
+    _FN5
 
 };
 
@@ -40,7 +42,6 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             case LAYER_1:
                     rgb_matrix_set_color_all(255,0,0);
                 break;
-                
             case LAYER_2:
                     rgb_matrix_set_color_all(255,166,166);
                 break;
@@ -48,7 +49,12 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             case LAYER_3:
                      rgb_matrix_set_color_all(0,0,255);
                 break;
-
+            case LAYER_5:
+                     rgb_matrix_set_color_all(0,255,255);
+                break;
+            case LAYER_6:
+                     rgb_matrix_set_color_all(126,200,60);
+                break;
                 
             case _BT:
                 rgb_matrix_set_color_all(88,66,255);
@@ -239,63 +245,99 @@ tap_dance_action_t tap_dance_actions[] = {
 //k3 pro
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [LAYER_1] = LAYOUT_ansi_84(
-        KC_GRV,     KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,    KC_F13,     KC_F14,  MO(_BT),
-        KC_ESC,     KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,    KC_BSPC,             KC_F15,
-        KC_TAB,     KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,   KC_BSLS,             KC_F16,
-        KC_LCTL,    KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,             KC_ENT,              TG(LAYER_2),
-        KC_LSFT,              KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,             KC_RSFT,    KC_UP,   TG(LAYER_3),
-        MO(_FN1),   KC_LALT,  KC_LGUI,                                KC_SPC,                                 KC_LGUI,  MO(_FN1), QK_LEAD,   KC_LEFT,    KC_DOWN, KC_RGHT),
-[LAYER_2] = LAYOUT_ansi_84(
-       KC_COMM,    KC_DOT,     KC_F2,      KC_F3,       KC_F4,     KC_F5,    KC_F6,      KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,    KC_TRNS,  KC_TRNS,  XXXXXXX,
-       G(KC_K),    KC_LSFT,    KC_LBRC,    KC_RBRC,     G(KC_Q),   G(KC_0),  G(KC_1),    KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,    KC_BSPC,            KC_TRNS,
-       KC_TAB,     G(KC_J),    TD(TD_MG),  ALT_T(KC_F1),KC_R,      TD(TD_KO),KC_F13,     KC_F14,   KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,   KC_BSLS,            KC_TRNS,
-       MO(_FN1),   QK_LEAD,    TD(TD_XZ),  KC_WH_U,     TD(TD_BEA),KC_ESC,   G(KC_F1),   KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,             KC_PENT,            TO(LAYER_1),
-       KC_LSFT,                MO(_FN4),   TD(TD_F1112),TD(TD_SLH),TD(TD_VU),KC_LCTL,    KC_F15,   KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,             KC_RSFT,  KC_UP,    KC_TRNS,
-       MO(_FN2),   KC_LALT,    MT(MOD_LGUI,KC_L),                            KC_SPC,                                   KC_LGUI,  KC_TRNS,  KC_TRNS,   KC_LEFT,  KC_DOWN,  KC_RGHT),
-[LAYER_3] = LAYOUT_ansi_84(
-         KC_PDOT,     KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,    KC_TRNS,   XXXXXXX,    XXXXXXX,
-         KC_ESC,      KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,    KC_BSPC,               KC_HOME,
-         KC_TAB,      KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,   KC_BSLS,               MO(_FN3),
-    MT(MOD_LCTL,KC_K),KC_A,     KC_S,     KC_D,     TD(TD_GF),KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,             KC_ENT,                MO(_FN4),
-    MT(MOD_LSFT,KC_Y),          KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,             KC_RSFT,   KC_UP,      TO(LAYER_1),
-         MO(_FN3), MT(MOD_LALT,KC_N), MT(MOD_LGUI,KC_L),                KC_GRV,                                 KC_LGUI,  MO(_FN1), KC_SPC,    KC_LEFT,   KC_DOWN,    KC_RGHT),
+    G(C(KC_Q)), KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,    KC_F13,     KC_F14,  MO(_BT),
+    KC_ESC,     KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,    KC_BSPC,             KC_MUTE,
+    KC_TAB,     KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,   KC_BSLS,             KC_VOLU,
+    KC_LCTL,    KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,             KC_ENT,              KC_VOLD,
+    KC_LSFT,              KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,             KC_RSFT,    KC_UP,   TG(LAYER_5),
+    MO(_FN1),   KC_LALT,  KC_LGUI,                                KC_SPC,                                 MO(_FN4), MO(_FN2), MO(_FN1),  KC_LEFT,    KC_DOWN, KC_RGHT),
+ 
+    [LAYER_2] = LAYOUT_ansi_84(
+    KC_TRNS,    XXXXXXX,    KC_F2,      KC_F3,       KC_F4,     KC_F5,    KC_F6,      KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,    KC_TRNS,  KC_TRNS,  KC_TRNS,
+    G(KC_K),    KC_LSFT,    KC_LBRC,    KC_RBRC,     G(KC_Q),   G(KC_0),  G(KC_1),    KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,    KC_BSPC,            KC_TRNS,
+    KC_TAB,     G(KC_J),    TD(TD_MG),  ALT_T(KC_F1),KC_R,      TD(TD_KO),KC_F13,     KC_F14,   KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,   KC_BSLS,            KC_TRNS,
+    MO(_FN1),   QK_LEAD,    TD(TD_XZ),  KC_WH_U,     TD(TD_BEA),KC_ESC,   KC_F,       KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,             KC_PENT,            KC_TRNS,
+    KC_LSFT,                MO(_FN4),   TD(TD_F1112),TD(TD_SLH),TD(TD_VU),KC_LCTL,    KC_F15,   KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,             KC_RSFT,  KC_UP,    XXXXXXX,
+    MO(_FN2),   KC_LALT,    MT(MOD_LGUI,KC_L),                            KC_SPC,                                   MO(_FN4), MO(_FN2), MO(_FN1),  KC_LEFT,  KC_DOWN,  KC_RGHT),
 
+    [LAYER_3] = LAYOUT_ansi_84(
+     KC_TRNS,     KC_COMM,  KC_DOT,   KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,    KC_TRNS,   KC_TRNS,    KC_TRNS,
+     KC_ESC,      KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,    KC_BSPC,               KC_TRNS,
+     KC_TAB,      KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,   KC_BSLS,               KC_TRNS,
+MT(MOD_LCTL,KC_K),KC_A,     KC_S,     KC_D,     TD(TD_GF),KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,             KC_ENT,                KC_TRNS,
+MT(MOD_LSFT,KC_Y),          KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,             KC_RSFT,   KC_UP,      XXXXXXX,
+     MO(_FN3), MT(MOD_LALT,KC_N), MT(MOD_LGUI,KC_L),                KC_GRV,                                 MO(_FN4), MO(_FN2), MO(_FN1),  KC_LEFT,   KC_DOWN,    KC_RGHT),
+
+ [LAYER_4] = LAYOUT_ansi_84(
+     KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_F13,   RGB_MOD,  MO(_BT),
+     KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            KC_PGUP,
+     KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_PGDN,
+     KC_CAPS,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,             KC_HOME,
+     KC_LSFT,            KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,            KC_RSFT,  KC_UP,    KC_END,
+     KC_LCTL,  KC_LALT,  KC_LGUI,                                KC_SPC,                                 KC_LGUI, MO(_FN1),  KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
+
+[LAYER_5] = LAYOUT_ansi_84(
+     KC_TRNS,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_F13,   KC_TRNS,  MO(_BT),
+     KC_ESC,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            KC_TRNS,
+     KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_TRNS,
+     KC_LCTL,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,             KC_TRNS,
+     KC_LSFT,            KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,            KC_RSFT,  KC_UP,    TG(LAYER_6),
+     MO(_FN1), KC_LALT,  KC_LGUI,                                KC_SPC,                                 MO(_FN4), MO(_FN2),  MO(_FN1),KC_LEFT,  KC_DOWN,  KC_RGHT),
+
+[LAYER_6] = LAYOUT_ansi_84(
+     KC_TRNS,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_F13,   KC_TRNS,  MO(_BT),
+     KC_ESC,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            KC_TRNS,
+     KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_TRNS,
+     KC_LGUI,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,             KC_TRNS,
+     KC_LSFT,            KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,            KC_RSFT,  KC_UP,    TO(LAYER_1),
+     KC_LCTL,  KC_LALT,  MO(_FN1),                               KC_SPC,                                 MO(_FN4), MO(_FN2), MO(_FN1), KC_LEFT,  KC_DOWN,  KC_RGHT),
+                         
+                         
 [_BT] = LAYOUT_ansi_84(
-       XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-       XXXXXXX,  BT_HST1,   BT_HST2,  BT_HST3,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            BT_HST1,
-       XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            BT_HST2,
-       XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,            XXXXXXX,            BT_HST3,
-       XXXXXXX,             XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX,
-       XXXXXXX,  XXXXXXX,   XXXXXXX,                                XXXXXXX,                                 XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
+     XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+     XXXXXXX,  BT_HST1,   BT_HST2,  BT_HST3,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            BT_HST1,
+     XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            BT_HST2,
+     XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,            XXXXXXX,            BT_HST3,
+     XXXXXXX,             XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX,
+     XXXXXXX,  XXXXXXX,   XXXXXXX,                                XXXXXXX,                                 XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
+                                               
 [_FN1] = LAYOUT_ansi_84(
      XXXXXXX,    XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-     XXXXXXX,    KC_F1,      KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,      KC_F7,     KC_F8,    KC_F9,     KC_F10,   KC_F11,   KC_F12,   KC_F13,             XXXXXXX,
-     TG(LAYER_2),TG(LAYER_3),XXXXXXX,  G(KC_E),  G(KC_R),  G(KC_T),  XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,   G(KC_P),  XXXXXXX,  XXXXXXX,  SGUI(KC_4),         XXXXXXX,
+     KC_GRV,     KC_F1,      KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,      KC_F7,     KC_F8,    KC_F9,     KC_F10,   KC_F11,   KC_F12,   KC_F13,             XXXXXXX,
+     TG(LAYER_2),TG(LAYER_3),XXXXXXX,  G(KC_E),  G(KC_R),  G(KC_T),  XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,   G(KC_P),  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,
      XXXXXXX,    XXXXXXX,    G(KC_S),  G(KC_D),  G(KC_F),  G(KC_G),  KC_LEFT,    KC_DOWN,   KC_UP,    KC_RGHT,   XXXXXXX,  XXXXXXX,            KC_PENT,            XXXXXXX,
-     XXXXXXX,                G(KC_Z),  G(KC_X),  G(KC_C),  G(KC_V),  XXXXXXX,    KC_END,   KC_PGDN,   KC_PGUP,  KC_HOME,   XXXXXXX,            KC_MPLY,  KC_VOLU,  XXXXXXX,
-     XXXXXXX,    G(KC_MINS), G(KC_EQL),                              KC_BSPC,                                    KC_MUTE,  XXXXXXX,  XXXXXXX,  KC_MPRV,  KC_VOLD,  KC_MNXT),
+     G(KC_0),                G(KC_Z),  G(KC_X),  G(KC_C),  G(KC_V),  XXXXXXX,    KC_END,   KC_PGDN,   KC_PGUP,  KC_HOME,   XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX,
+     XXXXXXX,    G(KC_MINS), G(KC_EQL),                              KC_BSPC,                                   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
 
 [_FN2] = LAYOUT_ansi_84(
-         XXXXXXX,    XXXXXXX,  XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-         KC_P,       XXXXXXX,  G(KC_LBRC),G(KC_RBRC),XXXXXXX,   XXXXXXX,   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,
-         TO(LAYER_1),XXXXXXX,  G(C(KC_F)),SGUI(KC_I),G(KC_COMM),XXXXXXX,   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,
-         KC_PENT,    XXXXXXX,  XXXXXXX,   KC_WH_D,   G(KC_Z),   G(KC_N),   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,            XXXXXXX,
-         XXXXXXX,              XXXXXXX,   XXXXXXX,   SGUI(KC_Z),KC_F8,     XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX,
-         XXXXXXX,    XXXXXXX,  XXXXXXX,                                    XXXXXXX,                               XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
+     XXXXXXX,    XXXXXXX,  XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+     KC_P,       XXXXXXX,  G(KC_LBRC),G(KC_RBRC),XXXXXXX,   XXXXXXX,   XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,
+     TO(LAYER_1),XXXXXXX,  G(C(KC_F)),SGUI(KC_I),G(KC_COMM),KC_T,      XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,
+     KC_PENT,    XXXXXXX,  XXXXXXX,   KC_WH_D,   G(KC_Z),   G(KC_N),   KC_MPRV, KC_VOLD,  KC_VOLU,  KC_MNXT,  XXXXXXX,  XXXXXXX,            XXXXXXX,            XXXXXXX,
+     XXXXXXX,              XXXXXXX,   XXXXXXX,   SGUI(KC_Z),KC_F8,     XXXXXXX, KC_MUTE,  KC_MPLY,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX,
+     XXXXXXX,    XXXXXXX,  XXXXXXX,                                    XXXXXXX,                               XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
 
 [_FN3] = LAYOUT_ansi_84(
-         XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,
-         KC_P,     XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
-         KC_M,     TO(LAYER_1),C(KC_P8), XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
-         KC_ENT,   C(KC_P4),   C(KC_P2), C(KC_P6), XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,             XXXXXXX,
-         KC_H,                 A(KC_H),  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,  XXXXXXX,   XXXXXXX,
-         XXXXXXX,  XXXXXXX,    XXXXXXX,                                XXXXXXX,                                XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX),
-        
+     XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,
+     KC_P,     XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
+     KC_M,     TO(LAYER_1),C(KC_P8), XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
+     KC_ENT,   C(KC_P4),   C(KC_P2), C(KC_P6), XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,             XXXXXXX,
+     KC_H,                 A(KC_H),  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,  XXXXXXX,   XXXXXXX,
+     XXXXXXX,  XXXXXXX,    XXXXXXX,                                XXXXXXX,                                XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX),
+                                               
 [_FN4] = LAYOUT_ansi_84(
-         XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,    XXXXXXX,
-         XXXXXXX,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,    KC_F13,     KC_F14,   KC_F15,   KC_F16,   XXXXXXX,  XXXXXXX,   XXXXXXX,              XXXXXXX,
-         XXXXXXX,    KC_F13,   KC_F14,   KC_F15,   KC_F16,   KC_P6,    G(C(KC_Q)),XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_ESC,               XXXXXXX,
-         KC_LCTL,    KC_P1,    KC_P2,    KC_P3,    KC_P4,    KC_P5,    XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,              XXXXXXX,
-         KC_LSFT,              XXXXXXX,  KC_P7,    KC_P8,    KC_P9,    KC_P0,     LAG(KC_GRV),XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,  XXXXXXX,    XXXXXXX,
-         XXXXXXX,    XXXXXXX,  XXXXXXX,                                KC_LGUI,                                   XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,    XXXXXXX),
+     XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,    XXXXXXX,
+     KC_TILD,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,    XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,              XXXXXXX,
+     XXXXXXX,    KC_F13,   KC_F14,   KC_F15,   KC_F16,   KC_P6,    G(C(KC_Q)),LAG(KC_GRV),XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   SGUI(KC_4),           XXXXXXX,
+     KC_LCTL,    KC_P1,    KC_P2,    KC_P3,    KC_P4,    KC_P5,    KC_LEFT,   KC_DOWN,    KC_UP,    KC_RGHT,  XXXXXXX,  XXXXXXX,             XXXXXXX,              XXXXXXX,
+     KC_LSFT,              XXXXXXX,  KC_P7,    KC_P8,    KC_P9,    KC_P0,     KC_END,     KC_PGDN,  KC_PGUP,  KC_HOME,  XXXXXXX,             XXXXXXX,  XXXXXXX,    XXXXXXX,
+     XXXXXXX,    XXXXXXX,  XXXXXXX,                                KC_LGUI,                                   XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,    XXXXXXX),
+                                               
+[_FN5] = LAYOUT_ansi_84(
+     KC_TRNS,  KC_BRID,  KC_BRIU,  KC_TRNS,  KC_TRNS,  RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_TRNS,  KC_TRNS,  RGB_TOG,
+     KC_TRNS,  BT_HST1,  BT_HST2,  BT_HST3,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,
+     RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,
+     KC_TRNS,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,            KC_TRNS,
+     KC_TRNS,            KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  BAT_LVL,  NK_TOGG,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS,  KC_TRNS,
+     KC_TRNS,  KC_TRNS,  KC_TRNS,                                KC_TRNS,                                KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS)
 };
