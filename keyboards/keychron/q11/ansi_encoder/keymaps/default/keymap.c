@@ -398,7 +398,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         G(KC_RBRC), KC_TAB,     G(KC_J),  TD(TD_MG),        ALT_T(KC_F1),KC_R,       TD(TD_KO), KC_F13,     KC_F14,  KC_I,     KC_O,     KC_P,     KC_LBRC, KC_RBRC,  KC_BSLS,              KC_TRNS,
         KC_LCTL,    MO(_FN1),   QK_LEAD,  TD(TD_XZ),        KC_WH_U,     TD(TD_BEA), KC_ESC,    KC_H,       KC_J,    KC_K,     KC_L,     KC_SCLN,  KC_QUOT,           KC_PENT,              KC_TRNS,
         KC_F,       KC_LSFT,              MO(_FN4),         TD(TD_F1112),TD(TD_SLH), TD(TD_VL), KC_P0,      QK_LEAD, KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,           KC_RSFT,   KC_UP,
-        G(KC_P),    KC_LCTL,    KC_LALT,  MT(MOD_LGUI,KC_L),MO(_FN2),                KC_SPC,                         KC_TRNS,            KC_TRNS,  KC_TRNS, KC_TRNS,  KC_LEFT,   KC_DOWN,    KC_RGHT),
+        G(KC_P),    MO(_FN2),   KC_LALT,  MT(MOD_LGUI,KC_L),MO(_FN2),                KC_SPC,                         KC_TRNS,            KC_TRNS,  KC_TRNS, KC_TRNS,  KC_LEFT,   KC_DOWN,    KC_RGHT),
 
     [LAYER_3] = LAYOUT_ansi_91(
         MO(_FN1),   KC_TRNS,          KC_F1,            KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,  KC_F12,   KC_TRNS,   KC_TRNS,  MO(_FN1),
