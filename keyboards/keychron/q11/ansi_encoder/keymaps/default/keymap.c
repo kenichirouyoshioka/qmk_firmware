@@ -386,11 +386,11 @@ enum layers{
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_1] = LAYOUT_ansi_91(
         MO(_FN1),   G(C(KC_Q)),KC_F1,         KC_F2,      KC_F3,      KC_F4,    KC_F5,     KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,    KC_F12,   KC_F13,    KC_F14,     TG(LAYER_5),
-        TD(TD_VL),  KC_ESC,    KC_1,          KC_2,       KC_3,       KC_4,     KC_5,      KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,   KC_EQL,   KC_BSPC,               KC_MUTE,
+        KC_L,       KC_ESC,    KC_1,          KC_2,       KC_3,       KC_4,     KC_5,      KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,   KC_EQL,   KC_BSPC,               KC_MUTE,
         TD(TD_BEA), KC_TAB,    KC_Q,          KC_W,       KC_E,       KC_R,     KC_T,      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,   KC_RBRC,  KC_BSLS,               KC_VOLU,
         KC_WH_U,    KC_LCTL,   KC_A,          KC_S,       KC_D,       KC_F,     KC_G,      KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,             KC_ENT,                KC_VOLD,
         QK_LEAD,    KC_LSFT,                  KC_Z,       KC_X,       KC_C,     KC_V,      KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,             KC_RSFT,   KC_UP,
-        MO(_FN2),   MO(_FN4),  KC_LALT,       KC_LGUI,    MO(_FN1),             KC_SPC,                        KC_RSFT,            MO(_FN4),  MO(_FN1), QK_LEAD,  KC_LEFT,   KC_DOWN,    KC_RGHT),
+        KC_P0,      MO(_FN4),  KC_LALT,       KC_LGUI,    MO(_FN1),             KC_SPC,                        KC_RSFT,            MO(_FN4),  MO(_FN1), QK_LEAD,  KC_LEFT,   KC_DOWN,    KC_RGHT),
     
     [LAYER_2] = LAYOUT_ansi_91(
         MO(_FN2),   KC_TRNS,    KC_COMM,  KC_DOT,           KC_F3,       KC_F4,      KC_F5,     KC_F6,      KC_F7,   KC_F8,    KC_F9,    KC_F10,   KC_F11,  KC_F12,   KC_TRNS,   KC_TRNS,   MO(_FN1),
@@ -426,19 +426,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     
     [_FN1] = LAYOUT_ansi_91(
         XXXXXXX,   XXXXXXX,     XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-        TD(TD_MG), KC_TILD,     KC_F1,      KC_F2,     KC_F3,     KC_F4,     KC_F5,     KC_F6,      KC_F7,     KC_F8,    KC_F9,    KC_F10,   KC_F11,     KC_F12,   KC_F13,             XXXXXXX,
-        KC_P0,     TG(LAYER_2), TG(LAYER_3),G(KC_W),   G(KC_E),   G(KC_R),   G(KC_T),   XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  SGUI(KC_4),         XXXXXXX,
+        KC_M,      KC_TILD,     KC_F1,      KC_F2,     KC_F3,     KC_F4,     KC_F5,     KC_F6,      KC_F7,     KC_F8,    KC_F9,    KC_F10,   KC_F11,     KC_F12,   KC_F13,             XXXXXXX,
+        XXXXXXX,   TG(LAYER_2), TG(LAYER_3),G(KC_W),   G(KC_E),   G(KC_R),   G(KC_T),   XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  SGUI(KC_4),         XXXXXXX,
         KC_WH_D,   XXXXXXX,     G(KC_K),    G(KC_S),   G(KC_D),   SGUI(KC_Z),G(KC_G),   KC_LEFT,    KC_DOWN,   KC_UP,    KC_RGHT,  XXXXXXX,  XXXXXXX,              KC_PENT,            XXXXXXX,
-        TD(TD_SLH),             G(KC_Z),    G(KC_J),   G(KC_N),   XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,  KC_VOLU,
+        KC_SLSH,                G(KC_Z),    G(KC_J),   G(KC_N),   G(KC_N),   G(KC_COMM),XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,  KC_VOLU,
         XXXXXXX,   XXXXXXX,     G(KC_MINS), G(KC_EQL), XXXXXXX,              KC_BSPC,                          XXXXXXX,            XXXXXXX,  XXXXXXX,    XXXXXXX,  KC_MUTE,  KC_VOLD,  KC_MPLY),
     
     [_FN2] = LAYOUT_ansi_91(
-        XXXXXXX,   KC_UP,      XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
-        KC_LEFT,   KC_DOWN,    KC_RGHT,   G(KC_LBRC),G(KC_RBRC),XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,            XXXXXXX,
-        KC_U,      TO(LAYER_1),XXXXXXX,   G(C(KC_F)),SGUI(KC_I),G(KC_COMM),XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,            XXXXXXX,
-        G(KC_COMM),KC_PENT,    XXXXXXX,   G(KC_1),   KC_WH_D,   G(KC_Z),   KC_U,      XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,            XXXXXXX,
-        G(KC_N),   XXXXXXX,               XXXXXXX,   XXXXXXX,   KC_P,      KC_F8,     G(KC_0),  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,  XXXXXXX,
-        XXXXXXX,   XXXXXXX,    XXXXXXX,   XXXXXXX,   G(KC_COMM),           G(KC_N),                       XXXXXXX,            XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
+        XXXXXXX,   XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+        XXXXXXX,   XXXXXXX,    XXXXXXX,   G(KC_LBRC),G(KC_RBRC),XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,            XXXXXXX,
+        XXXXXXX,   TO(LAYER_1),XXXXXXX,   G(C(KC_F)),SGUI(KC_I),G(KC_COMM),XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,            XXXXXXX,
+        XXXXXXX,   KC_PENT,    XXXXXXX,   G(KC_1),   KC_WH_D,   G(KC_Z),   KC_U,      XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,            XXXXXXX,
+        XXXXXXX,   XXXXXXX,               XXXXXXX,   XXXXXXX,   KC_P,      KC_F8,     G(KC_0),  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,  XXXXXXX,
+        XXXXXXX,   XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,              XXXXXXX,                       XXXXXXX,            XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),
     
     [_FN3] = LAYOUT_ansi_91(
         XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
