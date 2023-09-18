@@ -430,7 +430,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX,   TG(LAYER_2), TG(LAYER_3),G(KC_W),   G(KC_E),   G(KC_R),   G(KC_T),   XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  SGUI(KC_4),         XXXXXXX,
         KC_WH_D,   XXXXXXX,     G(KC_K),    G(KC_S),   G(KC_D),   SGUI(KC_Z),G(KC_G),   KC_LEFT,    KC_DOWN,   KC_UP,    KC_RGHT,  XXXXXXX,  XXXXXXX,              KC_PENT,            XXXXXXX,
         KC_SLSH,                G(KC_Z),    G(KC_J),   G(KC_N),   G(KC_N),   G(KC_COMM),XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,  KC_VOLU,
-        XXXXXXX,   XXXXXXX,     G(KC_MINS), G(KC_EQL), XXXXXXX,              KC_BSPC,                          XXXXXXX,            XXXXXXX,  XXXXXXX,    XXXXXXX,  KC_MUTE,  KC_VOLD,  KC_MPLY),
+        XXXXXXX,   XXXXXXX,     G(KC_MINS), XXXXXXX,   G(KC_EQL),            KC_BSPC,                          XXXXXXX,            XXXXXXX,  XXXXXXX,    XXXXXXX,  KC_MUTE,  KC_VOLD,  KC_MPLY),
     
     [_FN2] = LAYOUT_ansi_91(
         XXXXXXX,   XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
