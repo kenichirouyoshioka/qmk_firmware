@@ -122,7 +122,7 @@
 
 /*add synchronize layer color 2023/8/19 */
 #define SPLIT_LAYER_STATE_ENABLE
-#define SPLIT_TRANSPORT_MIRRO
+#define SPLIT_TRANSPORT_MIRROR
 /* tapping, mouse key and leader key 2023/08/18 */
 #define TAPPING_TERM 200
 #define LEADER_PER_KEY_TIMING
