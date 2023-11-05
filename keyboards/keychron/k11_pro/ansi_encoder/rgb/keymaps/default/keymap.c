@@ -82,10 +82,22 @@ void leader_start_user(void) {
 }
 
 void leader_end_user(void) {
-    if (leader_sequence_one_key(KC_R)) {
+    
+    if (leader_sequence_one_key(KC_F1)) {
         // just save
-        tap_code16(LGUI(KC_S));
+        tap_code16(KC_U);
         
+    }else if (leader_sequence_one_key(KC_M)) {
+        // M to K
+        tap_code16(KC_K);
+    } else if (leader_sequence_two_keys(KC_M, KC_M)) {
+        // M to O
+        tap_code16(KC_O);
+        
+    }else if (leader_sequence_one_key(KC_F8)) {
+        // F8 to F10
+        tap_code16(KC_F10);
+         
     }else if(leader_sequence_one_key(KC_ESC)) {
         //100% opacity
         tap_code16(KC_V);
@@ -96,15 +108,15 @@ void leader_end_user(void) {
         tap_code16(KC_V);
         tap_code16(KC_1);
         
-    } else if (leader_sequence_three_keys(KC_R, KC_R, KC_R)) {
-        //screen lock
-        tap_code16(G(C(KC_Q)));
-        
-    } else if (leader_sequence_two_keys(KC_R, KC_R)) {
+    }else if (leader_sequence_one_key(KC_R)) {
         // save and close all windows
         tap_code16(LGUI(KC_S));
         tap_code16(LAG(KC_W));
         tap_code16(KC_ENT);
+
+    } else if (leader_sequence_two_keys(KC_R, KC_R)) {
+        //screen lock
+        tap_code16(G(C(KC_Q)));
         
         // function keys, home, end, pgdn and pgup, copy and paste
     }else if (leader_sequence_one_key(KC_1)) {
@@ -131,37 +143,7 @@ void leader_end_user(void) {
         tap_code16(KC_F11);
     }else if (leader_sequence_one_key(KC_EQL)) {
         tap_code16(KC_F12);
-        //input "
-    }else if (leader_sequence_one_key(KC_QUOT)) {
-        tap_code16(S(KC_QUOT));
-        //input :
-    }else if (leader_sequence_one_key(KC_SCLN)) {
-        tap_code16(S(KC_SCLN));
-        //input  ( ) -
-    }else if (leader_sequence_one_key(KC_H)) {
-        tap_code16(S(KC_9));
-    }else if (leader_sequence_one_key(KC_J)) {
-        tap_code16(S(KC_0));
-    }else if (leader_sequence_one_key(KC_K)) {
-        tap_code16(KC_MINS);
-        //input !
-    }else if (leader_sequence_one_key(KC_N)) {
-        tap_code16(S(KC_1));
-        // home, end, page up and down
-    }else if (leader_sequence_one_key(KC_M)) {
-        tap_code16(KC_END);
-    }else if (leader_sequence_one_key(KC_COMM)) {
-        tap_code16(KC_PGDN);
-    }else if (leader_sequence_one_key(KC_DOT)) {
-        tap_code16(KC_PGUP);
-    }else if (leader_sequence_one_key(KC_SLSH)) {
-        tap_code16(KC_HOME);
-        // copy and paste
-    }else if (leader_sequence_one_key(KC_C)) {
-        tap_code16(G(KC_C));
-    }else if (leader_sequence_one_key(KC_V)) {
-        tap_code16(G(KC_V));
-        
+
         //numpad 0 to 9
     }else if (leader_sequence_one_key(KC_P0)) {
         tap_code16(KC_P1);
@@ -171,10 +153,10 @@ void leader_end_user(void) {
         tap_code16(KC_P3);
         
     }else if (leader_sequence_one_key(KC_P4)) {
-        tap_code16(KC_P5);
-    }else if (leader_sequence_one_key(KC_P6)) {
         tap_code16(KC_P7);
-    }else if (leader_sequence_one_key(KC_P8)) {
+    }else if (leader_sequence_one_key(KC_P5)) {
+        tap_code16(KC_P8);
+    }else if (leader_sequence_one_key(KC_P6)) {
         tap_code16(KC_P9);
     }
 }
@@ -291,15 +273,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,      KC_7,        KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          G(C(KC_Q) ),
         KC_TAB,  KC_Q,     KC_W,     KC_E,    KC_R,    KC_T,    KC_Y,      KC_U,        KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          MO(_BT),
         KC_LCTL, KC_A,     KC_S,     KC_D,    KC_F,    KC_G,               KC_H,        KC_J,    KC_K,    KC_L,     KC_SCLN,  KC_QUOT,  KC_ENT,           TG(LAYER_5),
-        KC_LSFT,           KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,      QK_LEAD,     KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT, KC_UP,
-        MO(_FN1),KC_LALT,  KC_LGUI,           KC_SPC,           MO(_FN4),  TG(LAYER_2),          KC_RSFT,           MO(_FN1),           KC_LEFT, KC_DOWN, KC_RGHT),
+        KC_LSFT,           KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,      MO(_FN1),    KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT, KC_UP,
+        MO(_FN1),KC_LALT,  KC_LGUI,           KC_SPC,           MO(_FN4),  TG(LAYER_2),          KC_RSFT,           KC_RGUI,            KC_LEFT, KC_DOWN, KC_RGHT),
 
     [LAYER_2] = LAYOUT_69_ansi(
-        KC_LCTL, KC_LSFT,   KC_LBRC,    KC_RBRC,     KC_P4,      KC_P6,     KC_P8,     KC_7,       KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          MO(_FN1),
-        KC_TAB,  G(KC_J),   TD(TD_MG),  ALT_T(KC_F1),KC_R,       TD(TD_KO), C(KC_WH_U),KC_F13,     KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_TRNS,
-        MO(_FN1),QK_LEAD,   TD(TD_XZ),  KC_WH_U,     TD(TD_BEA), KC_ESC,               C(KC_WH_D), KC_F14,  KC_K,    KC_L,     KC_SCLN,  KC_QUOT,  KC_PENT,          XXXXXXX,
-        KC_LSFT,            MO(_FN4),   TD(TD_F1112),TD(TD_SLH), TD(TD_VL),KC_P0,      QK_LEAD,    KC_F,    KC_F15,  KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT, KC_UP,
-        MO(_FN2),KC_LALT,MT(MOD_LGUI,KC_L),          KC_SPC,               MO(_FN4),   TO(LAYER_1),         KC_TRNS,           KC_TRNS,            KC_LEFT, KC_DOWN, KC_RGHT),
+        TD(TD_KO),       KC_P1,     C(KC_WH_D), C(KC_WH_U),  KC_P4,       KC_P5,     KC_P6,     KC_7,       KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          MO(_FN1),
+        KC_TAB,          KC_LBRC,   KC_RBRC,    ALT_T(KC_F1),LCTL_T(KC_R),KC_F8,     C(KC_WH_U),KC_F13,     KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_TRNS,
+        MO(_FN1),        QK_LEAD,   TD(TD_XZ),  KC_WH_U,     TD(TD_BEA),  KC_ESC,               C(KC_WH_D), KC_F14,  KC_K,    KC_L,     KC_SCLN,  KC_QUOT,  KC_PENT,          XXXXXXX,
+        MT(KC_LSFT,KC_V),           MO(_FN4),   TD(TD_F1112),TD(TD_SLH),  KC_M,     KC_P0,      QK_LEAD,    KC_F,    KC_F15,  KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT, KC_UP,
+        MO(_FN2),MT(KC_LALT,KC_G),  MT(MOD_LGUI,KC_L),       KC_SPC,                MO(_FN4),   TO(LAYER_1),         KC_TRNS,           KC_TRNS,            KC_LEFT, KC_DOWN, KC_RGHT),
 
 
     [LAYER_3] = LAYOUT_69_ansi(
@@ -338,10 +320,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX,   G(KC_MINS),  G(KC_EQL),         KC_BSPC,              XXXXXXX,    XXXXXXX,          XXXXXXX,            XXXXXXX,             KC_MUTE, KC_VOLD, KC_MPLY),
 
     [_FN2] = LAYOUT_69_ansi(
-        XXXXXXX,    XXXXXXX,   G(KC_LBRC),G(KC_RBRC),XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,          XXXXXXX,
+        XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,          XXXXXXX,
         TO(LAYER_1),XXXXXXX,   G(C(KC_F)),SGUI(KC_I),G(KC_COMM),XXXXXXX,   XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,          XXXXXXX,
-        KC_PENT,    XXXXXXX,   G(KC_1),   KC_WH_D,   G(KC_Z),   KC_U,                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,          XXXXXXX,
-        XXXXXXX,               XXXXXXX,   XXXXXXX,   KC_P,      KC_F8,     G(KC_0),  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX,
+        KC_PENT,    XXXXXXX,   G(KC_1),   KC_WH_D,   G(KC_Z),   XXXXXXX,             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,          XXXXXXX,
+        XXXXXXX,               XXXXXXX,   XXXXXXX,   KC_P,      XXXXXXX,   G(KC_0),  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX,
         XXXXXXX,    XXXXXXX,   XXXXXXX,              XXXXXXX,              XXXXXXX,  XXXXXXX,          XXXXXXX,           XXXXXXX,            XXXXXXX, XXXXXXX, XXXXXXX),
 
     [_FN3] = LAYOUT_69_ansi(
@@ -353,10 +335,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     
     [_FN4] = LAYOUT_69_ansi(
         KC_GRV,     XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX,   XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
-        XXXXXXX,    KC_F13,   KC_F14,   KC_F15,  KC_F16,    XXXXXXX,G(C(KC_Q)),LAG(KC_GRV),XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
-        XXXXXXX,    XXXXXXX,  KC_F12,   KC_WH_D, SGUI(KC_Z),KC_F11,            XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
-        KC_LSFT,              XXXXXXX,  KC_LCTL, KC_F9,     KC_F8,  KC_F7,     XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,
-        XXXXXXX,  XXXXXXX,    XXXXXXX,           KC_LGUI,           XXXXXXX,   XXXXXXX,             XXXXXXX,           XXXXXXX,            XXXXXXX,    XXXXXXX, XXXXXXX),
+        XXXXXXX,    KC_F13,   KC_F14,   KC_F15,  KC_F16,    KC_F10,  G(C(KC_Q)),LAG(KC_GRV),XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
+        XXXXXXX,    XXXXXXX,  KC_F12,   KC_WH_D, SGUI(KC_Z),KC_F11,             XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
+        XXXXXXX,              XXXXXXX,  XXXXXXX, KC_F9,     KC_F8,  KC_F7,      XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,
+        XXXXXXX,    XXXXXXX,  XXXXXXX,           XXXXXXX,           XXXXXXX,    XXXXXXX,             XXXXXXX,           XXXXXXX,            XXXXXXX,    XXXXXXX, XXXXXXX),
     
     [_FN6] = LAYOUT_69_ansi(
         KC_GRV,  KC_BRID,  KC_BRIU,  KC_TASK, KC_NO,   RGB_VAD, RGB_VAI,  KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,          RGB_TOG,
