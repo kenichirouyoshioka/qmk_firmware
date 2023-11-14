@@ -386,12 +386,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_F16,     MO(_FN1),   KC_LALT,            KC_LGUI,  KC_SPC,   MO(_FN4),                       KC_RSFT,            MO(_FN1), KC_RGUI,            KC_LEFT,  KC_DOWN,  KC_RGHT),
 
 [LAYER_2] = LAYOUT_90_ansi(
-        MO(_FN2),  KC_TRNS,    KC_F1,       KC_F2,      KC_F3,       KC_F4,       KC_F5,      KC_F6,     KC_F7,      KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_TRNS,            XXXXXXX,
-        G(KC_LBRC),KC_ESC,     KC_P1,       C(KC_WH_D), C(KC_WH_U),  TD(TD_P45),  TD(TD_P67), TD(TD_P89),KC_7,       KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            KC_TRNS,
-        G(KC_RBRC),TD(TD_TAB1),KC_LBRC,     KC_RBRC,    ALT_T(KC_F1),LCTL_T(KC_R),TD(TD_1F10),KC_Y,      KC_U,       KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_TRNS,
-        KC_F14,    MO(_FN1),   QK_LEAD,     TD(TD_XMG), KC_WH_U,     TD(TD_BEA),  KC_ESC,     KC_H,      KC_J,       KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,             KC_TRNS,
-        KC_F15,    SFT_T(KC_SLSH),          KC_F9,      TD(TD_F1112),TD(TD_KOH),  TD(TD_VF8), TD(TD_02), TO(LAYER_1),KC_F,     KC_F15,   KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_UP,
-        KC_F16,    MO(_FN2),   ALT_T(KC_Z), GUI_T(KC_L),KC_SPC,      MO(_FN4),                                       KC_TRNS,            KC_TRNS,  KC_TRNS,            KC_LEFT,  KC_DOWN,  KC_RGHT),
+        MO(_FN2),  KC_TRNS,    KC_F1,         KC_F2,      KC_F3,       KC_F4,       KC_F5,      KC_F6,     KC_F7,      KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_TRNS,            XXXXXXX,
+        KC_TRNS,   KC_ESC,     XXXXXXX,       KC_Z,       KC_P,        TD(TD_P45),  TD(TD_P67), TD(TD_P89),KC_7,       KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            KC_TRNS,
+        KC_TRNS,   TD(TD_TAB1),KC_LBRC,       KC_RBRC,    ALT_T(KC_F1),CTL_T(KC_R), TD(TD_1F10),KC_Y,      KC_U,       KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_TRNS,
+        G(KC_LBRC),MO(_FN1),   QK_LEAD,       TD(TD_XG),  KC_WH_U,     TD(TD_BEA),  KC_ESC,     KC_H,      KC_J,       KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,             KC_TRNS,
+        G(KC_RBRC),SFT_T(KC_M),               KC_F9,      TD(TD_F1112),TD(TD_KOH),  TD(TD_VF8), TD(TD_02), TO(LAYER_1),KC_F,     KC_F15,   KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_UP,
+        KC_LCTL,   MO(_FN2),   ALT_T(KC_SLSH),GUI_T(KC_L),KC_SPC,      MO(_FN4),                                       KC_TRNS,            KC_TRNS,  KC_TRNS,            KC_LEFT,  KC_DOWN,  KC_RGHT),
 
 [LAYER_3] = LAYOUT_90_ansi(
         MO(_FN3),   KC_TRNS,            KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,    KC_F7,      KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_TRNS,            XXXXXXX,
@@ -428,17 +428,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_FN1] = LAYOUT_90_ansi(
         XXXXXXX,   XXXXXXX,     XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,   XXXXXXX,           XXXXXXX,
         XXXXXXX,   KC_TILD,     KC_F1,      KC_F2,     KC_F3,    KC_F4,     KC_F5,     KC_F6,      KC_F7,     KC_F8,    KC_F9,    KC_F10,    KC_F11,   KC_F12,    KC_F13,            XXXXXXX,
-        XXXXXXX,   TG(LAYER_2), TG(LAYER_3),G(KC_W),   G(KC_E),  G(KC_R),   G(KC_T),   XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  G(KC_P),   XXXXXXX,  XXXXXXX,   SGUI(KC_4),        XXXXXXX,
+        XXXXXXX,   TG(LAYER_2), TG(LAYER_3),G(KC_N),   G(KC_E),  G(KC_COMM),G(KC_T),   XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  G(KC_P),   XXXXXXX,  XXXXXXX,   SGUI(KC_4),        XXXXXXX,
         XXXXXXX,   XXXXXXX,     G(KC_K),    G(KC_S),   G(KC_D),  SGUI(KC_Z),G(KC_G),   KC_LEFT,    KC_DOWN,   KC_UP,    KC_RGHT,  XXXXXXX,   XXXXXXX,             KC_PENT,           XXXXXXX,
-        XXXXXXX,   XXXXXXX,                 G(KC_Z),   G(KC_J),  G(KC_N),   G(KC_COMM),XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,   XXXXXXX,  KC_VOLU,
+        XXXXXXX,   XXXXXXX,                 XXXXXXX,   XXXXXXX,  G(KC_J),   XXXXXXX,   XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,   XXXXXXX,  KC_VOLU,
         XXXXXXX,   XXXXXXX,     G(KC_MINS),            G(KC_EQL),KC_BSPC,   XXXXXXX,                          XXXXXXX,            XXXXXXX,   XXXXXXX,             KC_MUTE,  KC_VOLD, KC_MPLY),
 
 [_FN2] = LAYOUT_90_ansi(
         XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
         XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
         XXXXXXX,   TO(LAYER_1),XXXXXXX,  G(C(KC_F)), SGUI(KC_I),KC_F15,    KC_F16,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
-        XXXXXXX,   KC_PENT,    XXXXXXX,  KC_F7,      KC_WH_D,   G(KC_Z),   KC_F13,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,            KC_TRNS,
-        XXXXXXX,   XXXXXXX,              XXXXXXX,    XXXXXXX,   G(KC_0),   G(KC_1),   KC_F14,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+        XXXXXXX,   KC_PENT,    XXXXXXX,  KC_F7,      KC_WH_D,   G(KC_Z),   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,            KC_TRNS,
+        XXXXXXX,   XXXXXXX,              XXXXXXX,    XXXXXXX,   KC_F13,    KC_F14,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
         XXXXXXX,   XXXXXXX,    XXXXXXX,              XXXXXXX,   KC_F,      XXXXXXX,                       XXXXXXX,            XXXXXXX,  XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX),
 
 [_FN3] = LAYOUT_90_ansi(
