@@ -24,6 +24,7 @@ enum layers{
     LAYER_3,
     LAYER_4,
     LAYER_5,
+    LAYER_6,
     
     _FN1,
     _FN2,
@@ -371,23 +372,299 @@ tap_dance_action_t tap_dance_actions[] = {
 };
 #define KC_TASK LGUI(KC_TAB)
 #define KC_FLXP LGUI(KC_E)
+
+//Added KANA imput 2023/12/15
+enum custom_keycodes {
+  A = SAFE_RANGE,
+  I,U,E,O,
+  KA,KI,KU,KE,KO,
+  SA,SI,SU,SE,SO,
+  TA,TI,TU,TE,TO,
+  NA,NI,NU,NE,NO,
+  HA,HI,HU,HE,HO,
+  MA,MI,MU,ME,MO,
+  RA,RI,RU,RE,RO,
+  YA,YU,YO,WA,WO,
+  NN,
+  GA,GI,GU,GE,GO,
+  ZA,ZI,ZU,ZE,ZO,
+  DA,DI,DU,DE,DO,
+  BA,BI,BU,BE,BO,
+  XYA,XYU,XYO,
+  XA,XI,XU,XE,XO,
+  DAKUTEN,
+  HANDAKU
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch(keycode){
+    case A:
+    if(record->event.pressed){
+      SEND_STRING("a");} else { }break;
+    case I:
+    if(record->event.pressed){
+      SEND_STRING("i");}else{ }break;
+    case U:
+    if(record->event.pressed){
+      SEND_STRING("u");}else{ }break;
+    case E:
+    if(record->event.pressed){
+      SEND_STRING("e");}else{ }break;
+    case O:
+    if(record->event.pressed){
+      SEND_STRING("o");}else{ }break;
+
+    case KA:
+    if(record->event.pressed){
+      SEND_STRING("ka");} else { }break;
+    case KI:
+    if(record->event.pressed){
+      SEND_STRING("ki");}else{ }break;
+    case KU:
+    if(record->event.pressed){
+      SEND_STRING("ku");}else{ }break;
+    case KE:
+    if(record->event.pressed){
+      SEND_STRING("ke");}else{ }break;
+    case KO:
+    if(record->event.pressed){
+      SEND_STRING("ko");}else{ }break;
+
+    case SA:
+    if(record->event.pressed){
+      SEND_STRING("sa");} else { }break;
+    case SI:
+    if(record->event.pressed){
+      SEND_STRING("si");}else{ }break;
+    case SU:
+    if(record->event.pressed){
+      SEND_STRING("su");}else{ }break;
+    case SE:
+    if(record->event.pressed){
+      SEND_STRING("se");}else{ }break;
+    case SO:
+    if(record->event.pressed){
+      SEND_STRING("so");}else{ }break;
+
+    case TA:
+    if(record->event.pressed){
+      SEND_STRING("ta");} else { }break;
+    case TI:
+    if(record->event.pressed){
+      SEND_STRING("ti");}else{ }break;
+    case TU:
+    if(record->event.pressed){
+      SEND_STRING("tu");}else{ }break;
+    case TE:
+    if(record->event.pressed){
+      SEND_STRING("te");}else{ }break;
+    case TO:
+    if(record->event.pressed){
+      SEND_STRING("to");}else{ }break;
+
+    case NA:
+    if(record->event.pressed){
+      SEND_STRING("na");} else { }break;
+    case NI:
+    if(record->event.pressed){
+      SEND_STRING("ni");}else{ }break;
+    case NU:
+    if(record->event.pressed){
+      SEND_STRING("nu");}else{ }break;
+    case NE:
+    if(record->event.pressed){
+      SEND_STRING("ne");}else{ }break;
+    case NO:
+    if(record->event.pressed){
+      SEND_STRING("no");}else{ }break;
+
+    case HA:
+    if(record->event.pressed){
+      SEND_STRING("ha");} else { }break;
+    case HI:
+    if(record->event.pressed){
+      SEND_STRING("hi");}else{ }break;
+    case HU:
+    if(record->event.pressed){
+      SEND_STRING("hu");}else{ }break;
+    case HE:
+    if(record->event.pressed){
+      SEND_STRING("he");}else{ }break;
+    case HO:
+    if(record->event.pressed){
+      SEND_STRING("ho");}else{ }break;
+
+    case MA:
+    if(record->event.pressed){
+      SEND_STRING("ma");} else { }break;
+    case MI:
+    if(record->event.pressed){
+      SEND_STRING("mi");}else{ }break;
+    case MU:
+    if(record->event.pressed){
+      SEND_STRING("mu");}else{ }break;
+    case ME:
+    if(record->event.pressed){
+      SEND_STRING("me");}else{ }break;
+    case MO:
+    if(record->event.pressed){
+      SEND_STRING("mo");}else{ }break;
+
+    case RA:
+    if(record->event.pressed){
+      SEND_STRING("ra");} else { }break;
+    case RI:
+    if(record->event.pressed){
+      SEND_STRING("ri");}else{ }break;
+    case RU:
+    if(record->event.pressed){
+      SEND_STRING("ru");}else{ }break;
+    case RE:
+    if(record->event.pressed){
+      SEND_STRING("re");}else{ }break;
+    case RO:
+    if(record->event.pressed){
+      SEND_STRING("ro");}else{ }break;
+
+    case YA:
+    if(record->event.pressed){
+      SEND_STRING("ya");} else { }break;
+    case YU:
+    if(record->event.pressed){
+      SEND_STRING("yu");}else{ }break;
+    case YO:
+    if(record->event.pressed){
+      SEND_STRING("yo");}else{ }break;
+    case WA:
+    if(record->event.pressed){
+      SEND_STRING("wa");}else{ }break;
+    case WO:
+    if(record->event.pressed){
+      SEND_STRING("wo");}else{ }break;
+    case NN:
+    if(record->event.pressed){
+      SEND_STRING("nn");} else { }break;
+
+    case GA:
+    if(record->event.pressed){
+      SEND_STRING("ga");} else { }break;
+    case GI:
+    if(record->event.pressed){
+      SEND_STRING("gi");}else{ }break;
+    case GU:
+    if(record->event.pressed){
+      SEND_STRING("gu");}else{ }break;
+    case GE:
+    if(record->event.pressed){
+      SEND_STRING("ge");}else{ }break;
+    case GO:
+    if(record->event.pressed){
+      SEND_STRING("go");}else{ }break;
+
+    case ZA:
+    if(record->event.pressed){
+      SEND_STRING("za");} else { }break;
+    case ZI:
+    if(record->event.pressed){
+      SEND_STRING("zi");}else{ }break;
+    case ZU:
+    if(record->event.pressed){
+      SEND_STRING("zu");}else{ }break;
+    case ZE:
+    if(record->event.pressed){
+      SEND_STRING("ze");}else{ }break;
+    case ZO:
+    if(record->event.pressed){
+      SEND_STRING("zo");}else{ }break;
+
+    case DA:
+    if(record->event.pressed){
+      SEND_STRING("da");} else { }break;
+    case DI:
+    if(record->event.pressed){
+      SEND_STRING("di");}else{ }break;
+    case DU:
+    if(record->event.pressed){
+      SEND_STRING("du");}else{ }break;
+    case DE:
+    if(record->event.pressed){
+      SEND_STRING("de");}else{ }break;
+    case DO:
+    if(record->event.pressed){
+      SEND_STRING("do");}else{ }break;
+
+    case BA:
+    if(record->event.pressed){
+      SEND_STRING("ba");} else { }break;
+    case BI:
+    if(record->event.pressed){
+      SEND_STRING("bi");}else{ }break;
+    case BU:
+    if(record->event.pressed){
+      SEND_STRING("bu");}else{ }break;
+    case BE:
+    if(record->event.pressed){
+      SEND_STRING("be");}else{ }break;
+    case BO:
+    if(record->event.pressed){
+      SEND_STRING("bo");}else{ }break;
+
+    case XYA:
+    if(record->event.pressed){
+      SEND_STRING("xya");} else { }break;
+    case XYU:
+    if(record->event.pressed){
+      SEND_STRING("xyu");}else{ }break;
+    case XYO:
+    if(record->event.pressed){
+      SEND_STRING("xyo");}else{ }break;
+
+    case XA:
+    if(record->event.pressed){
+      SEND_STRING("xa");} else { }break;
+    case XI:
+    if(record->event.pressed){
+      SEND_STRING("xi");}else{ }break;
+    case XU:
+    if(record->event.pressed){
+      SEND_STRING("xu");}else{ }break;
+    case XE:
+    if(record->event.pressed){
+      SEND_STRING("xe");}else{ }break;
+    case XO:
+    if(record->event.pressed){
+      SEND_STRING("xo");}else{ }break;
+
+    case DAKUTEN:
+    if(record->event.pressed){
+      SEND_STRING("dakutenn");}else{ }break;
+    case HANDAKU:
+    if(record->event.pressed){
+      SEND_STRING("handakutenn");}else{ }break;
+
+  }
+
+  return true;
+}
+//changed END.2023/12/15
+
 //q10
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [LAYER_1] = LAYOUT_ansi_89(
-    MO(_FN1),   G(C(KC_Q)), KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,   KC_F7,      KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_F13,             TG(LAYER_5),
+    MO(_FN1),   G(C(KC_Q)), KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,   KC_F7,      KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_F13,             C(KC_UP),
     TG(LAYER_2),KC_ESC,     KC_1,     KC_2,     KC_3,     KC_4,     KC_5,      KC_6,    KC_7,       KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            KC_MUTE,
     TG(LAYER_3),KC_TAB,     KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,      KC_Y,    KC_U,       KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_VOLU,
     KC_HOME,    KC_LCTL,    KC_A,     KC_S,     KC_D,     KC_F,     KC_G,      KC_H,    KC_J,       KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,             KC_VOLD,
-    KC_END,     KC_LSFT,              KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,    TG(LAYER_2),KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_UP,
-    MO(_FN4),   MO(_FN1),   KC_LALT,            KC_LGUI,  KC_SPC,   MO(_FN4),                       KC_RSFT,            KC_RGUI,                      KC_LEFT,  KC_DOWN,  KC_RGHT),
+    KC_END,     KC_LSFT,              KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,    TG(LAYER_5),KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_UP,
+    MO(_FN4),   MO(_FN1),   KC_LALT,            KC_LGUI,  KC_SPC,   TG(LAYER_2),                    KC_RSFT,            KC_RGUI,                      KC_LEFT,  KC_DOWN,  KC_RGHT),
 
 [LAYER_2] = LAYOUT_ansi_89(
     MO(_FN2),   KC_TRNS,    KC_F1,          KC_F2,      KC_F3,       KC_F4,      KC_F5,      KC_F6,      KC_F7,      KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_TRNS,            KC_TRNS,
     XXXXXXX,    XXXXXXX,    XXXXXXX,        KC_Z,       KC_P,        TD(TD_P45),TD(TD_P67),  TD(TD_P89), KC_7,       KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            KC_TRNS,
     XXXXXXX,    TD(TD_TAB1),KC_LBRC,        KC_RBRC,    ALT_T(KC_F1),CTL_T(KC_R),TD(TD_1F10),KC_Y,       KC_U,       KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_TRNS,
-    G(KC_LBRC), MO(_FN1),   QK_LEAD,        TD(TD_XG),  KC_WH_U,     TD(TD_BEA), KC_ESC,     KC_H,       KC_J,       KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_PENT,            KC_TRNS,
-    G(KC_RBRC), SFT_T(KC_M),                KC_F9,      TD(TD_F1112),TD(TD_KOH), TD(TD_VF8), TD(TD_02),  TO(LAYER_1),KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_UP,
-    MO(_FN4),   MO(_FN2),   ALT_T(KC_SLSH), GUI_T(KC_L),             KC_SPC,     MO(_FN4),                           KC_TRNS,            KC_TRNS,                      KC_LEFT,  KC_DOWN,  KC_RGHT),
+    G(KC_RBRC), MO(_FN1),   QK_LEAD,        TD(TD_XG),  KC_WH_U,     TD(TD_BEA), KC_ESC,     KC_H,       KC_J,       KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_PENT,            KC_TRNS,
+    G(KC_LBRC), SFT_T(KC_M),                KC_F9,      TD(TD_F1112),TD(TD_KOH), TD(TD_VF8), TD(TD_02),  QK_LEAD,    KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_UP,
+    MO(_FN4),   MO(_FN2),   ALT_T(KC_SLSH), GUI_T(KC_L),             KC_SPC,     TO(LAYER_1),                        KC_TRNS,            KC_TRNS,                      KC_LEFT,  KC_DOWN,  KC_RGHT),
 
 [LAYER_3] = LAYOUT_ansi_89(
     TO(LAYER_1),KC_TRNS,            KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,    KC_F7,      KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_TRNS,            KC_TRNS,
@@ -406,21 +683,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX,    KC_LCTL,  KC_LALT,            KC_LGUI,  KC_SPC,  MO(_FN5),                       KC_SPC,             KC_RALT,                      KC_LEFT,  KC_DOWN,  KC_RGHT),
     
 [LAYER_5] = LAYOUT_ansi_89(
-        KC_TRNS,    KC_TRNS,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_F13,             KC_TRNS,
-        KC_TRNS,    KC_ESC,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,      KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            KC_TRNS,
-        KC_TRNS,    KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_TRNS,
-        KC_TRNS,    KC_LCTL,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,      KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,             TO(LAYER_1),
-        KC_TRNS,    KC_LSFT,            KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,     KC_TRNS,  KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_UP,
-        KC_TRNS,    MO(_FN1), KC_LALT,            KC_LGUI,  KC_SPC,  MO(_FN4),                       KC_SPC,             KC_TRNS,                      KC_LEFT,  KC_DOWN,  KC_RGHT),
+        KC_MUTE,    KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,      KC_6,     KC_7,       KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   G(KC_SPC),          KC_TRNS,
+        KC_PGUP,    KC_ESC,   NU,       HU,       A,        U,        E,         O,        YA,         YU,       YO,       WA,       HO,       HANDAKU,  KC_BSPC,            KC_TRNS,
+        KC_PGDN,    KC_TAB,   TA,       TE,       I,        SU,       KA,        NN,       NA,         NI,       RA,       SE,       DAKUTEN,  MU,       HE,                 KC_TRNS,
+        KC_HOME,    MO(_FN1), TI,       TO,       SI,       HA,       KI,        KU,       MA,         NO,       RI,       RE,       KE,                 KC_ENT,             KC_TRNS,
+        KC_END,     KC_LSFT,            TU,       SA,       SO,       HI,        KO,       TO(LAYER_1),MI,       MO,       NE,       RU,       ME,       KC_RSFT,  KC_UP,
+        MO(_FN4),   KC_LCTL,  KC_LALT,            KC_LGUI,  KC_SPC,   MO(LAYER_6),                     MO(_FN4),           KC_TRNS,                      KC_LEFT,  KC_DOWN,  KC_RGHT),
 
+[LAYER_6] = LAYOUT_ansi_89(
+        KC_MUTE,    KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_INS,             KC_DEL,
+        XXXXXXX,    KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,      KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            KC_PGUP,
+        XXXXXXX,    KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_PGDN,
+        XXXXXXX,    KC_CAPS,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,      KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,             KC_HOME,
+        XXXXXXX,    KC_LSFT,            KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_UP,
+        XXXXXXX,    KC_LCTL,  KC_LALT,            KC_LGUI,  KC_SPC,  MO(_FN5),                       KC_SPC,             KC_RALT,                      KC_LEFT,  KC_DOWN,  KC_RGHT),
 
 [_FN1] = LAYOUT_ansi_89(
     XXXXXXX,   XXXXXXX,     XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,   XXXXXXX,           XXXXXXX,
-    XXXXXXX,   KC_TILD,     KC_F1,      KC_F2,     KC_F3,    KC_F4,     KC_F5,     KC_F6,      KC_F7,     KC_F8,    KC_F9,    KC_F10,    KC_F11,   KC_F12,    KC_F13,            XXXXXXX,
-    XXXXXXX,   TG(LAYER_2), XXXXXXX,    G(KC_N),   G(KC_E),  G(KC_COMM),G(KC_T),   XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  G(KC_P),   XXXXXXX,  XXXXXXX,   SGUI(KC_4),        XXXXXXX,
-    KC_PGUP,   XXXXXXX,     G(KC_K),    G(KC_S),   G(KC_D),  SGUI(KC_Z),G(KC_G),   KC_LEFT,    KC_DOWN,   KC_UP,    KC_RGHT,  XXXXXXX,   XXXXXXX,             KC_PENT,           XXXXXXX,
-    KC_PGDN,   XXXXXXX,                 XXXXXXX,   XXXXXXX,  G(KC_J),   XXXXXXX,   XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,   XXXXXXX,  KC_VOLU,
-    XXXXXXX,   XXXXXXX,     G(KC_MINS),            G(KC_EQL),KC_BSPC,   XXXXXXX,                          XXXXXXX,            XXXXXXX,                        KC_MUTE,  KC_VOLD, KC_MPLY),
+    XXXXXXX,   KC_TILD,     KC_F1,      KC_F2,     KC_F3,    KC_F4,     KC_F5,     KC_F6,      KC_F7,     KC_F8,    KC_F9,    KC_F10,    KC_F11,   KC_F12,    SGUI(KC_4),        XXXXXXX,
+    XXXXXXX,   TG(LAYER_2), XXXXXXX,    G(KC_N),   G(KC_E),  G(KC_COMM),G(KC_T),   XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  G(KC_P),   KC_LBRC,  KC_RBRC,   KC_BSLS,           XXXXXXX,
+    KC_PGUP,   XXXXXXX,     G(KC_K),    G(KC_S),   G(KC_D),  SGUI(KC_Z),G(KC_G),   KC_LEFT,    KC_DOWN,   KC_UP,    KC_RGHT,  KC_SCLN,   KC_QUOT,             KC_TRNS,           XXXXXXX,
+    KC_PGDN,   XXXXXXX,                 XXXXXXX,   XXXXXXX,  G(KC_J),   XXXXXXX,   XXXXXXX,    XXXXXXX,   XXXXXXX,  XXXXXXX,  KC_COMM,   KC_DOT,   KC_SLSH,   KC_TRNS,  KC_VOLU,
+    XXXXXXX,   XXXXXXX,     G(KC_MINS),            G(KC_EQL),KC_BSPC,   XXXXXXX,                          KC_TRNS,            KC_TRNS,                        KC_MUTE,  KC_VOLD, KC_MPLY),
 
 [_FN2] = LAYOUT_ansi_89(
     XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
@@ -439,11 +723,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,  KC_SPC,     XXXXXXX,                       XXXXXXX,            XXXXXXX,                      XXXXXXX,  XXXXXXX,  XXXXXXX),
 
 [_FN4] = LAYOUT_ansi_89(
-    XXXXXXX,    XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
-    XXXXXXX,    KC_GRV,     XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
-    XXXXXXX,    XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,   G(C(KC_Q)),LAG(KC_GRV),XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
-    XXXXXXX,    XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,            KC_TRNS,
-    LAG(KC_GRV),XXXXXXX,              XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+    XXXXXXX,    LAG(KC_GRV),XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
+    XXXXXXX,    KC_GRV,     XXXXXXX,  BU,       XA,       XU,         XE,        XO,        XYA,        XYU,      XYO,      WO,       BO,       XXXXXXX,  XXXXXXX,            KC_TRNS,
+    XXXXXXX,    XXXXXXX,    DA,       DE,       XI,       ZU,         GA,        XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  ZE,       RO,       XXXXXXX,  BE,                 KC_TRNS,
+    XXXXXXX,    XXXXXXX,    DI,       DO,       ZI,       BA,         GI,        GU,        XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  GE,                 XXXXXXX,            KC_TRNS,
+    XXXXXXX,    XXXXXXX,              DU,       ZA,       ZO,         BI,        GO,        XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
     XXXXXXX,    XXXXXXX,    XXXXXXX,            XXXXXXX,  XXXXXXX,    XXXXXXX,                          XXXXXXX,            XXXXXXX,                      XXXXXXX,  XXXXXXX,   XXXXXXX),
 
 [_FN5] = LAYOUT_ansi_89(
@@ -462,7 +746,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 [LAYER_3] = {ENCODER_CCW_CW(TO(LAYER_1),TO(LAYER_1))},
 [LAYER_4] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
 [LAYER_5] = { ENCODER_CCW_CW(KC_WH_D, KC_WH_U) },
-
+[LAYER_6] = { ENCODER_CCW_CW(KC_WH_D, KC_WH_U) },
     
 [_FN1] = {ENCODER_CCW_CW(G(KC_Z), SGUI(KC_Z))},
 [_FN2] = {ENCODER_CCW_CW(S(KC_LBRC), S(KC_RBRC))},
