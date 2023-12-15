@@ -392,6 +392,7 @@ enum custom_keycodes {
   BA,BI,BU,BE,BO,
   XYA,XYU,XYO,
   XA,XI,XU,XE,XO,
+  XTU,
   DAKUTEN,
   HANDAKU
 };
@@ -634,7 +635,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case XO:
     if(record->event.pressed){
       SEND_STRING("xo");}else{ }break;
-
+    case XTU:
+    if(record->event.pressed){
+      SEND_STRING("xtu");}else{ }break;
     case DAKUTEN:
     if(record->event.pressed){
       SEND_STRING("dakutenn");}else{ }break;
@@ -724,10 +727,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_FN4] = LAYOUT_ansi_89(
     XXXXXXX,    LAG(KC_GRV),XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
-    XXXXXXX,    KC_GRV,     XXXXXXX,  BU,       XA,       XU,         XE,        XO,        XYA,        XYU,      XYO,      WO,       BO,       XXXXXXX,  XXXXXXX,            KC_TRNS,
+    XXXXXXX,    KC_GRV,     DU,       BU,       XA,       XU,         XE,        XO,        XYA,        XYU,      XYO,      WO,       BO,       XXXXXXX,  XXXXXXX,            KC_TRNS,
     XXXXXXX,    XXXXXXX,    DA,       DE,       XI,       ZU,         GA,        XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  ZE,       RO,       XXXXXXX,  BE,                 KC_TRNS,
     XXXXXXX,    XXXXXXX,    DI,       DO,       ZI,       BA,         GI,        GU,        XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  GE,                 XXXXXXX,            KC_TRNS,
-    XXXXXXX,    XXXXXXX,              DU,       ZA,       ZO,         BI,        GO,        XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+    XXXXXXX,    XXXXXXX,              XTU,       ZA,       ZO,         BI,        GO,        XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
     XXXXXXX,    XXXXXXX,    XXXXXXX,            XXXXXXX,  XXXXXXX,    XXXXXXX,                          XXXXXXX,            XXXXXXX,                      XXXXXXX,  XXXXXXX,   XXXXXXX),
 
 [_FN5] = LAYOUT_ansi_89(
