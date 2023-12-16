@@ -30,9 +30,8 @@ enum layers{
     _FN2,
     _FN3,
     _FN4,
-
-    _FN5
-
+    _FN5,
+    _FN6
 };
 
 
@@ -68,6 +67,10 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
                 
             case _FN4:
                     rgb_matrix_set_color_all(0,255,0);
+                break;
+
+            case _FN6:
+                    rgb_matrix_set_color_all(166,166,0);
                 break;
         }
     return false;
@@ -393,6 +396,7 @@ enum custom_keycodes {
   XYA,XYU,XYO,
   XA,XI,XU,XE,XO,
   XTU,
+  PA,PI,PU,PE,PO,
   DAKUTEN,
   HANDAKU
 };
@@ -638,6 +642,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case XTU:
     if(record->event.pressed){
       SEND_STRING("xtu");}else{ }break;
+          
+    case PA:
+    if(record->event.pressed){
+      SEND_STRING("pa");} else { }break;
+    case PI:
+    if(record->event.pressed){
+      SEND_STRING("pi");}else{ }break;
+    case PU:
+    if(record->event.pressed){
+      SEND_STRING("pu");}else{ }break;
+    case PE:
+    if(record->event.pressed){
+      SEND_STRING("pe");}else{ }break;
+    case PO:
+    if(record->event.pressed){
+      SEND_STRING("po");}else{ }break;
+          
     case DAKUTEN:
     if(record->event.pressed){
       SEND_STRING("dakutenn");}else{ }break;
@@ -686,12 +707,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX,    KC_LCTL,  KC_LALT,            KC_LGUI,  KC_SPC,  MO(_FN5),                       KC_SPC,             KC_RALT,                      KC_LEFT,  KC_DOWN,  KC_RGHT),
     
 [LAYER_5] = LAYOUT_ansi_89(
-        KC_MUTE,    KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,      KC_6,     KC_7,       KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   G(KC_SPC),          KC_TRNS,
-        KC_PGUP,    KC_ESC,   NU,       HU,       A,        U,        E,         O,        YA,         YU,       YO,       WA,       HO,       HANDAKU,  KC_BSPC,            KC_TRNS,
+        KC_MUTE,    KC_ESC,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,      KC_6,     KC_7,       KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   G(KC_SPC),          KC_TRNS,
+        KC_PGUP,    RO,       NU,       HU,       A,        U,        E,         O,        YA,         YU,       YO,       WA,       HO,       HANDAKU,  KC_BSPC,            KC_TRNS,
         KC_PGDN,    KC_TAB,   TA,       TE,       I,        SU,       KA,        NN,       NA,         NI,       RA,       SE,       DAKUTEN,  MU,       HE,                 KC_TRNS,
         KC_HOME,    MO(_FN1), TI,       TO,       SI,       HA,       KI,        KU,       MA,         NO,       RI,       RE,       KE,                 KC_ENT,             KC_TRNS,
         KC_END,     KC_LSFT,            TU,       SA,       SO,       HI,        KO,       TO(LAYER_1),MI,       MO,       NE,       RU,       ME,       KC_RSFT,  KC_UP,
-        MO(_FN4),   KC_LCTL,  KC_LALT,            KC_LGUI,  KC_SPC,   MO(LAYER_6),                     MO(_FN4),           KC_TRNS,                      KC_LEFT,  KC_DOWN,  KC_RGHT),
+        MO(_FN4),   KC_LCTL,  KC_LALT,            KC_LGUI,  KC_SPC,   MO(LAYER_6),                     MO(_FN4),           MO(_FN6),                     KC_LEFT,  KC_DOWN,  KC_RGHT),
 
 [LAYER_6] = LAYOUT_ansi_89(
         KC_MUTE,    KC_ESC,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_INS,             KC_DEL,
@@ -727,10 +748,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_FN4] = LAYOUT_ansi_89(
     XXXXXXX,    LAG(KC_GRV),XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
-    XXXXXXX,    KC_GRV,     DU,       BU,       XA,       XU,         XE,        XO,        XYA,        XYU,      XYO,      WO,       BO,       XXXXXXX,  XXXXXXX,            KC_TRNS,
-    XXXXXXX,    XXXXXXX,    DA,       DE,       XI,       ZU,         GA,        XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  ZE,       RO,       XXXXXXX,  BE,                 KC_TRNS,
+    XXXXXXX,    KC_GRV,     XXXXXXX,  BU,       XA,       XU,         XE,        XO,        XYA,        XYU,      XYO,      WO,       BO,       XXXXXXX,  XXXXXXX,            KC_TRNS,
+    XXXXXXX,    XXXXXXX,    DA,       DE,       XI,       ZU,         GA,        XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  ZE,       XXXXXXX,  XXXXXXX,  BE,                 KC_TRNS,
     XXXXXXX,    XXXXXXX,    DI,       DO,       ZI,       BA,         GI,        GU,        XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  GE,                 XXXXXXX,            KC_TRNS,
-    XXXXXXX,    XXXXXXX,              XTU,       ZA,       ZO,         BI,        GO,        XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+    XXXXXXX,    XXXXXXX,              XTU,      ZA,       ZO,         BI,        GO,        XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
     XXXXXXX,    XXXXXXX,    XXXXXXX,            XXXXXXX,  XXXXXXX,    XXXXXXX,                          XXXXXXX,            XXXXXXX,                      XXXXXXX,  XXXXXXX,   XXXXXXX),
 
 [_FN5] = LAYOUT_ansi_89(
@@ -740,6 +761,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,    _______,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,   _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
     _______,    _______,            _______,  _______,  _______,  _______,   _______,  _______,  NK_TOGG,  _______,  _______,  _______,  _______,  _______,  _______,
     _______,    _______,  _______,            _______,  _______,  _______,                       _______,            _______,                      _______,  _______,  _______),
+    
+[_FN6] = LAYOUT_ansi_89(
+    XXXXXXX,    XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
+    XXXXXXX,    XXXXXXX,    XXXXXXX,  PU,       XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  PO,       XXXXXXX,  XXXXXXX,            KC_TRNS,
+    XXXXXXX,    XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  PE,                 KC_TRNS,
+    XXXXXXX,    XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  PA,         XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,            KC_TRNS,
+    XXXXXXX,    XXXXXXX,              DU,       XXXXXXX,  XXXXXXX,    PI,        XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+    XXXXXXX,    XXXXXXX,    XXXXXXX,            XXXXXXX,  XXXXXXX,    XXXXXXX,                          XXXXXXX,            XXXXXXX,                      XXXXXXX,  XXXXXXX,   XXXXXXX),
 };
 
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
@@ -755,6 +784,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 [_FN2] = {ENCODER_CCW_CW(S(KC_LBRC), S(KC_RBRC))},
 [_FN3] = {ENCODER_CCW_CW(C(KC_P2), C(KC_P8))},
 [_FN4] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-[_FN5] = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI) }
+[_FN5] = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI) },
+[_FN6] = {ENCODER_CCW_CW(G(KC_Z), SGUI(KC_Z))}
 };
 #endif // ENCODER_MAP_ENABLE
