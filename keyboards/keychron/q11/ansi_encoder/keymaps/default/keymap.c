@@ -180,29 +180,7 @@ void leader_start_user(void) {
 
 void leader_end_user(void) {
     
-    if (leader_sequence_one_key(KC_F1)) {
-        // F1 to U
-        tap_code16(KC_U);
-
-    }else if (leader_sequence_one_key(KC_X)) {
-        // X to M
-        tap_code16(KC_M);
-    } else if (leader_sequence_two_keys(KC_X, KC_X)) {
-        // X to G
-        tap_code16(KC_G);
-        
-    }else if (leader_sequence_one_key(KC_V)) {
-        // M to K
-        tap_code16(KC_K);
-    } else if (leader_sequence_two_keys(KC_V, KC_V)) {
-        // M to O
-        tap_code16(KC_O);
-        
-    }else if (leader_sequence_one_key(KC_F8)) {
-        // F8 to F10
-        tap_code16(KC_F10);
-         
-    }else if(leader_sequence_one_key(KC_ESC)) {
+    if(leader_sequence_one_key(KC_ESC)) {
         //100% opacity
         tap_code16(KC_V);
         tap_code16(KC_0);
@@ -283,7 +261,7 @@ void leader_end_user(void) {
         TD_P67 = 9,
         TD_P89 = 10,
         TD_02  = 11,
-        TD_1F10= 12,
+        TD_1U  = 12,
         TD_XMG = 13,
         TD_KOH = 14,
         TD_TAB2 =15,
@@ -420,6 +398,7 @@ void dance_cln_reset(tap_dance_state_t *state, void *user_data) {
     unregister_code16(KC_F);
     unregister_code16(KC_X);
     unregister_code16(KC_H);
+    unregister_code16(KC_U);
     unregister_code16(KC_SLSH);
     unregister_code16(KC_F8);
     unregister_code16(KC_F10);
@@ -460,7 +439,7 @@ tap_dance_action_t tap_dance_actions[] = {
     
     [TD_MSL]  = ACTION_TAP_DANCE_DOUBLE(KC_M, KC_SLSH),
     [TD_F1112] = ACTION_TAP_DANCE_DOUBLE(KC_F11, KC_F12),
-    [TD_1F10]  = ACTION_TAP_DANCE_DOUBLE(KC_P1, KC_F10),
+    [TD_1U]  = ACTION_TAP_DANCE_DOUBLE(KC_P1, KC_U),
     [TD_P45]   = ACTION_TAP_DANCE_DOUBLE(KC_P4, KC_P5),
     [TD_P67]   = ACTION_TAP_DANCE_DOUBLE(KC_P6, KC_P7),
     [TD_P89]   = ACTION_TAP_DANCE_DOUBLE(KC_P8, KC_P9),
@@ -476,13 +455,17 @@ enum custom_keycodes {
  SC = SAFE_RANGE,
  };
 bool process_record_user(uint16_t keycode, keyrecord_t *record){
- switch (keycode){
-  case SC:
-    if(record->event.pressed){
-       
-       layer_move(LAYER_1);
-        register_code16( G(KC_S) );
-  }
+    switch (keycode){
+        case SC:
+            if(record->event.pressed){
+                
+                register_code16(G(KC_S));
+                unregister_code16(G(KC_S));
+                register_code16(KC_F10);
+                unregister_code16(KC_F10);
+            }else{
+                layer_move(LAYER_1);
+            }
   break;
 }
 return true;
@@ -506,7 +489,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_2] = LAYOUT_ansi_91(
         MO(_FN2),   KC_TRNS,    KC_F1,         KC_F2,            KC_F3,       KC_F4,      KC_F5,      KC_F6,      KC_F7,   KC_F8,    KC_F9,    KC_F10,   KC_F11,  KC_F12,   KC_TRNS,   KC_TRNS,   MO(_FN1),
         XXXXXXX,    XXXXXXX,    XXXXXXX,       KC_Z,             KC_P,        TD(TD_P45), TD(TD_P67), TD(TD_P89), KC_7,    KC_8,     KC_9,     KC_0,     KC_MINS, KC_EQL,   KC_BSPC,              KC_TRNS,
-        XXXXXXX,    TD(TD_TAB1),KC_LBRC,       KC_RBRC,          ALT_T(KC_F1),CTL_T(KC_R),TD(TD_1F10),KC_Y,       KC_U,    KC_I,     KC_O,     KC_P,     KC_LBRC, KC_RBRC,  KC_BSLS,              KC_TRNS,
+        XXXXXXX,    TD(TD_TAB1),KC_LBRC,       KC_RBRC,          ALT_T(KC_F1),CTL_T(KC_R),TD(TD_1U),  KC_Y,       KC_U,    KC_I,     KC_O,     KC_P,     KC_LBRC, KC_RBRC,  KC_BSLS,              KC_TRNS,
         G(KC_RBRC), MO(_FN1),   QK_LEAD,       TD(TD_XG),        KC_WH_U,     TD(TD_BEA), KC_ESC,     KC_H,       KC_J,    KC_K,     KC_L,     KC_SCLN,  KC_QUOT,           KC_ENT,               KC_TRNS,
         G(KC_LBRC), SFT_T(KC_M),               KC_F9,            TD(TD_F1112),TD(TD_KOH), TD(TD_VF8), TD(TD_02),  KC_N,    KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,           KC_RSFT,   KC_UP,
         MO(_FN4),   MO(_FN2),   ALT_T(KC_SLSH),XXXXXXX,          GUI_T(KC_L),             KC_SPC,                          KC_TRNS,            KC_TRNS,  KC_TRNS, KC_TRNS,  KC_LEFT,   KC_DOWN,    KC_RGHT),
