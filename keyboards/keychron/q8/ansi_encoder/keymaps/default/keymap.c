@@ -182,7 +182,7 @@ void leader_end_user(void) {
         TD_P67 = 9,
         TD_P89 = 10,
         TD_02  = 11,
-        TD_1F10= 12,
+        TD_1U  = 12,
         TD_XMG = 13,
         TD_KOH = 14,
         TD_TAB2= 15,
@@ -360,7 +360,7 @@ tap_dance_action_t tap_dance_actions[] = {
 
     [TD_MSL]  = ACTION_TAP_DANCE_DOUBLE(KC_M, KC_SLSH),
     [TD_F1112] = ACTION_TAP_DANCE_DOUBLE(KC_F11, KC_F12),
-    [TD_1F10]  = ACTION_TAP_DANCE_DOUBLE(KC_P1, KC_F10),
+    [TD_1U]    = ACTION_TAP_DANCE_DOUBLE(KC_P1, KC_U),
     [TD_P45]   = ACTION_TAP_DANCE_DOUBLE(KC_P4, KC_P5),
     [TD_P67]   = ACTION_TAP_DANCE_DOUBLE(KC_P6, KC_P7),
     [TD_P89]   = ACTION_TAP_DANCE_DOUBLE(KC_P8, KC_P9),
@@ -383,8 +383,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         MO(_FN1),   KC_LALT,  KC_LGUI,           KC_SPC,           MO(_FN4),  MO(_FN1),             KC_RSFT,           KC_RGUI,            KC_LEFT, KC_DOWN, KC_RGHT),
 
  [LAYER_2] = LAYOUT_ansi_69(
-   KC_ESC,     KC_P1,         KC_Z,       KC_P,        TD(TD_P45), TD(TD_P67), TD(TD_P89), KC_7,       KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          KC_TRNS,
-   TD(TD_TAB1),KC_LBRC,       KC_RBRC,    ALT_T(KC_F1),CTL_T(KC_R),TD(TD_1F10),KC_Y,       KC_U,       KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_TRNS,
+   KC_ESC,     KC_F10,        KC_Z,       KC_P,        TD(TD_P45), TD(TD_P67), TD(TD_P89), KC_7,       KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          KC_TRNS,
+   TD(TD_TAB1),KC_LBRC,       KC_RBRC,    ALT_T(KC_F1),CTL_T(KC_R),TD(TD_1U),  KC_Y,       KC_U,       KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_TRNS,
    MO(_FN1),   QK_LEAD,       TD(TD_XG),  KC_WH_U,     TD(TD_BEA), KC_ESC,                 KC_H,       KC_J,    KC_K,    KC_L,     KC_SCLN,  KC_QUOT,  KC_PENT,          KC_TRNS,
    SFT_T(KC_M),               KC_F9,      TD(TD_F1112),TD(TD_KOH), TD(TD_VF8), TD(TD_02),  TO(LAYER_1),KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT, KC_UP,
    MO(_FN2),   ALT_T(KC_SLSH),GUI_T(KC_L),             KC_SPC,                 MO(_FN4),   KC_TRNS,             KC_TRNS,           KC_TRNS,            KC_LEFT, KC_DOWN, KC_RGHT),
