@@ -374,6 +374,28 @@ tap_dance_action_t tap_dance_actions[] = {
     
 };
 
+//Save and Change layer
+enum custom_keycodes {
+ SC = SAFE_RANGE,
+ };
+bool process_record_user(uint16_t keycode, keyrecord_t *record){
+    switch (keycode){
+        case SC:
+            if(record->event.pressed){
+                
+                register_code16(G(KC_S));
+                unregister_code16(G(KC_S));
+                register_code16(KC_F10);
+                unregister_code16(KC_F10);
+            }else{
+                layer_move(LAYER_1);
+            }
+  break;
+}
+return true;
+};
+
+
 // clang-format off
 //k15pro
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -436,7 +458,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_FN2] = LAYOUT_90_ansi(
         XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
         XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
-        XXXXXXX,   TO(LAYER_1),XXXXXXX,  G(C(KC_F)), SGUI(KC_I),KC_F15,    KC_F16,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
+        XXXXXXX,   SC,         XXXXXXX,  G(C(KC_F)), SGUI(KC_I),KC_F15,    KC_F16,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
         XXXXXXX,   KC_PENT,    XXXXXXX,  KC_F7,      KC_WH_D,   G(KC_Z),   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,            KC_TRNS,
         XXXXXXX,   XXXXXXX,              XXXXXXX,    XXXXXXX,   KC_F13,    KC_F14,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
         XXXXXXX,   XXXXXXX,    XXXXXXX,              XXXXXXX,   KC_F,      XXXXXXX,                       XXXXXXX,            XXXXXXX,  XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX),
