@@ -398,7 +398,8 @@ enum custom_keycodes {
   XTU,
   PA,PI,PU,PE,PO,
   DAKUTEN,
-  HANDAKU
+  HANDAKU,
+    SC
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -666,6 +667,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if(record->event.pressed){
       SEND_STRING("handakutenn");}else{ }break;
 
+          
+          
+          //Save and Change layer
+          //enum custom_keycodes {
+          // SC = SAFE_RANGE,
+          // };
+          //bool process_record_user(uint16_t keycode, keyrecord_t *record){
+          //    switch (keycode){
+                  case SC:
+                      if(record->event.pressed){
+                          
+                          register_code16(G(KC_S));
+                          unregister_code16(G(KC_S));
+                          register_code16(KC_F10);
+                          unregister_code16(KC_F10);
+                      }else{
+                          layer_move(LAYER_1);
+                      }
+            break;
+          
   }
 
   return true;
@@ -674,28 +695,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #define KC_TASK LGUI(KC_TAB)
 #define KC_FLXP LGUI(KC_E)
-
-
-//Save and Change layer
-enum custom_keycodes {
- SC = SAFE_RANGE,
- };
-bool process_record_user(uint16_t keycode, keyrecord_t *record){
-    switch (keycode){
-        case SC:
-            if(record->event.pressed){
-                
-                register_code16(G(KC_S));
-                unregister_code16(G(KC_S));
-                register_code16(KC_F10);
-                unregister_code16(KC_F10);
-            }else{
-                layer_move(LAYER_1);
-            }
-  break;
-}
-return true;
-};
 
 
 //v10
