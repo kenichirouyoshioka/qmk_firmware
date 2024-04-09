@@ -684,7 +684,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TO(LAYER_1), TD(TD_TAB1), KC_LBRC,         KC_RBRC,  ALT_T(KC_F1),CTL_T(KC_R),TD(TD_1U),  KC_Y,       KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_MUTE,
         G(KC_RBRC),  MO(_FN1),    QK_LEAD,         TD(TD_XG),KC_WH_U,     TD(TD_BEA), KC_ESC,     KC_H,       KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,            KC_ENT,           KC_VOLU,
         G(KC_LBRC),  SFT_T(KC_M),                  KC_F9,    TD(TD_F1112),TD(TD_KOH), TD(TD_VF8), TD(TD_02),  KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH,            KC_RSFT, KC_UP,   KC_VOLD,
-        _______,     MO(_FN2),    ALT_T(KC_SLSH), GUI_T(KC_L),                                   KC_SPC,                                MO(_FN1), KC_RCTL,  KC_RGUI,  KC_LEFT, KC_DOWN, KC_RGHT),
+        KC_LCTL,     MO(_FN2),    ALT_T(KC_SLSH),  GUI_T(KC_L),                                   KC_SPC,                                MO(_FN1), KC_RCTL,  KC_RGUI,  KC_LEFT, KC_DOWN, KC_RGHT),
 
     [LAYER_3] = LAYOUT_ansi_73(
         TO(LAYER_1), KC_ESC,     KC_P1,     KC_P2,    KC_P3,   KC_P4,    KC_P5,   KC_P6,   KC_P7,   KC_P8,   KC_P9,   KC_P0,    KC_MINS,  KC_EQL,   KC_BSPC,          TO(LAYER_1),
@@ -698,7 +698,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRV,      KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_DEL,
         KC_HOME,     KC_LCTL,  KC_A,     KC_S,     KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,            KC_ENT,           KC_PGUP,
         KC_END,      KC_LSFT,            KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH,            KC_RSFT, KC_UP,   KC_PGDN,
-        _______,     MO(_FN6), KC_LALT,  KC_LGUI,                             KC_SPC,                             MO(_FN6), KC_RCTL,  KC_RGUI,  KC_LEFT, KC_DOWN, KC_RGHT),
+        XXXXXXX,     MO(_FN6), KC_LALT,  KC_LGUI,                             KC_SPC,                             MO(_FN6), KC_RCTL,  KC_RGUI,  KC_LEFT, KC_DOWN, KC_RGHT),
 
     [LAYER_5] = LAYOUT_ansi_73(
         _______,     RO,         NU,       HU,       A,       U,       E,       O,       YA,      YU,      YO,      WA,       HO,       HANDAKU,  KC_BSPC,          TO(LAYER_1),
