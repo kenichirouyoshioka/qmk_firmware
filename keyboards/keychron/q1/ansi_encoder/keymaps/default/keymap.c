@@ -16,7 +16,7 @@
 
 #include QMK_KEYBOARD_H
 
-// Q1version2
+// Q1version1
 enum layers{
     LAYER_1,
     LAYER_2,
@@ -342,7 +342,6 @@ tap_dance_action_t tap_dance_actions[] = {
 
 
 
-//Added KANA imput 2023/12/15
 enum custom_keycodes {
   SC = SAFE_RANGE,
 
@@ -375,7 +374,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 #define KC_TASK LGUI(KC_TAB)
 #define KC_FLXP LGUI(KC_E)
-// Q1version2
+// Q1version1
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_1] = LAYOUT_ansi_82(
         KC_GRV,   KC_F1,    KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   KC_DEL,           MO(_FN1),
