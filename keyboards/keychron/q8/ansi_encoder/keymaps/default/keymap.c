@@ -28,7 +28,6 @@ enum layers{
     _FN1,
     _FN2,
     _FN3,
-    _FN4,
 
     _FN6,
     _FN7
@@ -51,7 +50,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
                      rgb_matrix_set_color_all(0,0,255);
                 break;
             case LAYER_5:
-                     rgb_matrix_set_color_all(0,255,255);
+                     rgb_matrix_set_color_all(0,255,0);
                 break;
 
             case _FN1:
@@ -66,9 +65,6 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
                     rgb_matrix_set_color_all(0,166,144);
                 break;
                 
-            case _FN4:
-                    rgb_matrix_set_color_all(0,255,0);
-                break;
         }
     return false;
 }
@@ -402,7 +398,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                KC_TAB,     KC_Q,     KC_W,     KC_E,    KC_R,    KC_T,    KC_Y,       KC_U,        KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_VOLU,
                                KC_LCTL,    KC_A,     KC_S,     KC_D,    KC_F,    KC_G,                KC_H,        KC_J,    KC_K,    KC_L,     KC_SCLN,  KC_QUOT,  KC_ENT,           KC_VOLD,
                                KC_LSFT,              KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,       KC_GRV,      KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT, KC_UP,
-                               MO(_FN1),   KC_LALT,  KC_LGUI,           KC_SPC,           KC_RCTL,    MO(_FN4),             KC_SPC,            KC_RGUI,            KC_LEFT, KC_DOWN, KC_RGHT),
+                               MO(_FN1),   KC_LALT,  KC_LGUI,           KC_SPC,           KC_RCTL,    MO(_FN1),             KC_SPC,            KC_RGUI,            KC_LEFT, KC_DOWN, KC_RGHT),
     
     [LAYER_2] = LAYOUT_ansi_69(
                                TO(LAYER_1),KC_F10,        KC_Z,       KC_P,        TD(TD_P45), TD(TD_P67), TD(TD_P89), KC_7,       KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          KC_TRNS,
@@ -416,7 +412,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                KC_TAB,             KC_Q, KC_W,     KC_E,    KC_R,     KC_T,    KC_Y,       KC_U,       KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_TRNS,
                                MT(MOD_LCTL,KC_K),  KC_A, KC_S,     KC_D,    TD(TD_GF),KC_G,                KC_H,       KC_J,    KC_K,    KC_L,     KC_SCLN,  KC_QUOT,  KC_ENT,           KC_TRNS,
                                MT(MOD_LSFT,KC_Y),        KC_Z,     KC_X,    KC_C,     KC_V,    KC_B,       KC_SPC,     KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_UP,
-                               MO(_FN3),MT(MOD_LALT,KC_N),MT(MOD_LGUI,KC_L),KC_GRV,            MO(_FN4),   KC_TRNS,             KC_TRNS,           KC_TRNS,            KC_LEFT,  KC_DOWN,KC_RGHT),
+                               MO(_FN3),MT(MOD_LALT,KC_N),MT(MOD_LGUI,KC_L),KC_GRV,            MO(_FN1),   KC_TRNS,             KC_TRNS,           KC_TRNS,            KC_LEFT,  KC_DOWN,KC_RGHT),
     
     [LAYER_4] = LAYOUT_ansi_69(
                                KC_ESC,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,     KC_7,     KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,             KC_MUTE,
@@ -430,7 +426,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                KC_TAB,  KC_Q,     KC_W,     KC_E,    KC_R,    KC_T,    KC_Y,     KC_U,     KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,             KC_TRNS,
                                KC_LCTL, KC_A,     KC_S,     KC_D,    KC_F,    KC_G,              KC_H,     KC_J,    KC_K,    KC_L,     KC_SCLN,  KC_QUOT,  KC_ENT,              KC_TRNS,
                                KC_LSFT,           KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,     KC_TRNS,  KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT, KC_UP,
-                               MO(_FN1), KC_LALT, KC_LGUI,           KC_SPC,           MO(_FN4), KC_TRNS,           KC_RSFT,           KC_TRNS,            KC_LEFT, KC_DOWN,    KC_RGHT),
+                               MO(_FN1), KC_LALT, KC_LGUI,           KC_LSFT,          MO(_FN1), KC_TRNS,           KC_SPC,            KC_TRNS,            KC_LEFT, KC_DOWN,    KC_RGHT),
     
     [_FN1] = LAYOUT_ansi_69(
                             KC_TILD,    KC_F1,      KC_F2,    KC_F3,   KC_F4,     KC_F5,     KC_F6,      KC_F7,   KC_F8,   KC_F9,     KC_F10,   KC_F11,    KC_F12,   SGUI(KC_4),       XXXXXXX,
@@ -453,13 +449,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                             KC_H,                XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,
                             XXXXXXX, A(KC_H),    XXXXXXX,           KC_SPC,           XXXXXXX,  XXXXXXX,          XXXXXXX,           XXXXXXX,            XXXXXXX,    XXXXXXX, XXXXXXX),
     
-    [_FN4] = LAYOUT_ansi_69(
+/*    [_FN4] = LAYOUT_ansi_69(
                             KC_GRV,   XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX,   XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
-                            XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX,   XXXXXXX, G(C(KC_Q)),LAG(KC_GRV),XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
+                            XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX,   XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
                             XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX,   XXXXXXX,            XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,             XXXXXXX,
                             XXXXXXX,            XXXXXXX,  XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX,   XXXXXXX,    XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,
                             XXXXXXX,  XXXXXXX,  XXXXXXX,           XXXXXXX,            XXXXXXX,   XXXXXXX,             XXXXXXX,           XXXXXXX,            XXXXXXX,    XXXXXXX, XXXXXXX),
-    
+*/
     [_FN6] = LAYOUT_ansi_69(
                             KC_GRV,  KC_BRID,  KC_BRIU,  KC_TASK, KC_FLXP, RGB_VAD, RGB_VAI,  KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,          RGB_TOG,
                             RGB_TOG, RGB_MOD,  RGB_VAI,  RGB_HUI, RGB_SAI, RGB_SPI, _______,  _______, _______, _______, _______,  _______,  _______,  _______,          _______,
@@ -487,7 +483,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [_FN1] = {ENCODER_CCW_CW(G(KC_Z), SGUI(KC_Z))},
     [_FN2] = {ENCODER_CCW_CW(XXXXXXX, XXXXXXX)},
     [_FN3] = {ENCODER_CCW_CW(XXXXXXX, XXXXXXX)},
-    [_FN4] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+
 
     [_FN6]   = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
     [_FN7]   = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI)}
