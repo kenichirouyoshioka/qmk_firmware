@@ -21,7 +21,7 @@ enum layers{
     LAYER_2,
     LAYER_3,
     LAYER_4,
-
+    LAYER_5,
     
     _BT,
     _FN1,
@@ -42,12 +42,14 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
                 break;
                 
             case LAYER_3:
-                     rgb_matrix_set_color_all(88,66,255);
+                     rgb_matrix_set_color_all(44,22,255);
                 break;
             case LAYER_4:
                      rgb_matrix_set_color_all(0,255,0);
                 break;
-
+            case LAYER_5:
+                     rgb_matrix_set_color_all(255,66,0);
+                break;
                 
             case _BT:
                 rgb_matrix_set_color_all(0,0,255);
@@ -57,7 +59,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
                 break;
                 
             case _FN2:
-                    rgb_matrix_set_color_all(166,166,0);
+                    rgb_matrix_set_color_all(200,166,0);
                 break;
                 
             case _FN3:
@@ -416,11 +418,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_4] = LAYOUT_90_ansi(
             KC_TRNS,    KC_TRNS,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   TO(LAYER_1),        KC_TRNS,
             KC_TRNS,    KC_ESC,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,      KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            KC_TRNS,
-            KC_TRNS,    KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_TRNS,
+            TO(LAYER_1),KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_TRNS,
             KC_TRNS,    KC_LCTL,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,      KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,             KC_TRNS,
             KC_TRNS,    KC_LSFT,            KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,     KC_TRNS,  KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_UP,
             KC_TRNS,    MO(_FN1), KC_LALT,            KC_LGUI,  KC_SPC,   KC_TRNS,                       KC_SPC,             KC_TRNS,  KC_TRNS,                    KC_LEFT,  KC_DOWN,  KC_RGHT),
-    
+    [LAYER_5] = LAYOUT_90_ansi(// colemak  right_shift
+            MO(_FN1),   KC_GRV,     KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,      KC_F6,   KC_F7,      KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   TO(LAYER_1),        MO(_BT),
+            XXXXXXX,    KC_ESC,     KC_1,     KC_2,     KC_3,     KC_4,     KC_5,       KC_6,    KC_7,       KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            KC_MUTE,
+            TO(LAYER_1),KC_TAB,     KC_Q,     KC_W,     KC_F,     KC_P,     KC_G,       KC_J,    KC_L,       KC_U,     KC_Y,     KC_SCLN,  KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_VOLU,
+            KC_HOME,    KC_LCTL,    KC_A,     KC_R,     KC_S,     KC_T,     KC_D,       KC_H,    KC_N,       KC_E,     KC_I,     KC_O,     KC_QUOT,            KC_ENT,             KC_VOLD,
+            KC_END,     KC_LSFT,              KC_Z,     KC_X,     KC_C,     KC_V,       KC_B,    KC_GRV,     KC_K,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_UP,
+            MO(_FN1),   MO(_FN1),   KC_LALT,            KC_LGUI,  KC_SPC,   KC_RCTL,                         KC_RSFT,            KC_RGUI,  MO(_FN1),           KC_LEFT,  KC_DOWN,  KC_RGHT),
     
     [_BT] = LAYOUT_90_ansi(
             _______,    _______,  _______,  _______,  _______,  _______,  _______,   _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
@@ -493,8 +501,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [LAYER_1] = {ENCODER_CCW_CW(TG(LAYER_2), TG(LAYER_2))},
     [LAYER_2] = {ENCODER_CCW_CW(TG(LAYER_3), TG(LAYER_3))},
     [LAYER_3] = {ENCODER_CCW_CW(TG(LAYER_4), TG(LAYER_4))},
-    [LAYER_4] = {ENCODER_CCW_CW(TO(LAYER_1), TO(LAYER_1))},
-
+    [LAYER_4] = {ENCODER_CCW_CW(TG(LAYER_5), TG(LAYER_5))},
+    [LAYER_5] = {ENCODER_CCW_CW(TO(LAYER_1), TO(LAYER_1))},
         
     [_FN1] = {ENCODER_CCW_CW(G(KC_Z), SGUI(KC_Z))},
     [_FN2] = {ENCODER_CCW_CW(S(KC_LBRC), S(KC_RBRC))},
