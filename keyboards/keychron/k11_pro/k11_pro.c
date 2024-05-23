@@ -61,9 +61,9 @@ static void pairing_key_timer_cb(void *arg) {
 
 bool dip_switch_update_kb(uint8_t index, bool active) {
 #ifdef INVERT_OS_SWITCH_STATE
-    default_layer_set(1UL << (!active ? 0 : 1));
+    default_layer_set(1UL << (!active ? 0 : 3));
 #else
-    default_layer_set(1UL << (active ? 0 : 1));
+    default_layer_set(1UL << (active ? 0 : 3));
 #endif
     dip_switch_update_user(index, active);
 

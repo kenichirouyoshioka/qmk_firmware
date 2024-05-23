@@ -15,7 +15,7 @@
  */
 
 #include QMK_KEYBOARD_H
-
+// k15_pro
 enum layers{
     LAYER_1,
     LAYER_2,
@@ -390,7 +390,7 @@ return true;
 
 
 
-
+// k15_pro
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_1] = LAYOUT_90_ansi(
