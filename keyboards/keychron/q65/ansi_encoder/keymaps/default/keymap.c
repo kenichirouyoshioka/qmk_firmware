@@ -47,18 +47,21 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
                 break;
                 
             case LAYER_3:
-                     rgb_matrix_set_color_all(0,0,255);
+                     rgb_matrix_set_color_all(0,66,255);
+                break;
+            case LAYER_4:
+                     rgb_matrix_set_color_all(0,255,0);
                 break;
             case LAYER_5:
-                     rgb_matrix_set_color_all(166,0,166);
+                     rgb_matrix_set_color_all(255,66,0);
                 break;
             case LAYER_6:
-                     rgb_matrix_set_color_all(0,255,255);
+                     rgb_matrix_set_color_all(122,0,255);
                 break;
 
                 
             case _FN1:
-                    rgb_matrix_set_color_all(166,0,155);
+                    rgb_matrix_set_color_all(222,0,155);
                 break;
                 
             case _FN2:
@@ -66,15 +69,15 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
                 break;
                 
             case _FN3:
-                    rgb_matrix_set_color_all(0,166,144);
+                    rgb_matrix_set_color_all(0,188,144);
                 break;
                 
             case _FN4:
-                    rgb_matrix_set_color_all(0,255,0);
+                    rgb_matrix_set_color_all(0,155,0);
                 break;
 
             case _FN6:
-                    rgb_matrix_set_color_all(166,166,0);
+                    rgb_matrix_set_color_all(66,66,66);
                 break;
         }
     return false;
@@ -665,7 +668,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   return true;
 }
-//changed END.2024/04/03
+//q65
 
 
 #define KC_TASK LGUI(KC_TAB)
@@ -693,26 +696,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         A(KC_H),     SFT_T(KC_Y),           KC_Z,     KC_X,    KC_C,     KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH,            KC_RSFT, KC_UP,   KC_VOLD,
         KC_SPC,      MO(_FN3), ALT_T(KC_N), GUI_T(KC_L),                          KC_GRV,                             MO(_FN1), KC_RCTL,  KC_RGUI,  KC_LEFT, KC_DOWN, KC_RGHT),
     
-    [LAYER_4] = LAYOUT_ansi_73(
-        KC_MUTE,     KC_ESC,   KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          TO(LAYER_1),
-        KC_GRV,      KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_DEL,
-        KC_HOME,     KC_LCTL,  KC_A,     KC_S,     KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,            KC_ENT,           KC_PGUP,
-        KC_END,      KC_LSFT,            KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH,            KC_RSFT, KC_UP,   KC_PGDN,
-        XXXXXXX,     MO(_FN6), KC_LALT,  KC_LGUI,                             KC_SPC,                             MO(_FN6), KC_RCTL,  KC_RGUI,  KC_LEFT, KC_DOWN, KC_RGHT),
+    [LAYER_4] = LAYOUT_ansi_73(// dvorak
+        KC_MUTE,     KC_ESC,   KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_LBRC,  KC_RBRC,  KC_BSPC,          TO(LAYER_1),
+        TO(LAYER_1), KC_TAB,   KC_QUOT,  KC_COMM,  KC_DOT,  KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,     KC_SLSH,  KC_EQL,   KC_BSLS,          KC_DEL,
+        KC_HOME,     KC_LCTL,  KC_A,     KC_O,     KC_E,    KC_U,    KC_I,    KC_D,    KC_H,    KC_T,    KC_N,    KC_S,     KC_MINS,            KC_ENT,           KC_PGUP,
+        KC_END,      KC_LSFT,            KC_SCLN,  KC_Q,    KC_J,    KC_K,    KC_X,    KC_B,    KC_M,    KC_W,    KC_V,     KC_Z,               KC_RSFT, KC_UP,   KC_PGDN,
+        KC_GRV,      MO(_FN1), KC_LALT,  KC_LGUI,                             KC_SPC,                             MO(_FN1), KC_RCTL,  KC_RGUI,  KC_LEFT, KC_DOWN, KC_RGHT),
 
-    [LAYER_5] = LAYOUT_ansi_73(
+    [LAYER_5] = LAYOUT_ansi_73(//colemak
+        KC_MUTE,     KC_ESC,   KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          TO(LAYER_1),
+        TO(LAYER_1), KC_TAB,   KC_Q,     KC_W,     KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,  KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_MUTE,
+        KC_HOME,     KC_LCTL,  KC_A,     KC_R,     KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,     KC_QUOT,            KC_ENT,           KC_VOLU,
+        KC_END,      KC_LSFT,            KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH,            KC_RSFT, KC_UP,   KC_VOLD,
+        KC_GRV,      MO(_FN1), KC_LALT,  KC_LGUI,                             KC_SPC,                             MO(_FN1), KC_RCTL,  KC_RGUI,  KC_LEFT, KC_DOWN, KC_RGHT),
+
+    [LAYER_6] = LAYOUT_ansi_73(// Kana input
         _______,     RO,         NU,       HU,       A,       U,       E,       O,       YA,      YU,      YO,      WA,       HO,       HANDAKU,  KC_BSPC,          TO(LAYER_1),
         KC_ESC,      KC_TAB,     TA,       TE,       I,       SU,      KA,      NN,      NA,      NI,      RA,      SE,       DAKUTEN,  MU,       HE,               KC_MUTE,
-        KC_GRV,      MO(_FN5),   TI,       TO,       SI,      HA,      KI,      KU,      MA,      NO,      RI,      RE,       KE,                 KC_ENT,           KC_VOLU,
-        _______,     MO(_FN4),             TU,       SA,      SO,      HI,      KO,      MI,      MO,      NE,      RU,       ME,                 MO(_FN4),KC_UP,   KC_VOLD,
-        _______,     MO(LAYER_6),KC_LALT,  KC_LGUI,                             KC_SPC,                             G(KC_SPC),MO(_FN5), KC_RGUI,  KC_LEFT, KC_DOWN, KC_RGHT),
+        KC_HOME,     MO(_FN5),   TI,       TO,       SI,      HA,      KI,      KU,      MA,      NO,      RI,      RE,       KE,                 KC_ENT,           KC_VOLU,
+        KC_END,      MO(_FN4),             TU,       SA,      SO,      HI,      KO,      MI,      MO,      NE,      RU,       ME,                 MO(_FN4),KC_UP,   KC_VOLD,
+        KC_GRV,      MO(_FN6),   KC_LALT,  KC_LGUI,                             KC_SPC,                             G(KC_SPC),MO(_FN5), KC_RGUI,  KC_LEFT, KC_DOWN, KC_RGHT),
 
-    [LAYER_6] = LAYOUT_ansi_73(
-        _______,     KC_ESC,   KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          TG(LAYER_5),
-        _______,     KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_MUTE,
-        KC_HOME,     KC_LCTL,  KC_A,     KC_S,     KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,            KC_ENT,           KC_VOLU,
-        KC_END,      KC_LSFT,            KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH,            KC_RSFT, KC_UP,   KC_VOLD,
-        _______,     MO(_FN1), KC_LALT,  KC_LGUI,                             KC_SPC,                             MO(_FN1), KC_RCTL,  KC_RGUI,  KC_LEFT, KC_DOWN, KC_RGHT),
+
     
     [_FN1] = LAYOUT_ansi_73(
         XXXXXXX,     KC_GRV,      KC_F1,      KC_F2,    KC_F3,   KC_F4,       KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   KC_F13,           KC_F14,
@@ -748,7 +753,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX,     XXXXXXX,     XXXXXXX, XXXXXXX,    XXXXXXX,    PA,        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            XXXXXXX,          XXXXXXX,
         XXXXXXX,     XXXXXXX,              DU,         XXXXXXX,   XXXXXXX,    PI,      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,            XXXXXXX, XXXXXXX, XXXXXXX,
         XXXXXXX,     XXXXXXX,     XXXXXXX, XXXXXXX,                                    XXXXXXX,                            XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX),
-    
+
+    [_FN6] = LAYOUT_ansi_73(// temporal english imput on Layer 5
+        _______,     KC_ESC,   KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          XXXXXXX,
+        _______,     KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_MUTE,
+        KC_HOME,     KC_LCTL,  KC_A,     KC_S,     KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,            KC_ENT,           KC_VOLU,
+        KC_END,      KC_LSFT,            KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH,            KC_RSFT, KC_UP,   KC_VOLD,
+        _______,     XXXXXXX,  KC_LALT,  KC_LGUI,                             KC_SPC,                             XXXXXXX,  KC_RCTL,  KC_RGUI,  KC_LEFT, KC_DOWN, KC_RGHT),
+
  /*   [WIN_BASE] = LAYOUT_ansi_73(
         KC_MUTE, KC_ESC,  KC_1,     KC_2,     KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          KC_DEL,
         _______, KC_TAB,  KC_Q,     KC_W,     KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_HOME,
@@ -769,22 +781,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, RGB_RMOD, RGB_VAD,  RGB_HUD, RGB_SAD, RGB_SPD, _______, _______, _______, _______, _______,  _______,            _______,          _______,
         _______, _______,           _______,  _______, _______, _______, _______, NK_TOGG, _______, _______, _______,  _______,            _______, _______, _______,
         _______, _______, _______,  _______,                             _______,                            _______,  _______,  _______,  _______, _______, _______),
-*/
+
     [_FN6] = LAYOUT_ansi_73(
         _______, KC_TILD, KC_F1,    KC_F2,    KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   _______,          _______,
         _______, RGB_TOG, RGB_MOD,  RGB_VAI,  RGB_HUI, RGB_SAI, RGB_SPI, _______, _______, _______, _______, _______,  _______,  _______,  _______,          _______,
         _______, _______, RGB_RMOD, RGB_VAD,  RGB_HUD, RGB_SAD, RGB_SPD, _______, _______, _______, _______, _______,  _______,            _______,          _______,
         _______, _______,           _______,  _______, _______, _______, _______, _______, _______, _______, _______,  _______,            _______, _______, _______,
         _______, _______, _______,  _______,                             _______,                            _______,  _______,  _______,  _______, _______, _______)
+*/
 };
 
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 [LAYER_1] = {ENCODER_CCW_CW(TG(LAYER_2), TG(LAYER_2))},
 [LAYER_2] = {ENCODER_CCW_CW(TG(LAYER_3), TG(LAYER_3))},
-[LAYER_3] = {ENCODER_CCW_CW(TG(LAYER_5), TG(LAYER_5))},
-[LAYER_4] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
-[LAYER_5] = { ENCODER_CCW_CW(TG(LAYER_6), TG(LAYER_6))},
+[LAYER_3] = {ENCODER_CCW_CW(TG(LAYER_4), TG(LAYER_4))},
+[LAYER_4] = {ENCODER_CCW_CW(TG(LAYER_5), TG(LAYER_5))},
+[LAYER_5] = {ENCODER_CCW_CW(TG(LAYER_6), TG(LAYER_6))},
 [LAYER_6] = { ENCODER_CCW_CW(TO(LAYER_1), TO(LAYER_1))},
     
 [_FN1] = {ENCODER_CCW_CW(G(KC_Z), SGUI(KC_Z))},
