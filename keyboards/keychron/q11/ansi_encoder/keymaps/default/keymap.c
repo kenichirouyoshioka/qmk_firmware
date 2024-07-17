@@ -29,8 +29,7 @@ enum layers{
         _FN2,
         _FN3,
        _FN4,
-       _FN5,
-       _FN6
+       _FN5
 
     };
 
@@ -612,7 +611,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX,    XXXXXXX,    KC_LEFT,    KC_DOWN,    KC_RGHT,  C(KC_Y),   XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,            XXXXXXX,
         XXXXXXX,    KC_H,                   XXXXXXX,    XXXXXXX,  XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,              XXXXXXX,            XXXXXXX,
         XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,             XXXXXXX,                          XXXXXXX,            XXXXXXX,  XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX),    
-    
+/*
     [_FN6] = LAYOUT_ansi_91(
         RGB_TOG,  _______,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,     KC_F12,   _______,  _______,  RGB_TOG,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,   _______,  _______,  _______,  _______,  _______,  _______,    _______,  _______,            _______,
@@ -620,7 +619,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,   _______,  _______,  _______,  _______,  _______,  _______,              _______,            _______,
         _______,  _______,            _______,  _______,  _______,  _______,   _______,  NK_TOGG,  _______,  _______,  _______,  _______,              _______,  _______,
         _______,  _______,  _______,  _______,  _______,            _______,                       _______,            _______,  _______,    _______,  _______,  _______,  _______),
-
+*/
 };
 
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
@@ -636,8 +635,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [_FN2] =    {ENCODER_CCW_CW(KC_LBRC, KC_RBRC),       ENCODER_CCW_CW(S(KC_LBRC), S(KC_RBRC))},
     [_FN3] =    {ENCODER_CCW_CW(C(KC_P2), C(KC_P8)),     ENCODER_CCW_CW(C(KC_P4), C(KC_P6))},
     [_FN4] =    {ENCODER_CCW_CW(KC_VOLD, KC_VOLU),       ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_FN5] =    { ENCODER_CCW_CW(RGB_VAD, RGB_VAI),      ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
-    [_FN6] =    {ENCODER_CCW_CW(KC_VOLD, KC_VOLU),       ENCODER_CCW_CW(KC_VOLD, KC_VOLU)}
+    [_FN5] =    {ENCODER_CCW_CW(RGB_VAD, RGB_VAI),       ENCODER_CCW_CW(RGB_VAD, RGB_VAI)}
+//    [_FN6] =    {ENCODER_CCW_CW(KC_VOLD, KC_VOLU),       ENCODER_CCW_CW(KC_VOLD, KC_VOLU)}
 
 };
 #endif // ENCODER_MAP_ENABLE
