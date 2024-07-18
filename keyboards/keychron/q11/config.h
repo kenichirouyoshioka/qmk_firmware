@@ -125,6 +125,7 @@
 #define SPLIT_TRANSPORT_MIRROR
 /* tapping, mouse key and leader key 2023/08/18 */
 #define TAPPING_TERM 200
+#define TAPPING_TERM_PER_KEY
 #define LEADER_PER_KEY_TIMING
 #define LEADER_TIMEOUT  400
 
