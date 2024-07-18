@@ -153,3 +153,25 @@
 
 /* Enable receive custom command from host */
 #define RAW_HID_CMD 0xAB
+
+/*add synchronize layer color
+ tapping, mouse key and leader key 2024/07/19 */
+
+#define SPLIT_LAYER_STATE_ENABLE
+#define SPLIT_TRANSPORT_MIRROR
+
+#define TAPPING_TERM 200
+#define LEADER_PER_KEY_TIMING
+#define LEADER_TIMEOUT  400
+
+#undef  MOUSEKEY_WHEEL_DELAY
+#define MOUSEKEY_WHEEL_DELAY 100
+
+#undef  MOUSEKEY_WHEEL_INTERVAL
+#define MOUSEKEY_WHEEL_INTERVAL 100
+
+#undef  MOUSEKEY_WHEEL_MAX_SPEED
+#define MOUSEKEY_WHEEL_MAX_SPEED 1
+
+#undef  MOUSEKEY_WHEEL_TIME_TO_MAX
+#define MOUSEKEY_WHEEL_TIME_TO_MAX 100
