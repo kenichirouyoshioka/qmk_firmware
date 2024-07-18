@@ -6,4 +6,4 @@ include keyboards/keychron/bluetooth/bluetooth.mk
 include keyboards/keychron/common/common.mk
 
 TAP_DANCE_ENABLE = yes
-LEADER_ENABLE = yes
+#LEADER_ENABLE = yes

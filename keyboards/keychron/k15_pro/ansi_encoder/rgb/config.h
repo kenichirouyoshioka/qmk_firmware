@@ -57,8 +57,8 @@
 
 /* tapping, mouse key and leader key */
 #define TAPPING_TERM 200
-#define LEADER_PER_KEY_TIMING
-#define LEADER_TIMEOUT  400
+//#define LEADER_PER_KEY_TIMING
+//#define LEADER_TIMEOUT  400
 
 #undef  MOUSEKEY_WHEEL_DELAY
 #define MOUSEKEY_WHEEL_DELAY 100
