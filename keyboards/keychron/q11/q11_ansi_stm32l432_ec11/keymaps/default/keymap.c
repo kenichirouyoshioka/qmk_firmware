@@ -346,7 +346,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_4] = LAYOUT_ansi_91( // hacchan
         KC_NO,      KC_NO,      KC_NO,         KC_NO,            KC_NO,       KC_NO,      KC_NO,      KC_NO,      KC_NO,   KC_NO,    KC_NO,    KC_NO,    KC_NO,   KC_NO,    KC_NO,     KC_NO,     KC_NO,
         KC_TRNS,    XXXXXXX,    XXXXXXX,       KC_NO,            KC_NO,       KC_NO,      KC_NO,      KC_NO,      KC_7,    KC_8,     KC_9,     KC_0,     KC_MINS, KC_EQL,   KC_BSPC,              KC_TRNS,
-        TO(LAYER_1),KC_TAB,     KC_LBRC,       KC_RBRC,          ALT_T(KC_F1),CTL_T(KC_R),KC_T,       KC_Y,       KC_U,    KC_I,     KC_O,     KC_P,     KC_LBRC, KC_RBRC,  KC_BSLS,              KC_TRNS,
+        TO(LAYER_1),KC_TAB,     XXXXXXX,       XXXXXXX,          ALT_T(KC_F1),CTL_T(KC_R),KC_T,       KC_Y,       KC_U,    KC_I,     KC_O,     KC_P,     KC_LBRC, KC_RBRC,  KC_BSLS,              KC_TRNS,
         G(KC_RBRC), MO(_FN5),   KC_X,          KC_G,             KC_WH_U,     TD(BEAC),   KC_ESC,     KC_H,       KC_J,    KC_K,     KC_L,     KC_SCLN,  KC_QUOT,           KC_ENT,               KC_TRNS,
         G(KC_LBRC), SFT_T(KC_M),               KC_Z,             KC_X,        KC_NO,      KC_V,       KC_NO,      KC_N,    KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,           KC_RSFT,   KC_UP,
         KC_LCTL,    MO(_FN4),   MO(_FN5),      ALT_T(KC_SLSH),   GUI_T(KC_L),             KC_SPC,                          KC_TRNS,            KC_TRNS,  KC_TRNS, KC_TRNS,  KC_LEFT,   KC_DOWN,    KC_RGHT),
