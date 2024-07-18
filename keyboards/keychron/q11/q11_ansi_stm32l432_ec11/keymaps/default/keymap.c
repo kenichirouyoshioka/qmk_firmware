@@ -205,9 +205,115 @@ enum layers{
     }
     #endif // RGB_MATRIX_ENABLE
 
+//tap dance
+typedef enum{
+    TD_NONE,
+ TD_SINGLE_TAP ,
+ TD_SINGLE_HOLD,
+ TD_DOUBLE_TAP,
+ TD_DOUBLE_HOLD,
+// TD_DOUBLE_SINGLE_TAP
+}td_state_t;
+
+enum{
+    BEAC = 0,
+    VF8 =  1,
+    TXG  = 2,
+    TGF  =  3,
+    F1112 = 4,
+    TD02  = 5,
+    TD1U  = 6,
+    TDKO = 7,
+    SOME_OTHER_DANCE
+};
 
 
+typedef struct { bool is_press_action;
+  td_state_t  state; } td_tap_t;
 
+td_state_t cur_dance (qk_tap_dance_state_t *state){
+ if(state -> count == 1){
+   if (state -> interrupted || !state -> pressed) return TD_SINGLE_TAP;
+     else return TD_SINGLE_HOLD;
+ }else  if (state -> count == 2 ){
+  if(state -> interrupted) return TD_DOUBLE_TAP;
+  else if (state -> pressed) return  TD_DOUBLE_HOLD;
+  else return TD_DOUBLE_TAP;
+     
+ }else if (state->count == 3) {
+           if (state->interrupted || !state->pressed) return TD_DOUBLE_TAP;
+           else return TD_DOUBLE_HOLD;
+       }
+    return 0;
+}
+
+static td_tap_t xtap_state = {
+ .is_press_action = true,
+ .state = TD_NONE
+};
+
+void x_finished (qk_tap_dance_state_t *state, void *user_data){
+ xtap_state.state = cur_dance(state);
+  switch (xtap_state.state){
+   case TD_SINGLE_TAP:  register_code16(KC_B); break;
+   case TD_SINGLE_HOLD: register_code16(A(KC_LCTL)); break;
+   case TD_DOUBLE_TAP:  register_code16(KC_E); break;
+      case TD_DOUBLE_HOLD: register_code16(A(KC_LCTL));
+//   case TD_DOUBLE_SINGLE_TAP: register_code(KC_E); unregister_code(KC_E); register_code(KC_E);
+   case TD_NONE: unregister_code16(KC_LALT);
+  }
+    xtap_state.state = TD_NONE;
+}
+
+// 0 to 2  TD02
+void triple_numpad (qk_tap_dance_state_t *state, void *user_data);
+void triple_numpad(qk_tap_dance_state_t *state, void *user_data) {
+ if (state->count == 2) {
+        register_code16(KC_P2);
+    } else if(state->count == 3){
+        register_code(KC_P3);
+    } else {
+        register_code(KC_P0);
+    }
+ if (state->count == 2) {
+        unregister_code16(KC_P2);
+    } else if(state->count == 3) {
+        unregister_code(KC_P3);
+    } else {
+        unregister_code(KC_P0);
+    }
+};
+
+void dance_cln_reset(qk_tap_dance_state_t *state, void *user_data) {
+    unregister_code16(KC_B);
+    unregister_code16(KC_E);
+    unregister_code16(A(KC_LCTL));
+    unregister_code16(KC_V);
+    unregister_code16(KC_F8);
+    unregister_code16(KC_X);
+    unregister_code16(KC_G);
+    unregister_code16(KC_F);
+    unregister_code16(KC_F12);
+    unregister_code16(KC_F11);
+    unregister_code16(KC_P0);
+    unregister_code16(KC_P1);
+    unregister_code16(KC_P2);
+    unregister_code16(KC_P3);
+    unregister_code16(KC_U);
+    unregister_code16(KC_K);
+    unregister_code16(KC_O);
+};
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [BEAC] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, x_finished, dance_cln_reset),
+    [VF8] = ACTION_TAP_DANCE_DOUBLE(KC_V, KC_F8),
+    [TXG] = ACTION_TAP_DANCE_DOUBLE(KC_X, KC_G),
+    [TGF] =   ACTION_TAP_DANCE_DOUBLE(KC_G, KC_F),
+    [F1112] = ACTION_TAP_DANCE_DOUBLE(KC_F11, KC_F12),
+    [TD02] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, triple_numpad, dance_cln_reset),
+    [TD1U]  = ACTION_TAP_DANCE_DOUBLE(KC_P1, KC_U),
+    [TDKO]  = ACTION_TAP_DANCE_DOUBLE(KC_K, KC_O),
+    
+};
 
 #define KC_TASK LGUI(KC_TAB)
 #define KC_FLXP LGUI(KC_E)
@@ -223,17 +329,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     
     [LAYER_2] = LAYOUT_ansi_91(
         KC_NO,      KC_NO,      KC_NO,         KC_NO,            KC_NO,       KC_NO,      KC_NO,      KC_NO,      KC_NO,   KC_NO,    KC_NO,    KC_NO,    KC_NO,   KC_NO,    KC_NO,     KC_NO,     KC_NO,
-        KC_TRNS,    KC_F10,     KC_N,          KC_Z,             KC_P,        KC_4,       KC_5,       KC_6,       KC_7,    KC_8,     KC_9,     KC_0,     KC_MINS, KC_EQL,   KC_BSPC,              KC_TRNS,
-        TO(LAYER_1),KC_TAB,     KC_LBRC,       KC_RBRC,          ALT_T(KC_F1),CTL_T(KC_R),KC_1,       KC_Y,       KC_U,    KC_I,     KC_O,     KC_P,     KC_LBRC, KC_RBRC,  KC_BSLS,              KC_TRNS,
-        G(KC_RBRC), MO(_FN1),   QK_LEAD,       KC_X,             KC_WH_U,     KC_B,       KC_ESC,     KC_H,       KC_J,    KC_K,     KC_L,     KC_SCLN,  KC_QUOT,           KC_ENT,               KC_TRNS,
-        G(KC_LBRC), SFT_T(KC_M),               KC_F9,            KC_F11,      KC_K,       KC_V,       KC_E,       KC_N,    KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,           KC_RSFT,   KC_UP,
+        KC_TRNS,    KC_NO,      KC_NO,         KC_Z,             KC_P,        KC_N,       KC_F10,     KC_9,       KC_7,    KC_8,     KC_9,     KC_0,     KC_MINS, KC_EQL,   KC_BSPC,              KC_TRNS,
+        TO(LAYER_1),KC_TAB,     G(KC_S),       KC_RBRC,          ALT_T(KC_F1),CTL_T(KC_R),TD(TD1U),   KC_Y,       KC_U,    KC_I,     KC_O,     KC_P,     KC_LBRC, KC_RBRC,  KC_BSLS,              KC_TRNS,
+        G(KC_RBRC), MO(_FN1),   KC_LBRC ,      TD(TXG),          KC_WH_U,     TD(BEAC),   KC_ESC,     KC_H,       KC_J,    KC_K,     KC_L,     KC_SCLN,  KC_QUOT,           KC_ENT,               KC_TRNS,
+        G(KC_LBRC), SFT_T(KC_M),               KC_F9,            TD(F1112),   TD(TDKO),   TD(VF8),    TD(TD02),   KC_N,    KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,           KC_RSFT,   KC_UP,
         KC_LCTL,    MO(_FN2),   MO(_FN5),      ALT_T(KC_SLSH),   GUI_T(KC_L),             KC_SPC,                          KC_TRNS,            KC_TRNS,  KC_TRNS, KC_TRNS,  KC_LEFT,   KC_DOWN,    KC_RGHT),
 
     [LAYER_3] = LAYOUT_ansi_91(
         KC_TRNS,    KC_TRNS,          KC_F1,      KC_F2,    KC_F3,    KC_F4,    KC_F5,     KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,  KC_F12,   KC_TRNS,   KC_TRNS,    KC_TRNS,
         KC_TRNS,    KC_ESC,           KC_1,       KC_2,     KC_3,     KC_4,     KC_5,      KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS, KC_EQL,   KC_BSPC,               KC_TRNS,
         TO(LAYER_1),KC_TAB,           KC_Q,       KC_W,     KC_E,     KC_R,     KC_T,      KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC, KC_RBRC,  KC_BSLS,               KC_TRNS,
-        G(KC_I),    CTL_T(KC_K),      KC_A,       KC_S,     KC_D,     KC_F,     KC_G,      KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,           KC_ENT,                KC_TRNS,
+        G(KC_I),    CTL_T(KC_K),      KC_A,       KC_S,     KC_D,     TD(TGF),  KC_G,      KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,           KC_ENT,                KC_TRNS,
         A(KC_H),    SFT_T(KC_Y),                  KC_Z,     KC_X,     KC_C,     KC_V,      KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,           KC_RSFT,   KC_UP,
         MO(_FN1),   MO(_FN3),XXXXXXX,LALT_T(KC_N),GUI_T(KC_L),                  KC_GRV,                        KC_SPC,             KC_TRNS,  KC_TRNS, KC_TRNS,  KC_LEFT,   KC_DOWN,    KC_RGHT),
     
@@ -241,8 +347,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,      KC_NO,      KC_NO,         KC_NO,            KC_NO,       KC_NO,      KC_NO,      KC_NO,      KC_NO,   KC_NO,    KC_NO,    KC_NO,    KC_NO,   KC_NO,    KC_NO,     KC_NO,     KC_NO,
         KC_TRNS,    XXXXXXX,    XXXXXXX,       KC_NO,            KC_NO,       KC_NO,      KC_NO,      KC_NO,      KC_7,    KC_8,     KC_9,     KC_0,     KC_MINS, KC_EQL,   KC_BSPC,              KC_TRNS,
         TO(LAYER_1),KC_TAB,     KC_LBRC,       KC_RBRC,          ALT_T(KC_F1),CTL_T(KC_R),KC_T,       KC_Y,       KC_U,    KC_I,     KC_O,     KC_P,     KC_LBRC, KC_RBRC,  KC_BSLS,              KC_TRNS,
-        G(KC_RBRC), MO(_FN5),   KC_X,          KC_G,             KC_WH_U,     KC_B,       KC_ESC,     KC_H,       KC_J,    KC_K,     KC_L,     KC_SCLN,  KC_QUOT,           KC_ENT,               KC_TRNS,
-        G(KC_LBRC), SFT_T(KC_M),               XXXXXXX,          XXXXXXX,     KC_H,       KC_V,       KC_E,       KC_N,    KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,           KC_RSFT,   KC_UP,
+        G(KC_RBRC), MO(_FN5),   KC_X,          KC_G,             KC_WH_U,     TD(BEAC),   KC_ESC,     KC_H,       KC_J,    KC_K,     KC_L,     KC_SCLN,  KC_QUOT,           KC_ENT,               KC_TRNS,
+        G(KC_LBRC), SFT_T(KC_M),               KC_Z,             KC_X,        KC_NO,      KC_V,       KC_NO,      KC_N,    KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,           KC_RSFT,   KC_UP,
         KC_LCTL,    MO(_FN4),   MO(_FN5),      ALT_T(KC_SLSH),   GUI_T(KC_L),             KC_SPC,                          KC_TRNS,            KC_TRNS,  KC_TRNS, KC_TRNS,  KC_LEFT,   KC_DOWN,    KC_RGHT),
 
     [LAYER_5] = LAYOUT_ansi_91(// enable function key, right shift
@@ -311,15 +417,36 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [LAYER_2] = {ENCODER_CCW_CW(TG(LAYER_3), TG(LAYER_3)),        ENCODER_CCW_CW(TG(LAYER_3), TG(LAYER_3))},
     [LAYER_3] = {ENCODER_CCW_CW(TG(LAYER_4), TG(LAYER_4)),        ENCODER_CCW_CW(TG(LAYER_4), TG(LAYER_4))},
     [LAYER_4] = {ENCODER_CCW_CW(TG(LAYER_5), TG(LAYER_5)),        ENCODER_CCW_CW(TG(LAYER_5), TG(LAYER_5))},
-    [LAYER_5] = {ENCODER_CCW_CW(TO(LAYER_1), TO(LAYER_1)),        ENCODER_CCW_CW(TO(LAYER_1), TO(LAYER_1)) },
+    [LAYER_5] = {ENCODER_CCW_CW(TO(LAYER_1), TO(LAYER_1)),        ENCODER_CCW_CW(TO(LAYER_1), TO(LAYER_1))},
 
     
-    [_FN1] =    {ENCODER_CCW_CW(G(KC_Z), SGUI(KC_Z)),    ENCODER_CCW_CW(G(KC_Z), SGUI(KC_Z))},
-    [_FN2] =    {ENCODER_CCW_CW(KC_LBRC, KC_RBRC),       ENCODER_CCW_CW(S(KC_LBRC), S(KC_RBRC))},
-    [_FN3] =    {ENCODER_CCW_CW(C(KC_P2), C(KC_P8)),     ENCODER_CCW_CW(C(KC_P4), C(KC_P6))},
+    [_FN1] =    {ENCODER_CCW_CW(KC_VOLD, KC_VOLU),       ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [_FN2] =    {ENCODER_CCW_CW(KC_VOLD, KC_VOLU),       ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [_FN3] =    {ENCODER_CCW_CW(KC_VOLD, KC_VOLU),       ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [_FN4] =    {ENCODER_CCW_CW(KC_VOLD, KC_VOLU),       ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [_FN5] =    {ENCODER_CCW_CW(RGB_VAD, RGB_VAI),       ENCODER_CCW_CW(RGB_VAD, RGB_VAI)}
+    [_FN5] =    {ENCODER_CCW_CW(KC_VOLD, KC_VOLU),       ENCODER_CCW_CW(KC_VOLD, KC_VOLU)}
 //    [_FN6] =    {ENCODER_CCW_CW(KC_VOLD, KC_VOLU),       ENCODER_CCW_CW(KC_VOLD, KC_VOLU)}
 
 };
 #endif // ENCODER_MAP_ENABLE
+
+
+//LEADER KEY setting
+/*
+void leader_start_user(void) {
+}
+
+void leader_end_user(void) {
+    if(leader_sequence_one_key(KC_ESC)) {
+        //100% opacity
+        tap_code16(KC_V);
+        tap_code16(KC_0);
+        
+    } else if (leader_sequence_two_keys(KC_ESC, KC_ESC)) {
+        // 10% opacity
+        tap_code16(KC_V);
+        tap_code16(KC_1);
+        
+    }
+};
+*/
