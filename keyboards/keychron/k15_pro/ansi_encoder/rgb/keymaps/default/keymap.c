@@ -203,7 +203,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_2] = LAYOUT_90_ansi(
             KC_TRNS,     KC_TRNS,    KC_TRNS,       KC_TRNS,    KC_TRNS,     KC_TRNS,     KC_TRNS,    KC_TRNS,   KC_TRNS,    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            XXXXXXX,
             KC_TRNS,     KC_NO,      KC_NO,         KC_Z,       KC_P,        KC_N,        KC_F10,     KC_9,      KC_7,       KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            TG(LAYER_3),
-            TO(LAYER_1), KC_TAB,     KC_NO,         KC_RBRC,    ALT_T(KC_F1),CTL_T(KC_R), TD(TD1U),   KC_Y,      KC_U,       KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_TRNS,
+            TO(LAYER_1), KC_TAB,     G(KC_S),       KC_RBRC,    ALT_T(KC_F1),CTL_T(KC_R), TD(TD1U),   KC_Y,      KC_U,       KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_TRNS,
             MO(_FN5),    MO(_FN1),   KC_LBRC,       TD(TXG),    KC_WH_U,     TD(BEAC),    KC_ESC,     KC_H,      KC_J,       KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,             KC_TRNS,
             MO(_FN2),    SFT_T(KC_M),               KC_F9,      TD(F1112),   TD(TDKO),    TD(VF8),   TD(TD02),   TO(LAYER_1),KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,  KC_UP,
             KC_LCTL,     MO(_FN2),   ALT_T(KC_SLSH),GUI_T(KC_L),KC_SPC,      MO(_FN5),                                       KC_TRNS,            KC_TRNS,  KC_TRNS,            KC_LEFT,  KC_DOWN,  KC_RGHT),
@@ -270,11 +270,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             XXXXXXX,   KC_H,                 XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
             XXXXXXX,   XXXXXXX,    XXXXXXX,              XXXXXXX,   XXXXXXX,   XXXXXXX,                       XXXXXXX,            XXXXXXX,  XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX),
     [_FN5] = LAYOUT_90_ansi(
-            XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
-            XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
-            XXXXXXX,   XXXXXXX,    XXXXXXX,  KC_UP,      XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
-            XXXXXXX,   XXXXXXX,    KC_LEFT,  KC_DOWN,    KC_RGHT,   C(KC_Y),   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,            KC_TRNS,
-            XXXXXXX,   KC_H,                 XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+            XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
+            XXXXXXX,   XXXXXXX,    KC_F1,    KC_F2,      KC_F3,     KC_F4,     KC_F5,      KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   SGUI(KC_4),         XXXXXXX,
+            XXXXXXX,   XXXXXXX,    XXXXXXX,  KC_UP,      XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_TRNS,
+            XXXXXXX,   XXXXXXX,    KC_LEFT,  KC_DOWN,    KC_RGHT,   C(KC_Y),   TG(LAYER_4),XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,            KC_TRNS,
+            XXXXXXX,   KC_H,                 XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
             XXXXXXX,   XXXXXXX,    XXXXXXX,              XXXXXXX,   XXXXXXX,   XXXXXXX,                       XXXXXXX,            XXXXXXX,  XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX),
 /*
     [MAC_BASE] = LAYOUT_90_ansi(
