@@ -94,9 +94,13 @@ enum{
     TXG  = 2,
     TGF  =  3,
     F1112 = 4,
-    TD02  = 5,
-    TD1U  = 6,
-    TDKO = 7,
+    T02  = 5,
+    T1U  = 6,
+    TKO = 7,
+    F910 = 8,
+    TNP  = 9,
+    T9Z  = 10,
+    F46  = 11,
     SOME_OTHER_DANCE
 };
 
@@ -162,10 +166,14 @@ void dance_cln_reset(tap_dance_state_t *state, void *user_data) {
     unregister_code16(KC_E);
     unregister_code16(A(KC_LCTL));
     unregister_code16(KC_V);
-    unregister_code16(KC_F8);
     unregister_code16(KC_X);
     unregister_code16(KC_G);
     unregister_code16(KC_F);
+    unregister_code16(KC_F4);
+    unregister_code16(KC_F6);
+    unregister_code16(KC_F8);
+    unregister_code16(KC_F9);
+    unregister_code16(KC_F10);
     unregister_code16(KC_F12);
     unregister_code16(KC_F11);
     unregister_code16(KC_P0);
@@ -175,6 +183,8 @@ void dance_cln_reset(tap_dance_state_t *state, void *user_data) {
     unregister_code16(KC_U);
     unregister_code16(KC_K);
     unregister_code16(KC_O);
+    unregister_code16(KC_9);
+    unregister_code16(KC_Z);
 };
 tap_dance_action_t tap_dance_actions[] = {
     [BEAC] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, x_finished, dance_cln_reset),
@@ -182,12 +192,15 @@ tap_dance_action_t tap_dance_actions[] = {
     [TXG] = ACTION_TAP_DANCE_DOUBLE(KC_X, KC_G),
     [TGF] =   ACTION_TAP_DANCE_DOUBLE(KC_G, KC_F),
     [F1112] = ACTION_TAP_DANCE_DOUBLE(KC_F11, KC_F12),
-    [TD02] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, triple_numpad, dance_cln_reset),
-    [TD1U]  = ACTION_TAP_DANCE_DOUBLE(KC_P1, KC_U),
-    [TDKO]  = ACTION_TAP_DANCE_DOUBLE(KC_K, KC_O),
+    [T02] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, triple_numpad, dance_cln_reset),
+    [T1U]  = ACTION_TAP_DANCE_DOUBLE(KC_P1, KC_U),
+    [TKO]  = ACTION_TAP_DANCE_DOUBLE(KC_K, KC_O),
+    [F910] = ACTION_TAP_DANCE_DOUBLE(KC_F9, KC_F10),
+    [TNP] = ACTION_TAP_DANCE_DOUBLE(KC_N, KC_P),
+    [T9Z] = ACTION_TAP_DANCE_DOUBLE(KC_9, KC_Z),
+    [F46] = ACTION_TAP_DANCE_DOUBLE(KC_F4, KC_F6),
     
 };
-
 
 // k11 pro
 // clang-format off
@@ -200,10 +213,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         MO(_FN1),KC_LALT,  KC_LGUI,           KC_SPC,           MO(_FN5), MO(_FN1),          KC_RSFT,           KC_RGUI,            KC_LEFT, KC_DOWN, KC_RGHT),
 
 [LAYER_2] = LAYOUT_69_ansi(
-   KC_NO,       KC_NO,          KC_Z,        KC_P,         KC_N,        KC_F10,    KC_9,        KC_7,     KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          KC_TRNS,
-   KC_TAB,      G(KC_S),        KC_RBRC,     ALT_T(KC_F1), CTL_T(KC_R), TD(TD1U),  KC_Y,        KC_U,     KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_TRNS,
+   KC_NO,       KC_NO,          TD(T9Z),     TD(TNP),      TD(F46),     KC_5,      KC_6,        KC_7,     KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,          KC_TRNS,
+   KC_TAB,      G(KC_S),        KC_RBRC,     ALT_T(KC_F1), CTL_T(KC_R), TD(T1U),   KC_Y,        KC_U,     KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_TRNS,
    MO(_FN1),    KC_LBRC,        TD(TXG),     KC_WH_U,      TD(BEAC),    KC_ESC,                 KC_H,     KC_J,    KC_K,    KC_L,     KC_SCLN,  KC_QUOT,  KC_ENT,           TG(LAYER_3),
-   SFT_T(KC_M),                 KC_F9,       TD(F1112),    TD(TDKO),    TD(VF8),    TD(TD02),   KC_GRV,   KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT, KC_UP,
+   SFT_T(KC_M),                 TD(F910),    TD(F1112),    TD(TKO),     TD(VF8),    TD(T02),    KC_GRV,   KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT, KC_UP,
    MO(_FN2),    ALT_T(KC_SLSH), GUI_T(KC_L),               KC_SPC,                  MO(_FN5),   MO(_FN1),          KC_RSFT,           KC_RGUI,            KC_LEFT, KC_DOWN, KC_RGHT),
 
 [LAYER_3] = LAYOUT_69_ansi(
